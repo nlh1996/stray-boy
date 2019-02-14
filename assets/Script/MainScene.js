@@ -7,12 +7,16 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-
+var gameEvent = require('Event')
 cc.Class({
     extends: cc.Component,
 
     properties: {
-      button: cc.Button
+      button: cc.Button,
+      content: {
+        default: null,
+        type: cc.Label
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -22,7 +26,14 @@ cc.Class({
     },
 
     callback() {
-      console.log(1111)
+      this.content.string = ''
+      event = gameEvent.getRandomEvent()
+      let i = event.length - 1
+      let index = 0
+      this.schedule(() => {
+        this.content.string = this.content.string + event[index]
+        index++
+      },0.1,i,0)
     },
 
     start () {
