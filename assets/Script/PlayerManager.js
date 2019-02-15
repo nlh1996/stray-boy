@@ -21,10 +21,25 @@ var PlayerManager = cc.Class({
   Get() {
     const userData = JSON.parse(cc.sys.localStorage.getItem('userData'))
     return userData
-  },
+  }, 
+  
+  Score(code) {
+    for(let i=0; i<code.length; i++) {
+      switch(code[i]) {
+        case 201:
+          this.luck -= 1
+          break
+        case 202:
+          this.luck += 1
+          break
+        case 402:
+          this.money = (this.money*10 + 0.1*10) / 10
+          break
+      }
+    }
+  }
 })
-
 
 var player = new PlayerManager()
 
-module.exports = player
+module.exports = player 

@@ -8,6 +8,7 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
 var gameEvent = require('Event')
+var player = require("PlayerManager")
 cc.Class({
     extends: cc.Component,
 
@@ -17,23 +18,79 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      health: {
+        default: null,
+        type: cc.Label
+      },
+      luck: {
+        default: null,
+        type: cc.Label
+      },
+      achievement: {
+        default: null,
+        type: cc.Label
+      },
+      money: {
+        default: null,
+        type: cc.Label
+      },
+      knowledge: {
+        default: null,
+        type: cc.Label
+      },
+      sport: {
+        default: null,
+        type: cc.Label
+      },
+      charm: {
+        default: null,
+        type: cc.Label
+      },
+      game: {
+        default: null,
+        type: cc.Label
+      },
+      classRank: {
+        default: null,
+        type: cc.Label
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+      this.updateLabel()
       this.button.node.on('click', this.callback, this)
     },
 
-    callback() {
+    callback(button) {
+      button.enabled = false
       this.content.string = ''
-      event = gameEvent.getRandomEvent()
-      let i = event.length - 1
+      const event = gameEvent.getRandomEvent()
+      const content = event.content
+      let i = content.length - 1
       let index = 0
       this.schedule(() => {
-        this.content.string = this.content.string + event[index]
+        this.content.string = this.content.string + content[index]
         index++
-      },0.1,i,0)
+        if(index>i) {
+          button.enabled = true
+        }
+      },0.08,i,0)
+      player.Score(event.code)
+      this.updateLabel()
+    },
+
+    updateLabel() {
+      this.health.string = player.health
+      this.luck.string = player.luck
+      this.achievement.string = player.achievement
+      this.money.string = player.money
+      this.knowledge.string = player.knowledge
+      this.sport.string = player.sport
+      this.charm.string = player.charm
+      this.game.string = player.game
+      this.classRank.string = player.classRank
     },
 
     start () {
