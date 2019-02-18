@@ -53,7 +53,7 @@ cc.Class({
         default: null,
         type: cc.Label
       },
-      data: {
+      date: {
         default: null,
         type: cc.Label
       },
@@ -89,6 +89,7 @@ cc.Class({
       },0.08,i,0)
       player.Score(event.code)
       this.updateLabel()
+
     },
 
     updateLabel() {
@@ -101,10 +102,9 @@ cc.Class({
       this.charm.string = player.charm
       this.game.string = player.game
       this.classRank.string = player.classRank
-      this.data = player.data
-      this.energy = player.energy
-      this.currentEnergy = player.currentEnergy + '/' + player.energy
-      this.time = player.time
+      this.date.string = player.date
+      this.energy.string = player.currentEnergy + '/' + player.energy
+      this.time.string = player.time
     },
 
     start () {
