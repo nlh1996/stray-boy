@@ -11,7 +11,6 @@ var gameEvent = require('Event')
 var player = require("PlayerManager")
 cc.Class({
     extends: cc.Component,
-
     properties: {
       button: cc.Button,
       content: {
@@ -54,16 +53,27 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      data: {
+        default: null,
+        type: cc.Label
+      },
+      energy: {
+        default: null,
+        type: cc.Label
+      },
+      time: {
+        default: null,
+        type: cc.Label
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
       this.updateLabel()
-      this.button.node.on('click', this.callback, this)
+      this.button.node.on('click', this.goOut, this)
     },
 
-    callback(button) {
+    goOut(button) {
       button.enabled = false
       this.content.string = ''
       const event = gameEvent.getRandomEvent()
@@ -91,6 +101,10 @@ cc.Class({
       this.charm.string = player.charm
       this.game.string = player.game
       this.classRank.string = player.classRank
+      this.data = player.data
+      this.energy = player.energy
+      this.currentEnergy = player.currentEnergy + '/' + player.energy
+      this.time = player.time
     },
 
     start () {

@@ -12,6 +12,10 @@ var PlayerManager = cc.Class({
     this.game = 0
     this.classRank = 0
     this.talent = 0
+    this.data = 1
+    this.energy = 60
+    this.currentEnergy = 60
+    this.time = '8:00'
   },
 
   Save() {
@@ -26,6 +30,13 @@ var PlayerManager = cc.Class({
   Score(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
+        case 111:
+          this.currentEnergy -= 10
+          break
+        case 121:
+          date = new Date()
+          this.time = date.setHours(08,00)
+          break
         case 201:
           this.luck -= 1
           break
