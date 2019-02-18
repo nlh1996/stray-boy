@@ -1,4 +1,5 @@
 const et = require('Listener')
+const Enum = require('Enum')
 // 普通单例_饿汉模式
 var PlayerManager = cc.Class({
   // 成员变量
@@ -35,7 +36,8 @@ var PlayerManager = cc.Class({
           if(this.currentEnergy > 0) {
             this.currentEnergy -= 10
           }else{
-            et.emit('fire',event)
+            et.emit(Enum.EVENT.NO_ENERGY,event)
+            return
           }
           break
         case 121:

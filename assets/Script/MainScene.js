@@ -10,6 +10,7 @@
 const gameEvent = require('Event')
 const player = require("PlayerManager")
 const et = require('Listener')
+const Enum = require('Enum')
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -70,29 +71,47 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      et.on('fire',() => {
-        console.log(111)
-      })
       this.updateLabel()
       this.button.node.on('click', this.goOut, this)
+      et.on(Enum.EVENT.NO_ENERGY,() => {
+        this.button.enabled = false
+        this.content.string = ''
+        const event = gameEvent.noEnergy()
+        const content = event.content
+        let i = content.length - 1
+        let index = 0
+        this.labelSchedule(i,index,content)
+      })
     },
 
-    goOut(button) {
-      button.enabled = false
+    // 出门按钮事件回调
+    goOut() {
+      this.button.enabled = false
       this.content.string = ''
       const event = gameEvent.getRandomEvent()
-      const content = event.content
-      let i = content.length - 1
-      let index = 0
+      if(player.currentEnergy > 0) {
+        const content = event.content
+        let i = content.length - 1
+        let index = 0
+        this.labelSchedule(i,index,content)
+      }
+      player.Score(event.code)
+      this.updateLabel()
+    },
+
+    labelInfo() {
+
+    },
+
+    // 文字出现
+    labelSchedule(i,index,content) {
       this.schedule(() => {
         this.content.string = this.content.string + content[index]
         index++
         if(index>i) {
-          button.enabled = true
+          this.button.enabled = true
         }
       },0.08,i,0)
-      player.Score(event.code)
-      this.updateLabel()
     },
 
     updateLabel() {

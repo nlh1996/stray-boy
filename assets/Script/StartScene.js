@@ -7,8 +7,8 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-var player = require("PlayerManager")
-var Enum = require('Enum')
+const player = require("PlayerManager")
+const Enum = require('Enum')
 cc.Class({
     extends: cc.Component,
 
@@ -36,15 +36,15 @@ cc.Class({
       switch(button.node.name) {
         case 'Button_1':
           player.knowledge = 2
-          player.talent = Enum.Talent.学霸
+          player.talent = Enum.TALENT.学霸
           break
         case 'Button_2':
           player.sport = 2
-          player.talent = Enum.Talent.强壮
+          player.talent = Enum.TALENT.强壮
           break
         case 'Button_3':
           player.charm = 2
-          player.talent = Enum.Talent.多才
+          player.talent = Enum.TALENT.多才
           break
       }
     },
