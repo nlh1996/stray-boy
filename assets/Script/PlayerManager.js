@@ -1,3 +1,4 @@
+const et = require('Listener')
 // 普通单例_饿汉模式
 var PlayerManager = cc.Class({
   // 成员变量
@@ -31,7 +32,11 @@ var PlayerManager = cc.Class({
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
         case 111:
-          this.currentEnergy -= 10
+          if(this.currentEnergy > 0) {
+            this.currentEnergy -= 10
+          }else{
+            et.emit('fire',event)
+          }
           break
         case 121:
           this.time += 1

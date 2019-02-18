@@ -7,8 +7,9 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-var gameEvent = require('Event')
-var player = require("PlayerManager")
+const gameEvent = require('Event')
+const player = require("PlayerManager")
+const et = require('Listener')
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -69,6 +70,9 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
+      et.on('fire',() => {
+        console.log(111)
+      })
       this.updateLabel()
       this.button.node.on('click', this.goOut, this)
     },
@@ -89,7 +93,6 @@ cc.Class({
       },0.08,i,0)
       player.Score(event.code)
       this.updateLabel()
-
     },
 
     updateLabel() {
