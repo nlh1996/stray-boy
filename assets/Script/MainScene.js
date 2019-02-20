@@ -74,28 +74,50 @@ cc.Class({
       this.updateLabel()
       this.button.node.on('click', this.goOut, this)
       et.on(Enum.EVENT.NO_ENERGY,() => {
-        this.button.enabled = false
-        this.content.string = ''
-        const event = gameEvent.noEnergy()
-        const content = event.content
-        let i = content.length - 1
-        let index = 0
-        this.labelSchedule(i,index,content)
+        this.node.getChildByName('Btn_Sleep').active = true
       })
+      this.node.getChildByName('Btn_Sleep').active = false
+
+      // function format(str) {
+      //   let str2 = ''
+      //   let len = str.length
+      //   for(let i = 0; i<len; i++) {
+      //     if(str[i] != ' '){
+      //       str2 += str[i]
+      //     }
+      //   }
+      //   return str2
+      // }
+
+      // let arr = ['1',' ','a','ds','f']
+      // let str = ''
+      // for (let i = 0; i<10000000; i++) {
+      //   let index = Math.floor(Math.random()*5)
+      //   str += arr[index]
+      // }
+
+      // let time1 = new Date()
+      // format(str)
+      // let time2 = new Date()
+      // str.replace(/ /g,'')
+      // let time3 = new Date()
+      // console.log(time2-time1,time3-time2)       
     },
 
     // 出门按钮事件回调
     goOut() {
       this.button.enabled = false
       this.content.string = ''
-      const event = gameEvent.getRandomEvent()
       if(player.currentEnergy > 0) {
-        const content = event.content
-        let i = content.length - 1
-        let index = 0
-        this.labelSchedule(i,index,content)
+        var event = gameEvent.getRandomEvent()
+        player.Score(event.code)
+      }else{
+        var event = gameEvent.noEnergy()
       }
-      player.Score(event.code)
+      const content = event.content
+      let i = content.length - 1
+      let index = 0
+      this.labelSchedule(i,index,content)
       this.updateLabel()
     },
 

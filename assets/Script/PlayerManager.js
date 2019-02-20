@@ -1,6 +1,6 @@
 const et = require('Listener')
 const Enum = require('Enum')
-// 普通单例_饿汉模式
+
 var PlayerManager = cc.Class({
   // 成员变量
   ctor() {
@@ -35,7 +35,8 @@ var PlayerManager = cc.Class({
         case 111:
           if(this.currentEnergy > 0) {
             this.currentEnergy -= 10
-          }else{
+          }
+          if(this.currentEnergy == 0){
             et.emit(Enum.EVENT.NO_ENERGY,event)
             return
           }
