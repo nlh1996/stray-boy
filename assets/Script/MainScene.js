@@ -11,6 +11,7 @@ const gameEvent = require('Event')
 const player = require("PlayerManager")
 const et = require('Listener')
 const Enum = require('Enum')
+const Obj = require('Command')
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -78,30 +79,18 @@ cc.Class({
       })
       this.node.getChildByName('Btn_Sleep').active = false
 
-      // function format(str) {
-      //   let str2 = ''
-      //   let len = str.length
-      //   for(let i = 0; i<len; i++) {
-      //     if(str[i] != ' '){
-      //       str2 += str[i]
-      //     }
-      //   }
-      //   return str2
-      // }
+      this.node.getChildByName('Btn_Up').on('click', this.inputUp, this)
+      this.node.getChildByName('Btn_Down').on('click', this.inputDown, this)
+    },
 
-      // let arr = ['1',' ','a','ds','f']
-      // let str = ''
-      // for (let i = 0; i<10000000; i++) {
-      //   let index = Math.floor(Math.random()*5)
-      //   str += arr[index]
-      // }
+    inputUp() {
+      Obj.input.handleInputUp(Obj.up)
+      Obj.input._buttonUp.execute()
+    },
 
-      // let time1 = new Date()
-      // format(str)
-      // let time2 = new Date()
-      // str.replace(/ /g,'')
-      // let time3 = new Date()
-      // console.log(time2-time1,time3-time2)       
+    inputDown() {
+      Obj.input.handleInputDown(Obj.down)
+      Obj.input._buttonDown.execute()
     },
 
     // 出门按钮事件回调

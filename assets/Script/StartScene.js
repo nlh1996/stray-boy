@@ -20,7 +20,6 @@ cc.Class({
     },
 
     // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
       this.button1.node.on('click', this.colorChange, this)
       this.button2.node.on('click', this.colorChange, this)

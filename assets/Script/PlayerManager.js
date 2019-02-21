@@ -36,7 +36,7 @@ var PlayerManager = cc.Class({
           if(this.currentEnergy > 0) {
             this.currentEnergy -= 10
           }
-          if(this.currentEnergy == 0){
+          if(this.currentEnergy == 0) {
             et.emit(Enum.EVENT.NO_ENERGY,event)
             return
           }
