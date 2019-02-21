@@ -7,11 +7,10 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-const gameEvent = require('Event')
 const player = require("PlayerManager")
 const et = require('Listener')
 const Enum = require('Enum')
-const Obj = require('Command')
+const command = require('Command')
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -79,18 +78,6 @@ cc.Class({
       })
       this.node.getChildByName('Btn_Sleep').active = false
 
-      this.node.getChildByName('Btn_Up').on('click', this.inputUp, this)
-      this.node.getChildByName('Btn_Down').on('click', this.inputDown, this)
-    },
-
-    inputUp() {
-      Obj.input.handleInputUp(Obj.up)
-      Obj.input._buttonUp.execute()
-    },
-
-    inputDown() {
-      Obj.input.handleInputDown(Obj.down)
-      Obj.input._buttonDown.execute()
     },
 
     // 出门按钮事件回调
@@ -98,8 +85,8 @@ cc.Class({
       this.button.enabled = false
       this.content.string = ''
       if(player.currentEnergy > 0) {
-        var event = gameEvent.getRandomEvent()
-        player.Score(event.code)
+        command.goOut.execute(player)
+        var event = command.goOut.getEvent()
       }else{
         var event = gameEvent.noEnergy()
       }

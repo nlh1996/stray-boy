@@ -1,40 +1,25 @@
+const gameEvent = require('Event')
 // 简单的命令模式
 class Command {
-  constructor() {
-    this.a = 1
+  constructor(event) {
+    this._event = event
   }
-  execute() {
-    console.log('I am base class')
+  execute(player) {
+    if(this._event.code) {
+      player.Score(this._event.code)
+    }
   }
-}
-
-class Up extends Command{
-  execute() {
-    console.log('up')
-  }
-}
-
-class Down extends Command{
-  execute() {
-    console.log('down')
+  getEvent() {
+    return this._event
   }
 }
 
-class Input{
-  constructor() {
-    this._buttonUp = {}
-    this._buttonDown = {}
-  }
-
-  handleInputUp(obj) {
-    this._buttonUp = obj
-  }
-  handleInputDown(obj) {
-    this._buttonDown = obj
+class GoOut extends Command{
+  constructor(event) {
+    super(event)
   }
 }
 
-var up = new Up()
-var down = new Down()
-var input = new Input()
-module.exports = {input,up,down}
+var goOut = new GoOut(gameEvent.getRandomEvent())
+
+module.exports = {goOut}
