@@ -4,20 +4,17 @@ const Enum = require('Enum')
 var PlayerManager = cc.Class({
   // 成员变量
   ctor() {
-    this.health = 0
-    this.luck = 0
-    this.achievement = 0
-    this.money = 0
+    this.life = 1000
+    this.attack = 10
+    this.defence = 10
     this.knowledge = 0
     this.sport = 0
     this.charm = 0
-    this.game = 0
-    this.classRank = 0
-    this.talent = 0
-    this.date = 1
-    this.energy = 60
-    this.currentEnergy = 60
-    this.time = 8
+    this.health = 0
+    this.attackSpeed = 10
+    this.moveSpeed = 100
+    this.hunger = 100
+    this.currentHunger = 90
   },
 
   Save() {
@@ -33,25 +30,25 @@ var PlayerManager = cc.Class({
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
         case 111:
-          if(this.currentEnergy > 0) {
-            this.currentEnergy -= 10
+          if(this.currentHunger > 0) {
+            this.currentHunger -= 10
           }
-          if(this.currentEnergy == 0) {
+          if(this.currentHunger == 0) {
             et.emit(Enum.EVENT.NO_ENERGY,event)
             return
           }
           break
         case 121:
-          this.time += 1
+
           break
         case 201:
-          this.luck -= 1
+
           break
         case 202:
-          this.luck += 1
+
           break
         case 402:
-          this.money = (this.money*10 + 0.1*10) / 10
+
           break
       }
     }
