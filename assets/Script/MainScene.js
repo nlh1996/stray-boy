@@ -71,11 +71,33 @@ cc.Class({
       // et.on(Enum.EVENT.NO_ENERGY,() => {
       //   this.node.getChildByName('Btn_Sleep').active = true
       // })
+
+      //注册事件
+      var listener1 = new et.Listener()
+      var listener2 = new et.Listener()
+      listener1.on('事件一',this.callback1)
+      listener2.on('事件二',this.callback2)
+      // 注销事件一
+      listener1.off('事件一')
+
+      //按钮监听
       this.node.getChildByName('Btn_Forward').on('click', this.goForward, this)
     },
 
-    // 出门按钮事件回调
+    callback1() {
+      console.log('事件一收到！')
+    },
+    
+    callback2() {
+      console.log('事件二收到！')
+    },
+
+    // 前进按钮事件回调
     goForward(button) {
+      // 分发事件，只有事件二分发成功，事件一被注销了。
+      et.watcher.dispatch('事件一')
+      et.watcher.dispatch('事件二')
+
       button.enabled = false
       this.content.string = ''
       if(player.currentHunger > 0) {
