@@ -1,4 +1,4 @@
-// const et = new cc.EventTarget()
+const et = new cc.EventTarget()
 // 监听者类
 class Listener {
   constructor() {
@@ -6,15 +6,17 @@ class Listener {
     this.event = ''
     this.func = {} 
   }
-
+  //注册监听事件
   on(event,func) {
     this.watcher.addListener(this)
     this.event = event
     this.func = func
   }
+  //注销监听事件
   off(event) {
     this.watcher.removeListener(event)
   }
+  //执行监听事件
   execute() {
     this.func()
   }
@@ -25,9 +27,11 @@ class Watcher {
   constructor() {
     this.listeners = []
   }
+  //添加监听者
   addListener(obj) {
     this.listeners.push(obj)
   }
+  //移除监听者
   removeListener(event) {
     for(let i=0; i<this.listeners.length; i++){
       if(this.listeners[i].event == event) {
@@ -35,6 +39,7 @@ class Watcher {
       }
     }
   }
+  //观察事件分发
   dispatch(event) {
     for(let i=0; i<this.listeners.length; i++){
       if(this.listeners[i].event == event) {
@@ -46,4 +51,4 @@ class Watcher {
 
 var watcher = new Watcher()
 
-module.exports = {watcher,Listener}
+module.exports = et

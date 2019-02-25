@@ -34,15 +34,12 @@ cc.Class({
       button.normalColor = cc.Color.GREEN
       switch(button.node.name) {
         case 'Button_1':
-          player.knowledge = 2
           player.talent = Enum.TALENT.学霸
           break
         case 'Button_2':
-          player.sport = 2
           player.talent = Enum.TALENT.强壮
           break
         case 'Button_3':
-          player.charm = 2
           player.talent = Enum.TALENT.多才
           break
       }
