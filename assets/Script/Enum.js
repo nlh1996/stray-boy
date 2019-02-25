@@ -5,7 +5,7 @@ var TALENT = cc.Enum({
 })
 
 var EVENT = cc.Enum({
-  NO_ENERGY: 0
+  NO_HUNGER: 0
 })
 
 module.exports = {TALENT,EVENT}

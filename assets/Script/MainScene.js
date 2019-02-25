@@ -59,11 +59,13 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
       this.updateLabel()
-      et.on(Enum.EVENT.NO_ENERGY,() => {
-        this.node.getChildByName('Btn_Sleep').active = true
-      })
+      et.on(Enum.EVENT.NO_HUNGER,this.hungry)
       //按钮监听
       this.node.getChildByName('Btn_Forward').on('click', this.goForward, this)
+    },
+
+    hungry() {
+      console.log('I am hungry!')
     },
 
     // 前进按钮事件回调
@@ -92,6 +94,7 @@ cc.Class({
       this.schedule(() => {
         this.content.string = this.content.string + content[index]
         index++
+        console.log(index,i)
         if(index>i) {
           this.node.getChildByName('Btn_Forward').getComponent(cc.Button).enabled = true
         }
