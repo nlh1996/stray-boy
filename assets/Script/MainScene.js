@@ -59,17 +59,40 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
       this.updateLabel()
+      this.initTalent()
       et.on(Enum.EVENT.NO_HUNGER,this.hungry)
+      //当前前面主要按钮
+      this.Btn_Forward = this.node.getChildByName('Btn_Forward')
+      this.Btn_Search = this.node.getChildByName('Btn_Search')
+      this.Btn_Make = this.node.getChildByName('Btn_Make')
+      this.Btn_Rest = this.node.getChildByName('Btn_Rest')
+
       //按钮监听
-      this.node.getChildByName('Btn_Forward').on('click', this.goForward, this)
+      this.Btn_Forward.on('click', this.forward, this)
+      this.Btn_Make.on('click', this.make, this)
+      this.Btn_Search.on('click', this.search, this)
+      this.Btn_Rest.on('click', this.rest, this)
     },
 
     hungry() {
       console.log('I am hungry!')
     },
 
+    search() {
+      console.log('......')
+    },
+
+    rest() {
+      player.currentHunger += 20
+      this.updateLabel()
+    },
+
+    make() {
+      cc.director.loadScene('make')
+    }, 
+    
     // 前进按钮事件回调
-    goForward(button) {
+    forward(button) {
       button.enabled = false
       this.content.string = ''
       if(player.currentHunger > 0) {
@@ -94,15 +117,13 @@ cc.Class({
       this.schedule(() => {
         this.content.string = this.content.string + content[index]
         index++
-        console.log(index,i)
         if(index>i) {
-          this.node.getChildByName('Btn_Forward').getComponent(cc.Button).enabled = true
+          this.Btn_Forward.getComponent(cc.Button).enabled = true
         }
       },0.08,i,0)
     },
 
-    // 初始化人物属性面板
-    updateLabel() {
+    initTalent() {
       switch(player.talent) {
         case Enum.TALENT.学霸:
           player.knowledge = 2
@@ -114,6 +135,10 @@ cc.Class({
           player.charm = 2
           break
       }
+    },
+
+    // 初始化人物属性面板
+    updateLabel() {
       this.life.string = player.life
       this.attack.string = player.attack
       this.defence.string = player.defence
