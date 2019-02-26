@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.4128994360902256,
-      "y": 0.4128994360902256,
-      "z": 0.4128994360902256
+      "x": 0.40086936090225567,
+      "y": 0.40086936090225567,
+      "z": 0.40086936090225567
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -3614,12 +3614,12 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
+      "x": 0,
       "y": 0.5
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -100,
+      "x": -120,
       "y": 0,
       "z": 0
     },
@@ -3672,7 +3672,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "LabTime",
+    "_name": "LabDuraction",
     "_objFlags": 0,
     "_parent": {
       "__id__": 70
@@ -3701,12 +3701,12 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
+      "x": 0,
       "y": 0.5
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 260,
+      "x": 210,
       "y": 0,
       "z": 0
     },
@@ -3844,7 +3844,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 450,
+      "width": 500,
       "height": 60
     },
     "_anchorPoint": {
@@ -3976,6 +3976,12 @@
     },
     "hunger": {
       "__id__": 48
+    },
+    "time": {
+      "__id__": 76
+    },
+    "duraction": {
+      "__id__": 78
     },
     "_id": "1azlKmdN1Arb8RUUWt+t6A"
   },

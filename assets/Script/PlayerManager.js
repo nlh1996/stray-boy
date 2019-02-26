@@ -15,6 +15,8 @@ var PlayerManager = cc.Class({
     this.moveSpeed = 100
     this.hunger = 100
     this.currentHunger = 90
+    this.time = 0
+    this.duraction = 1000
   },
 
   Save() {
@@ -29,6 +31,9 @@ var PlayerManager = cc.Class({
   Score(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
+        case 100:
+          this.duraction -= 50
+          break
         case 111:
           if(this.currentHunger > 0) {
             this.currentHunger -= 10
@@ -42,7 +47,7 @@ var PlayerManager = cc.Class({
 
           break
         case 201:
-
+          this.duraction += this.moveSpeed
           break
         case 202:
 

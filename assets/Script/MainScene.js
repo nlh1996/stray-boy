@@ -2,7 +2,7 @@ const player = require("PlayerManager")
 const gameEvent = require("Event")
 const et = require('Listener')
 const Enum = require('Enum')
-const command = require('Command')
+const Command = require('Command')
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -54,6 +54,14 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      time: {
+        default: null,
+        type: cc.Label
+      },
+      duraction: {
+        default: null,
+        type: cc.Label
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -84,7 +92,19 @@ cc.Class({
     },
 
     search() {
-
+      if(player.currentHunger > 0) {
+        let command = new Command(gameEvent.getSearchEvent())
+        command.execute(player)
+        var event = command.getEvent()
+      }else{
+        var event = gameEvent.noEnergy()
+      }
+      this.content.string = ''
+      const content = event.content
+      let i = content.length - 1
+      let index = 0
+      this.labelSchedule(i,index,content)
+      this.updateLabel()
     },
 
     rest() {
@@ -98,22 +118,19 @@ cc.Class({
 
     // 前进按钮事件回调
     forward() {
-      this.content.string = ''
       if(player.currentHunger > 0) {
-        command.goOut.execute(player)
-        var event = command.goOut.getEvent()
+        let command = new Command(gameEvent.getRandomEvent())
+        command.execute(player)
+        var event = command.getEvent()
       }else{
         var event = gameEvent.noEnergy()
       }
+      this.content.string = ''
       const content = event.content
       let i = content.length - 1
       let index = 0
       this.labelSchedule(i,index,content)
       this.updateLabel()
-    },
-
-    labelInfo() {
-
     },
 
     // 文字出现效果
@@ -172,6 +189,8 @@ cc.Class({
       this.attackSpeed.string = player.attackSpeed
       this.moveSpeed.string = player.moveSpeed
       this.hunger.string = '饥饿 ' + player.currentHunger + '/' + player.hunger
+      this.time.string = player.time + '分钟'
+      this.duraction.string = player.duraction
     },
 
     // update (dt) {},

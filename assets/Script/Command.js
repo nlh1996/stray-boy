@@ -1,4 +1,3 @@
-const gameEvent = require('Event')
 // 简单的命令模式
 class Command {
   constructor(event) {
@@ -14,12 +13,16 @@ class Command {
   }
 }
 
-class GoOut extends Command{
-  constructor(event) {
-    super(event)
-  }
-}
+// class GoOut extends Command{
+//   constructor(event) {
+//     super(event)
+//   }
+// }
 
-var goOut = new GoOut(gameEvent.getRandomEvent())
+// class Search extends Command{
+//   constructor(event) {
+//     super(event)
+//   }
+// }
 
-module.exports = {goOut}
+module.exports = Command
