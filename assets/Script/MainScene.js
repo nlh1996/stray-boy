@@ -58,14 +58,15 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      this.updateLabel()
       this.initTalent()
+      this.updateLabel()
       et.on(Enum.EVENT.NO_HUNGER,this.hungry)
       //当前前面主要按钮
       this.Btn_Forward = this.node.getChildByName('Btn_Forward')
       this.Btn_Search = this.node.getChildByName('Btn_Search')
       this.Btn_Make = this.node.getChildByName('Btn_Make')
       this.Btn_Rest = this.node.getChildByName('Btn_Rest')
+      this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest]
 
       //按钮监听
       this.Btn_Forward.on('click', this.forward, this)
@@ -74,12 +75,16 @@ cc.Class({
       this.Btn_Rest.on('click', this.rest, this)
     },
 
+    start () {
+
+    },
+
     hungry() {
       console.log('I am hungry!')
     },
 
     search() {
-      console.log('......')
+
     },
 
     rest() {
@@ -90,10 +95,9 @@ cc.Class({
     make() {
       cc.director.loadScene('make')
     }, 
-    
+
     // 前进按钮事件回调
-    forward(button) {
-      button.enabled = false
+    forward() {
       this.content.string = ''
       if(player.currentHunger > 0) {
         command.goOut.execute(player)
@@ -114,15 +118,34 @@ cc.Class({
 
     // 文字出现效果
     labelSchedule(i,index,content) {
+      this.changeBtnState(this.arrBtn,i*0.08)
       this.schedule(() => {
         this.content.string = this.content.string + content[index]
         index++
         if(index>i) {
-          this.Btn_Forward.getComponent(cc.Button).enabled = true
+          this.changeBtnState(this.arrBtn,1.0)
         }
       },0.08,i,0)
     },
 
+    // 改变按钮状态
+    changeBtnState(arr,dt) {
+      for(let i=0; i<arr.length; i++) {
+        arr[i].getComponent(cc.Button).enabled = 
+        arr[i].getComponent(cc.Button).enabled ? false: true
+        if(arr[i].getComponent(cc.Button).enabled == false) {
+          let action1 = cc.fadeOut(dt)
+          arr[i].runAction(action1)
+        }else{
+          let action2 = cc.fadeIn(dt)
+          let action1 = cc.delayTime(0.2)
+          let seq = cc.sequence(action1,action2)
+          arr[i].runAction(seq)
+        }
+      }
+    },
+
+    // 人物天赋初始化
     initTalent() {
       switch(player.talent) {
         case Enum.TALENT.学霸:
@@ -149,10 +172,6 @@ cc.Class({
       this.attackSpeed.string = player.attackSpeed
       this.moveSpeed.string = player.moveSpeed
       this.hunger.string = '饥饿 ' + player.currentHunger + '/' + player.hunger
-    },
-
-    start () {
-
     },
 
     // update (dt) {},

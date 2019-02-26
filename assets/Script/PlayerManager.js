@@ -34,7 +34,7 @@ var PlayerManager = cc.Class({
             this.currentHunger -= 10
           }
           if(this.currentHunger == 0) {
-            //et.emit(Enum.EVENT.NO_HUNGER)
+            et.emit(Enum.EVENT.NO_HUNGER)
             return
           }
           break
