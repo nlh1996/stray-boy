@@ -1,4 +1,5 @@
 const player = require("PlayerManager")
+const goodsManager = require('GoodsManager')
 const gameEvent = require("Event")
 const et = require('Listener')
 const Enum = require('Enum')
@@ -94,7 +95,7 @@ cc.Class({
     search() {
       if(player.currentHunger > 0) {
         let command = new Command(gameEvent.getSearchEvent())
-        command.execute(player)
+        command.execute(goodsManager)
         var event = command.getEvent()
       }else{
         var event = gameEvent.noEnergy()

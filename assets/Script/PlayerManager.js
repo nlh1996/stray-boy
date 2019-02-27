@@ -28,7 +28,7 @@ var PlayerManager = cc.Class({
     return userData
   }, 
   
-  Score(code) {
+  setProperty(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
         case 100:
@@ -62,4 +62,4 @@ var PlayerManager = cc.Class({
 
 var player = new PlayerManager()
 
-module.exports = player 
+module.exports = player

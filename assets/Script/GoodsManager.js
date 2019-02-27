@@ -8,7 +8,7 @@ var GoodsManager = cc.Class({
     this.sulphur = 0
     this.leather = 0
   },
-  acquire(type,num) {
+  setProperty(type,num) {
     switch(type) {
       case 1:
         this.meat += num
