@@ -1,5 +1,4 @@
 const player = require("PlayerManager")
-const goodsManager = require('GoodsManager')
 const gameEvent = require("Event")
 const et = require('Listener')
 const Enum = require('Enum')
@@ -92,10 +91,11 @@ cc.Class({
       console.log('I am hungry!')
     },
 
+    // 探索事件
     search() {
-      if(player.currentHunger > 0) {
+      if(player.properties.currentHunger > 0) {
         let command = new Command(gameEvent.getSearchEvent())
-        command.execute(goodsManager)
+        command.execute(player)
         var event = command.getEvent()
       }else{
         var event = gameEvent.noEnergy()
@@ -108,18 +108,20 @@ cc.Class({
       this.updateLabel()
     },
 
+    // 人物休息
     rest() {
-      player.currentHunger += 20
+      player.properties.currentHunger += 20
       this.updateLabel()
     },
 
+    // 打开制造页
     make() {
       cc.director.loadScene('make')
     }, 
 
     // 前进按钮事件回调
     forward() {
-      if(player.currentHunger > 0) {
+      if(player.properties.currentHunger > 0) {
         let command = new Command(gameEvent.getRandomEvent())
         command.execute(player)
         var event = command.getEvent()
@@ -154,7 +156,7 @@ cc.Class({
         if(arr[i].getComponent(cc.Button).enabled == false) {
           let action1 = cc.fadeOut(dt)
           arr[i].runAction(action1)
-        }else{
+        }else {
           let action2 = cc.fadeIn(dt)
           let action1 = cc.delayTime(0.2)
           let seq = cc.sequence(action1,action2)
@@ -167,29 +169,29 @@ cc.Class({
     initTalent() {
       switch(player.talent) {
         case Enum.TALENT.学霸:
-          player.knowledge = 2
+          player.properties.knowledge = 2
           break
         case Enum.TALENT.强壮:
-          player.sport = 2
+          player.properties.sport = 2
           break
         case Enum.TALENT.多才:
-          player.charm = 2
+          player.properties.charm = 2
           break
       }
     },
 
     // 初始化人物属性面板
     updateLabel() {
-      this.life.string = player.life
-      this.attack.string = player.attack
-      this.defence.string = player.defence
-      this.knowledge.string = player.knowledge
-      this.sport.string = player.sport
-      this.charm.string = player.charm
-      this.health.string = player.health
-      this.attackSpeed.string = player.attackSpeed
-      this.moveSpeed.string = player.moveSpeed
-      this.hunger.string = '饥饿 ' + player.currentHunger + '/' + player.hunger
+      this.life.string = player.properties.life
+      this.attack.string = player.properties.attack
+      this.defence.string = player.properties.defence
+      this.knowledge.string = player.properties.knowledge
+      this.sport.string = player.properties.sport
+      this.charm.string = player.properties.charm
+      this.health.string = player.properties.health
+      this.attackSpeed.string = player.properties.attackSpeed
+      this.moveSpeed.string = player.properties.moveSpeed
+      this.hunger.string = '饥饿 ' + player.properties.currentHunger + '/' + player.properties.hunger
       this.time.string = player.time + '分钟'
       this.duraction.string = player.duraction
     },
