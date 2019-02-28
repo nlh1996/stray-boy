@@ -4,6 +4,7 @@ const Enum = require('Enum')
 var PlayerManager = cc.Class({
   // 成员变量
   ctor() {
+    // 人物属性
     this.properties = {
       life: 1000,
       attack: 10,
@@ -17,6 +18,7 @@ var PlayerManager = cc.Class({
       hunger: 100,
       currentHunger: 100,
     },
+    // 材料
     this.materials = {
       raw_meat: 0, //生肉
       fruit: 0,    //果子
@@ -25,9 +27,12 @@ var PlayerManager = cc.Class({
       sulphur: 0,  //硫磺
       leather: 0,  //皮革
     }
+    // 成品
     this.goods = {
-      cooked_meat: 0,  //熟肉
-      drug: 0,         //药品
+      cooked_meat: {num: 0,needs: [{type: Enum.MATERIALS.RAW_MEAT, num: 1},{type: Enum.MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
+      drug: {num: 0,needs: [{type: Enum.MATERIALS.HERB, num: 2}],success: 70},  //药品
+      tent: {num: 0},
+      corselet: {num: 0}
     }
     this.time = 0
     this.duraction = 1000
@@ -41,7 +46,23 @@ var PlayerManager = cc.Class({
     const userData = JSON.parse(cc.sys.localStorage.getItem('userData'))
     return userData
   }, 
-  
+
+  // 制造物品
+  make(good) {
+    for(let i=0; i<good.needs.length; i++) {
+      switch(good.needs[i].type) {
+        case Enum.MATERIALS.RAW_MEAT:
+          this.materials.raw_meat -= good.needs[i].num
+          break
+        case Enum.MATERIALS.WOOD:
+          this.materials.wood -= good.needs[i].num
+          break
+      }
+    }
+    good.num += 1
+  },
+
+  // 属性改变
   setProperty(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {

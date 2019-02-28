@@ -97,7 +97,7 @@ cc.Class({
         let command = new Command(gameEvent.getSearchEvent())
         command.execute(player)
         var event = command.getEvent()
-      }else{
+      }else {
         var event = gameEvent.noEnergy()
       }
       this.content.string = ''
@@ -125,7 +125,7 @@ cc.Class({
         let command = new Command(gameEvent.getRandomEvent())
         command.execute(player)
         var event = command.getEvent()
-      }else{
+      }else {
         var event = gameEvent.noEnergy()
       }
       this.content.string = ''
@@ -143,7 +143,7 @@ cc.Class({
         this.content.string = this.content.string + content[index]
         index++
         if(index>i) {
-          this.changeBtnState(this.arrBtn,1.0)
+          this.changeBtnState(this.arrBtn, 1.0)
         }
       },0.08,i,0)
     },
