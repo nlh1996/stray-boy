@@ -148,7 +148,7 @@ cc.Class({
       },0.08,i,0)
     },
 
-    // 改变按钮状态
+    // 按钮状态改变
     changeBtnState(arr,dt) {
       for(let i=0; i<arr.length; i++) {
         arr[i].getComponent(cc.Button).enabled = 
@@ -180,7 +180,7 @@ cc.Class({
       }
     },
 
-    // 初始化人物属性面板
+    // 更新人物属性面板
     updateLabel() {
       this.life.string = player.properties.life
       this.attack.string = player.properties.attack

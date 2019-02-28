@@ -18,6 +18,7 @@ var PlayerManager = cc.Class({
       hunger: 100,
       currentHunger: 100,
     },
+    
     // 材料
     this.materials = {
       raw_meat: 0, //生肉
@@ -27,12 +28,13 @@ var PlayerManager = cc.Class({
       sulphur: 0,  //硫磺
       leather: 0,  //皮革
     }
+
     // 成品
     this.goods = {
-      cooked_meat: {num: 0,needs: [{type: Enum.MATERIALS.RAW_MEAT, num: 1},{type: Enum.MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
-      drug: {num: 0,needs: [{type: Enum.MATERIALS.HERB, num: 2}],success: 70},  //药品
-      tent: {num: 0},
-      corselet: {num: 0}
+      cooked_meat: {num: 0, needs: [{type: Enum.MATERIALS.RAW_MEAT, num: 1}, {type: Enum.MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
+      drug: {num: 0, needs: [{type: Enum.MATERIALS.HERB, num: 2}], success: 70},  //药品
+      tent: {num: 0, needs: []},
+      corselet: {num: 0, needs: []}
     }
     this.time = 0
     this.duraction = 1000
@@ -47,6 +49,45 @@ var PlayerManager = cc.Class({
     return userData
   }, 
 
+  // 判断制造是否满足物品制造需求
+  validate(good) {
+    for(let i=0; i<good.needs.length; i++) {
+      switch(good.needs[i].type) {
+        case Enum.MATERIALS.RAW_MEAT:
+          if(this.materials.raw_meat < good.needs[i].num) {
+            return false
+          }
+          break
+        case Enum.MATERIALS.WOOD:
+          if(this.materials.wood < good.needs[i].num) {
+            return false
+          }
+          break
+        case Enum.MATERIALS.HERB:
+          if(this.materials.herb < good.needs[i].num) {
+            return false
+          }
+          break
+        case Enum.MATERIALS.FRUIT:
+          if(this.materials.fruit < good.needs[i].num) {
+            return false
+          }
+          break
+        case Enum.MATERIALS.SULPHUR:
+          if(this.materials.sulphur < good.needs[i].num) {
+            return false
+          }
+          break
+        case Enum.MATERIALS.LEATHER:
+          if(this.materials.leather < good.needs[i].num) {
+            return false
+          }
+          break
+      }      
+    }
+    return true
+  },
+
   // 制造物品
   make(good) {
     for(let i=0; i<good.needs.length; i++) {
@@ -56,6 +97,9 @@ var PlayerManager = cc.Class({
           break
         case Enum.MATERIALS.WOOD:
           this.materials.wood -= good.needs[i].num
+          break
+        case Enum.MATERIALS.HERB:
+          this.materials.herb -= good.needs[i].num
           break
       }
     }
