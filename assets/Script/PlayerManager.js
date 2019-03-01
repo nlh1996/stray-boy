@@ -1,6 +1,6 @@
+// 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
 const Enum = require('Enum')
-
 var PlayerManager = cc.Class({
   // 成员变量
   ctor() {

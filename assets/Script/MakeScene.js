@@ -1,3 +1,4 @@
+// 该脚本负责制造场景的逻辑
 const player = require('PlayerManager') 
 cc.Class({
     extends: cc.Component,

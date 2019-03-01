@@ -1,3 +1,4 @@
+// 所有游戏事件都在本脚本内
 var Event = cc.Class({
   ctor() {
     this.RandomEvent = [

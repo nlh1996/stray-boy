@@ -1,3 +1,4 @@
+// 本脚本为游戏的主要逻辑脚本
 const player = require("PlayerManager")
 const gameEvent = require("Event")
 const et = require('Listener')

@@ -1,4 +1,5 @@
 const et = new cc.EventTarget()
+// 观察者模式
 // 监听者类
 class Listener {
   constructor() {

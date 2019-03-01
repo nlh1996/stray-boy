@@ -1,4 +1,4 @@
-
+// 本脚本负责游戏的开始
 const player = require("PlayerManager")
 const Enum = require('Enum')
 cc.Class({
