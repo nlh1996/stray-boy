@@ -33,7 +33,7 @@ class Watcher {
   }
   //移除监听者
   removeListener(event) {
-    for(let i=0; i<this.listeners.length; i++){
+    for(let i=0; i<this.listeners.length; i++) {
       if(this.listeners[i].event == event) {
         this.listeners = this.listeners.splice(i+1,1)
       }
@@ -41,7 +41,7 @@ class Watcher {
   }
   //观察事件分发
   dispatch(event) {
-    for(let i=0; i<this.listeners.length; i++){
+    for(let i=0; i<this.listeners.length; i++) {
       if(this.listeners[i].event == event) {
         this.listeners[i].execute()
       }
