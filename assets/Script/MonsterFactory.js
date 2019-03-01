@@ -1,5 +1,5 @@
 // 本脚本定义游戏怪物
-// 原型设计模式
+// 原型设计模式（类实现）
 class 僵尸 {
   constructor(lv,life,attack,defence,hostility) {
     this.lv = lv

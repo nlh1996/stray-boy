@@ -85,8 +85,10 @@ cc.Class({
       this.Btn_Search.on('click', this.search, this)
       this.Btn_Rest.on('click', this.rest, this)
 
-      let 小白 = new 白毛僵尸(1,100,10,10,30)
-      let 小白制造者 = new 僵尸工厂(小白)
+      let 小白一代 = new 白毛僵尸(1,100,10,10,30)
+      小白一代.life = 200
+      
+      let 小白制造者 = new 僵尸工厂(小白一代)
       let 小白二代 = 小白制造者.生产僵尸()
       console.log(小白二代)
     },
