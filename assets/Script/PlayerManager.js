@@ -1,9 +1,10 @@
 // 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
 const Enum = require('Enum')
-var PlayerManager = cc.Class({
+
+class PlayerManager {
   // 成员变量
-  ctor() {
+  constructor() {
     // 人物属性
     this.properties = {
       life: 1000,
@@ -38,16 +39,16 @@ var PlayerManager = cc.Class({
     }
     this.time = 0
     this.duraction = 1000
-  },
+  }
 
   Save() {
     cc.sys.localStorage.setItem('userData', JSON.stringify(this))
-  },
+  }
 
   Get() {
     const userData = JSON.parse(cc.sys.localStorage.getItem('userData'))
     return userData
-  }, 
+  }
 
   // 判断制造是否满足物品制造需求
   validate(good) {
@@ -86,7 +87,7 @@ var PlayerManager = cc.Class({
       }      
     }
     return true
-  },
+  }
 
   // 制造物品
   make(good) {
@@ -104,7 +105,7 @@ var PlayerManager = cc.Class({
       }
     }
     good.num += 1
-  },
+  }
 
   // 属性改变
   setProperty(code) {
@@ -146,8 +147,6 @@ var PlayerManager = cc.Class({
       }
     }
   }
-})
+}
 
-var player = new PlayerManager()
-
-module.exports = player
+export default new PlayerManager()

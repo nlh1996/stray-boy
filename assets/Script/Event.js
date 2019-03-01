@@ -2,9 +2,10 @@
 var Event = cc.Class({
   ctor() {
     this.RandomEvent = [
-    {content:'遇到一只狗！【狗肉+2】', code: [100,111,201]},
-    {content:'踩到大便！！【幸运-1】', code: [100,111,201]},
-    {content:'捡了一毛钱！【幸运+1，金钱+0.1】', code: [100,111,201]}] 
+      {content:'遇到一只狗！【狗肉+2】', code: [100,111,201]},
+      {content:'踩到大便！！【幸运-1】', code: [100,111,201]},
+      {content:'捡了一毛钱！【幸运+1，金钱+0.1】', code: [100,111,201]}
+    ] 
     this.SureEvent = []
     this.ConditionalEvent = []
     this.SearchEvent = [

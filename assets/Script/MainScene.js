@@ -1,9 +1,11 @@
 // 本脚本为游戏的主要逻辑脚本
-const player = require("PlayerManager")
+import player from './PlayerManager'
+import {白毛僵尸,僵尸工厂} from './MonsterFactory'
 const gameEvent = require("Event")
 const et = require('Listener')
 const Enum = require('Enum')
 const Command = require('Command')
+
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -67,8 +69,8 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      this.initTalent()
-      this.updateLabel()
+      // this.initTalent()
+      // this.updateLabel()
       et.on(Enum.EVENT.NO_HUNGER,this.hungry)
       //当前前面主要按钮
       this.Btn_Forward = this.node.getChildByName('Btn_Forward')
@@ -82,6 +84,11 @@ cc.Class({
       this.Btn_Make.on('click', this.make, this)
       this.Btn_Search.on('click', this.search, this)
       this.Btn_Rest.on('click', this.rest, this)
+
+      let 小白 = new 白毛僵尸(1,100,10,10,30)
+      let 小白制造者 = new 僵尸工厂(小白)
+      let 小白二代 = 小白制造者.生产僵尸()
+      console.log(小白二代)
     },
 
     start () {
