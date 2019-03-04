@@ -15,14 +15,17 @@ var Event = cc.Class({
     ]
     this.ErrorEvent = [{content:'没有精力了，您需要休息！'}]
   },
+
   getRandomEvent() {
     let i = Math.floor(Math.random()*3)
     return this.RandomEvent[i]
   },
+
   getSearchEvent() {
     let i = Math.floor(Math.random()*3)
     return this.SearchEvent[i]
   },
+  
   noEnergy() {
     return this.ErrorEvent[0]
   }

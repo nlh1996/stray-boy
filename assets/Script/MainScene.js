@@ -69,21 +69,23 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      // this.initTalent()
-      // this.updateLabel()
+      this.initTalent()
+      this.updateLabel()
       et.on(Enum.EVENT.NO_HUNGER,this.hungry)
       //当前前面主要按钮
       this.Btn_Forward = this.node.getChildByName('Btn_Forward')
       this.Btn_Search = this.node.getChildByName('Btn_Search')
       this.Btn_Make = this.node.getChildByName('Btn_Make')
       this.Btn_Rest = this.node.getChildByName('Btn_Rest')
-      this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest]
+      this.Btn_Eat = this.node.getChildByName('Btn_Eat')
+      this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
 
       //按钮监听
       this.Btn_Forward.on('click', this.forward, this)
       this.Btn_Make.on('click', this.make, this)
       this.Btn_Search.on('click', this.search, this)
       this.Btn_Rest.on('click', this.rest, this)
+      this.Btn_Eat.on('click', this.eat, this)
 
       let 小白一代 = new 白毛僵尸(1,100,10,10,30)
       小白一代.life = 200
@@ -96,6 +98,7 @@ cc.Class({
     start () {
 
     },
+
 
     hungry() {
       console.log('I am hungry!')
@@ -129,6 +132,9 @@ cc.Class({
       cc.director.loadScene('make')
     }, 
 
+    eat() {
+      cc.director.loadScene('food_list')
+    },
     // 前进按钮事件回调
     forward() {
       if(player.properties.currentHunger > 0) {
