@@ -22,12 +22,12 @@ class PlayerManager {
     
     // 材料
     this.materials = {
-      raw_meat: 0, //生肉
-      fruit: 0,    //果子
-      herb: 0,     //草药
-      wood: 0,     //木材
-      sulphur: 0,  //硫磺
-      leather: 0,  //皮革
+      raw_meat: {num: 0}, //生肉
+      fruit: {num: 0},    //果子
+      herb: {num: 0},     //草药
+      wood: {num: 0},     //木材
+      sulphur: {num: 0},  //硫磺
+      leather: {num: 0},  //皮革
     }
 
     // 成品
@@ -55,32 +55,32 @@ class PlayerManager {
     for(let i=0; i<good.needs.length; i++) {
       switch(good.needs[i].type) {
         case Enum.MATERIALS.RAW_MEAT:
-          if(this.materials.raw_meat < good.needs[i].num) {
+          if(this.materials.raw_meat.num < good.needs[i].num) {
             return false
           }
           break
         case Enum.MATERIALS.WOOD:
-          if(this.materials.wood < good.needs[i].num) {
+          if(this.materials.wood.num < good.needs[i].num) {
             return false
           }
           break
         case Enum.MATERIALS.HERB:
-          if(this.materials.herb < good.needs[i].num) {
+          if(this.materials.herb.num < good.needs[i].num) {
             return false
           }
           break
         case Enum.MATERIALS.FRUIT:
-          if(this.materials.fruit < good.needs[i].num) {
+          if(this.materials.fruit.num < good.needs[i].num) {
             return false
           }
           break
         case Enum.MATERIALS.SULPHUR:
-          if(this.materials.sulphur < good.needs[i].num) {
+          if(this.materials.sulphur.num < good.needs[i].num) {
             return false
           }
           break
         case Enum.MATERIALS.LEATHER:
-          if(this.materials.leather < good.needs[i].num) {
+          if(this.materials.leather.num < good.needs[i].num) {
             return false
           }
           break
@@ -94,13 +94,13 @@ class PlayerManager {
     for(let i=0; i<good.needs.length; i++) {
       switch(good.needs[i].type) {
         case Enum.MATERIALS.RAW_MEAT:
-          this.materials.raw_meat -= good.needs[i].num
+          this.materials.raw_meat.num -= good.needs[i].num
           break
         case Enum.MATERIALS.WOOD:
-          this.materials.wood -= good.needs[i].num
+          this.materials.wood.num -= good.needs[i].num
           break
         case Enum.MATERIALS.HERB:
-          this.materials.herb -= good.needs[i].num
+          this.materials.herb.num -= good.needs[i].num
           break
       }
     }
@@ -136,13 +136,13 @@ class PlayerManager {
 
           break
         case 503:
-          this.materials.wood += 3
+          this.materials.wood.num += 3
           break
         case 603:
-          this.materials.herb += 3
+          this.materials.herb.num += 3
           break
         case 703:
-          this.materials.raw_meat += 3
+          this.materials.raw_meat.num += 3
           break
       }
     }

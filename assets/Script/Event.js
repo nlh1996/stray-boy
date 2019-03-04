@@ -13,7 +13,7 @@ var Event = cc.Class({
       {content:'收集到【药草】*3', code: [100,111,603]},
       {content:'收集到【生肉】*3', code: [100,111,703]},
     ]
-    this.ErrorEvent = [{content:'没有精力了，您需要休息！'}]
+    this.ErrorEvent = [{content:'没有饥饿了，您需要进食！'}]
   },
 
   getRandomEvent() {

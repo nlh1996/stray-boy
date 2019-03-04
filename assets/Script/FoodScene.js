@@ -4,6 +4,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+      Btn_back: cc.Button,
       Btn_Fruit: cc.Button,
       Btn_Meat: cc.Button,
       Btn_Drug: cc.Button,
@@ -31,17 +32,17 @@ cc.Class({
       this.updateData()
       this.Btn_back.node.on('click', this.back, this)
 
-      this.Btn_Meat.node.on('click', this.makeGood, this)
-      this.Btn_Drug.node.on('click', this.makeGood, this)
-      this.Btn_Tent.node.on('click', this.makeGood, this)
-      this.Btn_Corselet.node.on('click', this.makeGood, this)
-      this.arr = [this.Btn_Meat,this.Btn_Drug,this.Btn_Tent,this.Btn_Corselet]
+      this.Btn_Meat.node.on('click', this.eatFood, this)
+      this.Btn_Fruit.node.on('click', this.eatFood, this)
+      this.Btn_Drug.node.on('click', this.eatFood, this)
+
+      this.arr = [this.Btn_Meat,this.Btn_Drug]
 
       // 绑定按钮和特定物品
+      this.Btn_Fruit.good = player.materials.fruit
       this.Btn_Meat.good = player.goods.cooked_meat
       this.Btn_Drug.good = player.goods.drug
-      this.Btn_Tent.good = player.goods.tent
-      this.Btn_Corselet.good = player.goods.corselet
+
 
       this.btnState()
     },
@@ -49,9 +50,7 @@ cc.Class({
     // 判断按钮是否为可用状态
     btnState() {
       for(let i=0; i<this.arr.length; i++) {
-        // 验证是否满足制造需求
-        let result = player.validate(this.arr[i].good)
-        if(result) {
+        if(this.arr[i].good.num > 0) {
           this.arr[i].getComponent(cc.Button).enabled = true
           this.arr[i].node.getChildByName('Label').color = cc.color(20,240,36)
         } else {
@@ -66,9 +65,8 @@ cc.Class({
     },
 
     // 物品制造事件
-    makeGood(button) {
-      // 角色执行制造行为
-      player.make(button.good)
+    eatFood(button) {
+      button.good.num -= 1
       // 视图更新
       this.updateData()
       // 按钮状态判断
@@ -76,10 +74,11 @@ cc.Class({
     },
 
     updateData() {
-      this.label1.string = '#需【生肉】' + player.materials.raw_meat+'/1'+'【木材】' + player.materials.wood + '/1'
-      this.label2.string = '#获得【熟肉】' + '(拥有'+player.goods.cooked_meat.num+')'
-      this.label3.string = '#需【草药】' + player.materials.herb+'/2'
-      this.label4.string = '#获得【药品】' + '(拥有'+player.goods.drug.num+')'
+      this.label1.string = '#拥有：' + player.materials.fruit.num
+      this.label2.string = '#效果：饥饿+20，15%几率恢复1点健康值'
+      this.label3.string = '#拥有：' + player.goods.cooked_meat.num
+      this.label4.string = '#效果: 饥饿+70'
+
     },
 
     start () {

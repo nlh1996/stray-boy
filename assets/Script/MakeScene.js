@@ -78,9 +78,10 @@ cc.Class({
     },
 
     updateData() {
-      this.label1.string = '#需【生肉】' + player.materials.raw_meat+'/1'+'【木材】' + player.materials.wood + '/1'
+      this.label1.string = '#需【生肉】' + player.materials.raw_meat.num+'/1'+'【木材】' 
+      + player.materials.wood.num + '/1'
       this.label2.string = '#获得【熟肉】' + '(拥有'+player.goods.cooked_meat.num+')'
-      this.label3.string = '#需【草药】' + player.materials.herb+'/2'
+      this.label3.string = '#需【草药】' + player.materials.herb.num+'/2'
       this.label4.string = '#获得【药品】' + '(拥有'+player.goods.drug.num+')'
     },
 
