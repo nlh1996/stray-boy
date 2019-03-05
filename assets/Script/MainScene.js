@@ -89,7 +89,7 @@ cc.Class({
     },
 
     start () {
-      
+
     },
 
     hungry() {
@@ -130,9 +130,9 @@ cc.Class({
     // 前进按钮事件回调
     forward() {
       if(player.properties.currentHunger > 0) {
-        let command = new Command(gameEvent.getRandomEvent())
-        command.execute(player)
+        var command = new Command(gameEvent.getRandomEvent())
         var event = command.getEvent()
+        command.execute(player)
       }else {
         var event = gameEvent.noEnergy()
       }

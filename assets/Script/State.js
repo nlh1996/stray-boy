@@ -5,7 +5,6 @@ class BaseState {
   constructor() {
 
   }
-  handleInput(obj,input) {}
   doSomething(obj) {
     return
   }
@@ -14,11 +13,6 @@ class BaseState {
 class Combat extends BaseState {
   constructor() {
     super()
-  }
-  handleInput(obj,input) {
-    if(input == BEHAVIOR.COMBAT) {
-      obj._state = combatState
-    }
   }
   doSomething(obj) {
     obj.combat()
@@ -29,15 +23,25 @@ class RunAway extends BaseState {
   constructor() {
     super()
   }
-  handleInput(obj,input) {
-    if(input == BEHAVIOR.RUNAWAY) {
-      obj._state = runawayState
-    }
-  }
   doSomething(obj) {
     obj.runAway()
   }
 }
 
-const combatState = new Combat() 
-const runawayState = new RunAway() 
+class StateMng {
+  constructor() {
+    this.stateArr = []
+  }
+  init() {
+    this.stateArr[BEHAVIOR.COMBAT] = new Combat() 
+    this.stateArr[BEHAVIOR.RUNAWAY] = new RunAway() 
+  }
+  getState(num) {
+    return this.stateArr[num]
+  }
+}
+
+const stateMng = new StateMng()
+stateMng.init()
+
+export default stateMng

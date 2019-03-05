@@ -21,6 +21,7 @@ var EVENT = cc.Enum({
 var BEHAVIOR = cc.Enum({
   COMBAT: 0,
   RUNAWAY: 1,
+  DIE: 2
 })
 
 export default {TALENT,EVENT,MATERIALS,BEHAVIOR}

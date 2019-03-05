@@ -1,6 +1,7 @@
 // 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
-import {MATERIALS} from 'Enum'
+import {MATERIALS,EVENT} from 'Enum'
+import stateMng from './State'
 
 class PlayerManager {
   // 成员变量
@@ -91,21 +92,23 @@ class PlayerManager {
   }
 
   // 战斗，逃跑输入
-  handleInput(input) {
-    _state.handleInput(this,input)
-    if(_state) {
-      _state.doSomething()
+  handleInput(num) {
+    this._state = stateMng.getState(num)
+    if(this._state) {
+      this._state.doSomething(this)
     }
   }
 
+  // 执行战斗
   combat() {
     console.log('战斗')
   }
 
+  // 执行逃跑
   runAway() {
     console.log('逃跑')
   }
-  
+
   // 制造物品
   make(good) {
     for(let i=0; i<good.needs.length; i++) {
@@ -128,24 +131,29 @@ class PlayerManager {
   setProperty(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
+        // 僵尸移动
         case 100:
           this.duraction -= 50
           break
+        // 角色前进
+        case 101:
+          this.duraction += this.properties.moveSpeed
+          break
+        // 消耗饥饿值
         case 111:
           if(this.properties.currentHunger > 0) {
             this.properties.currentHunger -= 10
           }
           if(this.properties.currentHunger == 0) {
-            et.emit(Enum.EVENT.NO_HUNGER)
+            et.emit(EVENT.NO_HUNGER)
             return
           }
           break
-        case 121:
-
-          break
+        // 进入战斗
         case 201:
-          this.duraction += this.properties.moveSpeed
+          cc.director.loadScene('combat')
           break
+
         case 202:
 
           break
@@ -161,8 +169,12 @@ class PlayerManager {
         case 703:
           this.materials.raw_meat.num += 3
           break
+        case 803:
+          this.materials.fruit.num += 3
+          break
       }
     }
+
   }
 }
 

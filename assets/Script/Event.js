@@ -2,9 +2,9 @@
 var Event = cc.Class({
   ctor() {
     this.RandomEvent = [
-      {content:'遇到一只狗！【狗肉+2】', code: [100,111,201]},
-      {content:'踩到大便！！【幸运-1】', code: [100,111,201]},
-      {content:'捡了一毛钱！【幸运+1，金钱+0.1】', code: [100,111,201]}
+      {content:'遇到一只白毛僵尸！！', code: [100,101,111,201]},
+      {content:'遇到一只丧失狗！！！', code: [100,101,111,201]},
+      {content:'遇到一只僵尸王！！！', code: [100,101,111,201]}
     ] 
     this.SureEvent = []
     this.ConditionalEvent = []
@@ -12,8 +12,9 @@ var Event = cc.Class({
       {content:'收集到【木材】*3', code: [100,111,503]},
       {content:'收集到【药草】*3', code: [100,111,603]},
       {content:'收集到【生肉】*3', code: [100,111,703]},
+      {content:'收集到【果子】*3', code: [100,111,803]},
     ]
-    this.ErrorEvent = [{content:'没有饥饿了，您需要进食！'}]
+    this.ErrorEvent = [{content:'处于饥饿状态，您需要进食！'}]
   },
 
   getRandomEvent() {
@@ -22,7 +23,7 @@ var Event = cc.Class({
   },
 
   getSearchEvent() {
-    let i = Math.floor(Math.random()*3)
+    let i = Math.floor(Math.random()*4)
     return this.SearchEvent[i]
   },
   

@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.40989191729323265,
-      "y": 0.40989191729323265,
-      "z": 0.40989191729323265
+      "x": 0.4369595864661654,
+      "y": 0.4369595864661654,
+      "z": 0.4369595864661654
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -75,6 +75,9 @@
     "_components": [
       {
         "__id__": 25
+      },
+      {
+        "__id__": 26
       }
     ],
     "_prefab": null,
@@ -1229,5 +1232,21 @@
     "_fitWidth": false,
     "_fitHeight": true,
     "_id": "8e4cC9pwBNerMKe2Ib/Kjo"
+  },
+  {
+    "__type__": "c9cdeRkdrFLfaW1mI8CaoNO",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "Btn_Combat": {
+      "__id__": 17
+    },
+    "Btn_RunAway": {
+      "__id__": 22
+    },
+    "_id": "5dlAdr7j1Bi66ubji+vAGw"
   }
 ]

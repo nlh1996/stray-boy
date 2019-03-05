@@ -36,7 +36,7 @@ cc.Class({
       this.Btn_Fruit.node.on('click', this.eatFood, this)
       this.Btn_Drug.node.on('click', this.eatFood, this)
 
-      this.arr = [this.Btn_Meat,this.Btn_Drug]
+      this.arr = [this.Btn_Fruit,this.Btn_Meat,this.Btn_Drug]
 
       // 绑定按钮和特定物品
       this.Btn_Fruit.good = player.materials.fruit
