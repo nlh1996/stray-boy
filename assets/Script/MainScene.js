@@ -89,7 +89,7 @@ cc.Class({
     },
 
     start () {
-
+      
     },
 
     hungry() {

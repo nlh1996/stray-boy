@@ -1,8 +1,14 @@
+import {BEHAVIOR} from 'Enum'
+
+// 状态模式
 class BaseState {
   constructor() {
- 
+
   }
   handleInput(obj,input) {}
+  doSomething(obj) {
+    return
+  }
 }
 
 class Combat extends BaseState {
@@ -10,7 +16,12 @@ class Combat extends BaseState {
     super()
   }
   handleInput(obj,input) {
-    if(input == )
+    if(input == BEHAVIOR.COMBAT) {
+      obj._state = combatState
+    }
+  }
+  doSomething(obj) {
+    obj.combat()
   }
 }
 
@@ -18,7 +29,15 @@ class RunAway extends BaseState {
   constructor() {
     super()
   }
-  handleInput(obj,input) {}
+  handleInput(obj,input) {
+    if(input == BEHAVIOR.RUNAWAY) {
+      obj._state = runawayState
+    }
+  }
+  doSomething(obj) {
+    obj.runAway()
+  }
 }
 
-export default {Combat,RunAway}
+const combatState = new Combat() 
+const runawayState = new RunAway() 

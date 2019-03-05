@@ -15,9 +15,12 @@ var MATERIALS = cc.Enum({
 })
 
 var EVENT = cc.Enum({
-  COMBAT: 0,
-  RUNAWAY: 1,
-  NO_HUNGER: 2
+  NO_HUNGER: 0
 })
 
-export default {TALENT,EVENT,MATERIALS}
+var BEHAVIOR = cc.Enum({
+  COMBAT: 0,
+  RUNAWAY: 1,
+})
+
+export default {TALENT,EVENT,MATERIALS,BEHAVIOR}

@@ -1,7 +1,6 @@
 // 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
 import {MATERIALS} from 'Enum'
-import {Combat,RunAway} from 'State'
 
 class PlayerManager {
   // 成员变量
@@ -93,9 +92,20 @@ class PlayerManager {
 
   // 战斗，逃跑输入
   handleInput(input) {
-
+    _state.handleInput(this,input)
+    if(_state) {
+      _state.doSomething()
+    }
   }
 
+  combat() {
+    console.log('战斗')
+  }
+
+  runAway() {
+    console.log('逃跑')
+  }
+  
   // 制造物品
   make(good) {
     for(let i=0; i<good.needs.length; i++) {
