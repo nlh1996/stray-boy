@@ -3,7 +3,7 @@ import player from './PlayerManager'
 import {白毛僵尸,僵尸工厂} from './MonsterFactory'
 const gameEvent = require("Event")
 const et = require('Listener')
-const Enum = require('Enum')
+import {TALENT,EVENT} from 'Enum'
 const Command = require('Command')
 
 cc.Class({
@@ -71,7 +71,7 @@ cc.Class({
     onLoad () {
       this.initTalent()
       this.updateLabel()
-      et.on(Enum.EVENT.NO_HUNGER,this.hungry)
+      et.on(EVENT.NO_HUNGER,this.hungry)
       //当前前面主要按钮
       this.Btn_Forward = this.node.getChildByName('Btn_Forward')
       this.Btn_Search = this.node.getChildByName('Btn_Search')
@@ -91,7 +91,6 @@ cc.Class({
     start () {
 
     },
-
 
     hungry() {
       console.log('I am hungry!')
@@ -177,13 +176,13 @@ cc.Class({
     // 人物天赋初始化
     initTalent() {
       switch(player.talent) {
-        case Enum.TALENT.学霸:
+        case TALENT.学霸:
           player.properties.knowledge = 2
           break
-        case Enum.TALENT.强壮:
+        case TALENT.强壮:
           player.properties.sport = 2
           break
-        case Enum.TALENT.多才:
+        case TALENT.多才:
           player.properties.charm = 2
           break
       }

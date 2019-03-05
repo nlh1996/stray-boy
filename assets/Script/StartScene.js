@@ -1,6 +1,6 @@
 // 本脚本负责游戏的开始
 const player = require("PlayerManager")
-const Enum = require('Enum')
+import {TALENT} from 'Enum'
 cc.Class({
     extends: cc.Component,
 
@@ -26,13 +26,13 @@ cc.Class({
       button.normalColor = cc.Color.GREEN
       switch(button.node.name) {
         case 'Button_1':
-          player.talent = Enum.TALENT.学霸
+          player.talent = TALENT.学霸
           break
         case 'Button_2':
-          player.talent = Enum.TALENT.强壮
+          player.talent = TALENT.强壮
           break
         case 'Button_3':
-          player.talent = Enum.TALENT.多才
+          player.talent = TALENT.多才
           break
       }
     },

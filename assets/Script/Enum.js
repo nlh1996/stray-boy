@@ -15,7 +15,9 @@ var MATERIALS = cc.Enum({
 })
 
 var EVENT = cc.Enum({
-  NO_HUNGER: 0
+  COMBAT: 0,
+  RUNAWAY: 1,
+  NO_HUNGER: 2
 })
 
-module.exports = {TALENT,EVENT,MATERIALS}
+export default {TALENT,EVENT,MATERIALS}

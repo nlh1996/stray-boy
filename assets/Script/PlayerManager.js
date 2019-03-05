@@ -1,6 +1,7 @@
 // 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
-const Enum = require('Enum')
+import {MATERIALS} from 'Enum'
+import {Combat,RunAway} from 'State'
 
 class PlayerManager {
   // 成员变量
@@ -18,6 +19,7 @@ class PlayerManager {
       moveSpeed: 100,
       hunger: 100,
       currentHunger: 100,
+      _state: {}
     },
     
     // 材料
@@ -32,8 +34,8 @@ class PlayerManager {
 
     // 成品
     this.goods = {
-      cooked_meat: {num: 0, needs: [{type: Enum.MATERIALS.RAW_MEAT, num: 1}, {type: Enum.MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
-      drug: {num: 0, needs: [{type: Enum.MATERIALS.HERB, num: 2}], success: 70},  //药品
+      cooked_meat: {num: 0, needs: [{type: MATERIALS.RAW_MEAT, num: 1}, {type: MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
+      drug: {num: 0, needs: [{type: MATERIALS.HERB, num: 2}], success: 70},  //药品
       tent: {num: 0, needs: []},
       corselet: {num: 0, needs: []}
     }
@@ -54,32 +56,32 @@ class PlayerManager {
   validate(good) {
     for(let i=0; i<good.needs.length; i++) {
       switch(good.needs[i].type) {
-        case Enum.MATERIALS.RAW_MEAT:
+        case MATERIALS.RAW_MEAT:
           if(this.materials.raw_meat.num < good.needs[i].num) {
             return false
           }
           break
-        case Enum.MATERIALS.WOOD:
+        case MATERIALS.WOOD:
           if(this.materials.wood.num < good.needs[i].num) {
             return false
           }
           break
-        case Enum.MATERIALS.HERB:
+        case MATERIALS.HERB:
           if(this.materials.herb.num < good.needs[i].num) {
             return false
           }
           break
-        case Enum.MATERIALS.FRUIT:
+        case MATERIALS.FRUIT:
           if(this.materials.fruit.num < good.needs[i].num) {
             return false
           }
           break
-        case Enum.MATERIALS.SULPHUR:
+        case MATERIALS.SULPHUR:
           if(this.materials.sulphur.num < good.needs[i].num) {
             return false
           }
           break
-        case Enum.MATERIALS.LEATHER:
+        case MATERIALS.LEATHER:
           if(this.materials.leather.num < good.needs[i].num) {
             return false
           }
@@ -89,17 +91,22 @@ class PlayerManager {
     return true
   }
 
+  // 战斗，逃跑输入
+  handleInput(input) {
+
+  }
+
   // 制造物品
   make(good) {
     for(let i=0; i<good.needs.length; i++) {
       switch(good.needs[i].type) {
-        case Enum.MATERIALS.RAW_MEAT:
+        case MATERIALS.RAW_MEAT:
           this.materials.raw_meat.num -= good.needs[i].num
           break
-        case Enum.MATERIALS.WOOD:
+        case MATERIALS.WOOD:
           this.materials.wood.num -= good.needs[i].num
           break
-        case Enum.MATERIALS.HERB:
+        case MATERIALS.HERB:
           this.materials.herb.num -= good.needs[i].num
           break
       }

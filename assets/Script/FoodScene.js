@@ -78,7 +78,6 @@ cc.Class({
       this.label2.string = '#效果：饥饿+20，15%几率恢复1点健康值'
       this.label3.string = '#拥有：' + player.goods.cooked_meat.num
       this.label4.string = '#效果: 饥饿+70'
-
     },
 
     start () {
