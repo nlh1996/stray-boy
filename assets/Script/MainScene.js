@@ -154,6 +154,7 @@ cc.Class({
       },0.08,i,0)
     },
 
+    
     // 按钮状态改变
     changeBtnState(arr,dt) {
       for(let i=0; i<arr.length; i++) {

@@ -23,18 +23,18 @@ class PlayerManager {
     
     // 材料
     this.materials = {
-      raw_meat: {num: 0}, //生肉
-      fruit: {num: 0},    //果子
-      herb: {num: 0},     //草药
-      wood: {num: 0},     //木材
-      sulphur: {num: 0},  //硫磺
-      leather: {num: 0},  //皮革
+      raw_meat: {num: 0, name: '生肉'}, 
+      fruit: {num: 0, hunger: 20, name: '果子'},    
+      herb: {num: 0, name: '草药'},     
+      wood: {num: 0, name: '木材'},     
+      sulphur: {num: 0, name: '硫磺'},  
+      leather: {num: 0, name: '皮革'},  
     }
 
     // 成品
     this.goods = {
-      cooked_meat: {name: '熟肉', num: 0, needs: [{type: MATERIALS.RAW_MEAT, num: 1}, {type: MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
-      drug: {name: '药品', num: 0, needs: [{type: MATERIALS.HERB, num: 2}], success: 70},  //药品
+      cooked_meat: {name: '熟肉', num: 0, needs: [{type: MATERIALS.RAW_MEAT, num: 1}, {type: MATERIALS.WOOD, num: 1}],success: 70 ,hunger: 70},  
+      drug: {name: '药品', num: 0, needs: [{type: MATERIALS.HERB, num: 2}], success: 70, life: 30},  
       tent: {name: '帐篷', num: 0, needs: []},
       corselet: {name: '皮甲', num: 0, needs: []}
     }
@@ -127,6 +127,16 @@ class PlayerManager {
       }
     }
     good.num += 1
+  }
+
+  eat(good) {
+    if(good.hunger) {
+      this.properties.currentHunger += good.hunger
+    }
+    if(good.life) {
+      this.properties.life += good.life
+    }
+    good.num -= 1
   }
 
   // 属性改变

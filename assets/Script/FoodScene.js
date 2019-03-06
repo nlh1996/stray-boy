@@ -8,7 +8,10 @@ cc.Class({
       Btn_Fruit: cc.Button,
       Btn_Meat: cc.Button,
       Btn_Drug: cc.Button,
-
+      title: {
+        default: null,
+        type: cc.Label
+      },
       label1: {
         default: null,
         type: cc.Label
@@ -64,13 +67,27 @@ cc.Class({
       cc.director.loadScene('game')
     },
 
-    // 物品制造事件
+    // 进食
     eatFood(button) {
-      button.good.num -= 1
+      player.eat(button.good)
+      this.unscheduleAllCallbacks()
+      this.labelSchedule(button.good)
       // 视图更新
       this.updateData()
       // 按钮状态判断
       this.btnState()
+    },
+
+    // 文字出现效果
+    labelSchedule(good) {
+      this.title.string = ''
+      let content = '饥饿+' + good.hunger + '!'
+      let index = 0
+      let i = content.length - 1
+      this.schedule(() => {
+        this.title.string = this.title.string + content[index]
+        index++
+      },0.08,i,0)
     },
 
     updateData() {
