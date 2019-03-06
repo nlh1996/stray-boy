@@ -10,6 +10,7 @@ class BaseState {
   }
 }
 
+// 战斗状态
 class Combat extends BaseState {
   constructor() {
     super()
@@ -19,6 +20,7 @@ class Combat extends BaseState {
   }
 }
 
+// 逃跑状态
 class RunAway extends BaseState {
   constructor() {
     super()
@@ -28,6 +30,7 @@ class RunAway extends BaseState {
   }
 }
 
+// 状态管理
 class StateMng {
   constructor() {
     this.stateArr = []

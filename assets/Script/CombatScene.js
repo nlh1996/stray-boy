@@ -16,11 +16,11 @@ cc.Class({
     },
 
     combat() {
-      player.handleInput(BEHAVIOR.COMBAT)
+      player.setState(BEHAVIOR.COMBAT)
     },
 
     runAway() {
-      player.handleInput(BEHAVIOR.COMBAT)
+      player.setState(BEHAVIOR.RUNAWAY)
     },
 
     start () {

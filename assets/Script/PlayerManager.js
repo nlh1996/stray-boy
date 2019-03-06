@@ -19,7 +19,6 @@ class PlayerManager {
       moveSpeed: 100,
       hunger: 100,
       currentHunger: 100,
-      _state: {}
     },
     
     // 材料
@@ -34,13 +33,15 @@ class PlayerManager {
 
     // 成品
     this.goods = {
-      cooked_meat: {num: 0, needs: [{type: MATERIALS.RAW_MEAT, num: 1}, {type: MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
-      drug: {num: 0, needs: [{type: MATERIALS.HERB, num: 2}], success: 70},  //药品
-      tent: {num: 0, needs: []},
-      corselet: {num: 0, needs: []}
+      cooked_meat: {name: '熟肉', num: 0, needs: [{type: MATERIALS.RAW_MEAT, num: 1}, {type: MATERIALS.WOOD, num: 1}],success: 70},  //熟肉
+      drug: {name: '药品', num: 0, needs: [{type: MATERIALS.HERB, num: 2}], success: 70},  //药品
+      tent: {name: '帐篷', num: 0, needs: []},
+      corselet: {name: '皮甲', num: 0, needs: []}
     }
+
     this.time = 0
     this.duraction = 1000
+    this._state = {}
   }
 
   Save() {
@@ -91,8 +92,8 @@ class PlayerManager {
     return true
   }
 
-  // 战斗，逃跑输入
-  handleInput(num) {
+  // 设置角色状态
+  setState(num) {
     this._state = stateMng.getState(num)
     if(this._state) {
       this._state.doSomething(this)
@@ -107,6 +108,7 @@ class PlayerManager {
   // 执行逃跑
   runAway() {
     console.log('逃跑')
+    cc.director.loadScene('game')
   }
 
   // 制造物品

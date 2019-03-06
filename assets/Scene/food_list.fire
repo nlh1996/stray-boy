@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.28955592105263156,
-      "y": 0.28955592105263156,
-      "z": 0.28955592105263156
+      "x": 0.4369595864661654,
+      "y": 0.4369595864661654,
+      "z": 0.4369595864661654
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -590,8 +590,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "#点击物品名升级！可翻页！",
-    "_N$string": "#点击物品名升级！可翻页！",
+    "_string": "#点击物品名使用！可翻页！",
+    "_N$string": "#点击物品名使用！可翻页！",
     "_fontSize": 45,
     "_lineHeight": 45,
     "_enableWrapText": true,

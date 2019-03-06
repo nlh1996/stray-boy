@@ -9,6 +9,10 @@ cc.Class({
       Btn_Drug: cc.Button,
       Btn_Tent: cc.Button,
       Btn_Corselet: cc.Button,
+      title: {
+        default: null,
+        type: cc.Label
+      },
 
       label1: {
         default: null,
@@ -71,10 +75,24 @@ cc.Class({
     makeGood(button) {
       // 角色执行制造行为
       player.make(button.good)
-      // 视图更新
+      // 更新title提示
+      this.labelSchedule(button.good.name)
+      // 更新物品数量显示
       this.updateData()
       // 按钮状态判断
       this.btnState()
+    },
+
+    // 文字出现效果
+    labelSchedule(name) {
+      this.title.string = ''
+      let content = '获得【' + name + '】*1' 
+      let index = 0
+      let i = content.length - 1
+      this.schedule(() => {
+        this.title.string = this.title.string + content[index]
+        index++
+      },0.08,i,0)
     },
 
     updateData() {

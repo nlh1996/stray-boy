@@ -105,11 +105,8 @@ cc.Class({
       }else {
         var event = gameEvent.noEnergy()
       }
-      this.content.string = ''
       const content = event.content
-      let i = content.length - 1
-      let index = 0
-      this.labelSchedule(i,index,content)
+      this.labelSchedule(content)
       this.updateLabel()
     },
 
@@ -127,6 +124,7 @@ cc.Class({
     eat() {
       cc.director.loadScene('food_list')
     },
+
     // 前进按钮事件回调
     forward() {
       if(player.properties.currentHunger > 0) {
@@ -136,17 +134,17 @@ cc.Class({
       }else {
         var event = gameEvent.noEnergy()
       }
-      this.content.string = ''
       const content = event.content
-      let i = content.length - 1
-      let index = 0
-      this.labelSchedule(i,index,content)
+      this.labelSchedule(content)
       this.updateLabel()
     },
 
     // 文字出现效果
-    labelSchedule(i,index,content) {
-      this.changeBtnState(this.arrBtn,i*0.08)
+    labelSchedule(content) {
+      this.content.string = ''
+      let index = 0
+      let i = content.length - 1
+      this.changeBtnState(this.arrBtn, i*0.08)
       this.schedule(() => {
         this.content.string = this.content.string + content[index]
         index++
