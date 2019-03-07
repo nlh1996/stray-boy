@@ -26,7 +26,6 @@ cc.Class({
       et.on(EVENT.COMBAT,() => {
         this.Node.active = true
       })
-      et.off(EVENT.COMBAT)
     },
 
     combat() {

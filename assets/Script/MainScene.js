@@ -88,7 +88,6 @@ cc.Class({
 
       //注册监听事件
       et.on(EVENT.NO_HUNGER,this.hungry)
-
       et.off(EVENT.COMBAT)
       et.on(EVENT.COMBAT,() => { 
         this.node1.active = false

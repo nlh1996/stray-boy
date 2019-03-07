@@ -15,8 +15,8 @@ var MATERIALS = cc.Enum({
 })
 
 var EVENT = cc.Enum({
-  NO_HUNGER: 0,
-  COMBAT: 1,
+  NO_HUNGER: '0',
+  COMBAT: '1',
 })
 
 var BEHAVIOR = cc.Enum({

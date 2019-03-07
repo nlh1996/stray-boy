@@ -241,9 +241,6 @@
       },
       {
         "__id__": 101
-      },
-      {
-        "__id__": 89
       }
     ],
     "_active": true,
@@ -3673,13 +3670,16 @@
       },
       {
         "__id__": 82
+      },
+      {
+        "__id__": 87
       }
     ],
-    "_active": false,
+    "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 87
+        "__id__": 89
       }
     ],
     "_prefab": null,
@@ -4256,59 +4256,15 @@
     "_id": "a2PNteedpPY7gSybnmkOSY"
   },
   {
-    "__type__": "c9cdeRkdrFLfaW1mI8CaoNO",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 76
-    },
-    "_enabled": true,
-    "Btn_Combat": {
-      "__id__": 81
-    },
-    "Btn_RunAway": {
-      "__id__": 86
-    },
-    "Monster": {
-      "__id__": 88
-    },
-    "_id": "f6UKvUlmRJB4IPMEPS10/o"
-  },
-  {
-    "__type__": "cc.Label",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 89
-    },
-    "_enabled": true,
-    "_srcBlendFactor": 1,
-    "_dstBlendFactor": 771,
-    "_useOriginalSize": false,
-    "_string": "白毛僵尸 lv 10 hp 200",
-    "_N$string": "白毛僵尸 lv 10 hp 200",
-    "_fontSize": 35,
-    "_lineHeight": 60,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 3,
-    "_id": "11QQht8yFNuJZaLmkxQwj2"
-  },
-  {
     "__type__": "cc.Node",
     "_name": "Monster",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 5
+      "__id__": 76
     },
     "_children": [],
     "_active": true,
-    "_level": 2,
+    "_level": 3,
     "_components": [
       {
         "__id__": 88
@@ -4336,7 +4292,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 180,
+      "y": 480,
       "z": 0
     },
     "_scale": {
@@ -4360,6 +4316,50 @@
     "_rotationX": 0,
     "_rotationY": 0,
     "_id": "bdEejYp/dPUK+3UAv2Kw95"
+  },
+  {
+    "__type__": "cc.Label",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 87
+    },
+    "_enabled": true,
+    "_srcBlendFactor": 1,
+    "_dstBlendFactor": 771,
+    "_useOriginalSize": false,
+    "_string": "白毛僵尸 lv 10 hp 200",
+    "_N$string": "白毛僵尸 lv 10 hp 200",
+    "_fontSize": 35,
+    "_lineHeight": 60,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 3,
+    "_id": "11QQht8yFNuJZaLmkxQwj2"
+  },
+  {
+    "__type__": "c9cdeRkdrFLfaW1mI8CaoNO",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 76
+    },
+    "_enabled": true,
+    "Btn_Combat": {
+      "__id__": 81
+    },
+    "Btn_RunAway": {
+      "__id__": 86
+    },
+    "Node": {
+      "__id__": 76
+    },
+    "_id": "f6UKvUlmRJB4IPMEPS10/o"
   },
   {
     "__type__": "cc.Node",
