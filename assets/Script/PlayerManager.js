@@ -108,7 +108,7 @@ class PlayerManager {
   // 执行逃跑
   runAway() {
     console.log('逃跑')
-    cc.director.loadScene('game')
+    cc.director.reloadScene('game')
   }
 
   // 制造物品
@@ -157,13 +157,13 @@ class PlayerManager {
             this.properties.currentHunger -= 10
           }
           if(this.properties.currentHunger == 0) {
-            et.emit(EVENT.NO_HUNGER)
+            //et.emit(EVENT.NO_HUNGER)
             return
           }
           break
-        // 进入战斗
+
         case 201:
-          cc.director.loadScene('combat')
+
           break
 
         case 202:

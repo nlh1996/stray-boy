@@ -1,6 +1,5 @@
 // 本脚本为游戏的主要逻辑脚本
 import player from './PlayerManager'
-import {白毛僵尸,僵尸工厂} from './MonsterFactory'
 const gameEvent = require("Event")
 const et = require('Listener')
 import {TALENT,EVENT} from 'Enum'
@@ -71,13 +70,13 @@ cc.Class({
     onLoad () {
       this.initTalent()
       this.updateLabel()
-      et.on(EVENT.NO_HUNGER,this.hungry)
       //当前前面主要按钮
-      this.Btn_Forward = this.node.getChildByName('Btn_Forward')
-      this.Btn_Search = this.node.getChildByName('Btn_Search')
-      this.Btn_Make = this.node.getChildByName('Btn_Make')
-      this.Btn_Rest = this.node.getChildByName('Btn_Rest')
-      this.Btn_Eat = this.node.getChildByName('Btn_Eat')
+      this.node1 = this.node.getChildByName('Node1')
+      this.Btn_Forward = this.node1.getChildByName('Btn_Forward')
+      this.Btn_Search = this.node1.getChildByName('Btn_Search')
+      this.Btn_Make = this.node1.getChildByName('Btn_Make')
+      this.Btn_Rest = this.node1.getChildByName('Btn_Rest')
+      this.Btn_Eat = this.node1.getChildByName('Btn_Eat')
       this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
 
       //按钮监听
@@ -86,6 +85,14 @@ cc.Class({
       this.Btn_Search.on('click', this.search, this)
       this.Btn_Rest.on('click', this.rest, this)
       this.Btn_Eat.on('click', this.eat, this)
+
+      //注册监听事件
+      et.on(EVENT.NO_HUNGER,this.hungry)
+
+      et.off(EVENT.COMBAT)
+      et.on(EVENT.COMBAT,() => { 
+        this.node1.active = false
+      })
     },
 
     start () {
@@ -137,6 +144,9 @@ cc.Class({
       const content = event.content
       this.labelSchedule(content)
       this.updateLabel()
+      if(event.type == 'combat') {
+        et.emit(EVENT.COMBAT)
+      }
     },
 
     // 文字出现效果
@@ -154,7 +164,6 @@ cc.Class({
       },0.08,i,0)
     },
 
-    
     // 按钮状态改变
     changeBtnState(arr,dt) {
       for(let i=0; i<arr.length; i++) {

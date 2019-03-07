@@ -46,7 +46,6 @@ cc.Class({
       this.Btn_Meat.good = player.goods.cooked_meat
       this.Btn_Drug.good = player.goods.drug
 
-
       this.btnState()
     },
 

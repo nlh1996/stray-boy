@@ -66,4 +66,4 @@ class 僵尸工厂 {
   }
 }
 
-export default {白毛僵尸,僵尸工厂}
+export default {白毛僵尸,灰眼僵尸,绿眼僵尸,僵尸王,僵尸工厂}
