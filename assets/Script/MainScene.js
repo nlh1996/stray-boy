@@ -2,9 +2,9 @@
 import player from './PlayerManager'
 const gameEvent = require("Event")
 const et = require('Listener')
-import {TALENT,EVENT} from 'Enum'
+import {TALENT,EVENT,GAME_SCENE} from 'Enum'
 const Command = require('Command')
-
+import GameSceneMng from './GameSceneMng'
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -128,11 +128,11 @@ cc.Class({
 
     // 打开制造页
     make() {
-      cc.director.loadScene('make')
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.MAKE)
     }, 
 
     eat() {
-      cc.director.loadScene('food_list')
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.FOOD_LIST)
     },
 
     // 前进按钮事件回调

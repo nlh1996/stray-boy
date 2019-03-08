@@ -1,6 +1,7 @@
 // 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
-import {MATERIALS,EVENT} from 'Enum'
+import {MATERIALS,EVENT,GAME_SCENE} from 'Enum'
+import GameSceneMng from './GameSceneMng'
 import stateMng from './State'
 
 class PlayerManager {
@@ -8,7 +9,7 @@ class PlayerManager {
   constructor() {
     // 人物属性
     this.properties = {
-      life: 1000,
+      life: 100,
       attack: 10,
       defence: 10,
       knowledge: 0,
@@ -40,7 +41,7 @@ class PlayerManager {
     }
 
     this.time = 0
-    this.duraction = 1000
+    this.duraction = 100
     this._state = {}
   }
 
@@ -112,12 +113,15 @@ class PlayerManager {
     }else {
       this.properties.life -= 1
     }
+    if(this.properties.life <= 0) {
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
+    }
     et.emit(EVENT.HURT)
   }
 
   // 执行逃跑
   runAway() {
-    cc.director.loadScene('game')
+    GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
   }
 
   // 制造物品
@@ -166,6 +170,9 @@ class PlayerManager {
         // 僵尸移动
         case 100:
           this.duraction -= 50
+          if(this.duraction <= 0) {
+            et.emit(EVENT.GAMEOVER)
+          } 
           break
         // 角色前进
         case 101:
@@ -177,7 +184,7 @@ class PlayerManager {
             this.properties.currentHunger -= 10
           }
           if(this.properties.currentHunger == 0) {
-            //et.emit(EVENT.NO_HUNGER)
+            //et.emit(EVENT.HUNGER)
             return
           }
           break

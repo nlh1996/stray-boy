@@ -17,8 +17,9 @@ var MATERIALS = cc.Enum({
 var EVENT = cc.Enum({
   HUNGER: '饿了',
   COMBAT: '触发战斗',
-  HURT: '收到伤害',
-  FULL: '吃饱了' 
+  HURT: '受到伤害',
+  FULL: '吃饱了',
+  GAMEOVER: '游戏结束' 
 })
 
 var BEHAVIOR = cc.Enum({
@@ -27,4 +28,12 @@ var BEHAVIOR = cc.Enum({
   DIE: 2
 })
 
-export default {TALENT,EVENT,MATERIALS,BEHAVIOR}
+var GAME_SCENE = cc.Enum({
+  START: 'start',
+  GAME: 'game',
+  MAKE: 'make',
+  FOOD_LIST: 'food_list',
+  GAME_OVER: 'game_over'
+})
+
+export default {TALENT,EVENT,MATERIALS,BEHAVIOR,GAME_SCENE}

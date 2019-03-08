@@ -1,5 +1,7 @@
 // 该脚本负责制造场景的逻辑
 const player = require('PlayerManager') 
+import {GAME_SCENE} from './Enum'
+import GameSceneMng from './GameSceneMng'
 cc.Class({
     extends: cc.Component,
 
@@ -68,7 +70,7 @@ cc.Class({
     },
 
     back() {
-      cc.director.loadScene('game')
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },
 
     // 物品制造事件

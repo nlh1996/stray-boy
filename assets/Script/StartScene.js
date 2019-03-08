@@ -1,6 +1,7 @@
 // 本脚本负责游戏的开始
 const player = require("PlayerManager")
-import {TALENT} from 'Enum'
+import {TALENT,GAME_SCENE} from 'Enum'
+import GameSceneMng from './GameSceneMng'
 cc.Class({
     extends: cc.Component,
 
@@ -38,7 +39,7 @@ cc.Class({
     },
 
     gameStart() {
-      cc.director.loadScene('game')
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },
 
     start () {

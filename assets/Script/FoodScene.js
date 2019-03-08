@@ -1,5 +1,7 @@
 // 该脚本负责制造场景的逻辑
-import {EVENT} from './Enum'
+import {EVENT,GAME_SCENE} from './Enum'
+import GameSceneMng from './GameSceneMng'
+
 const player = require('PlayerManager') 
 cc.Class({
     extends: cc.Component,
@@ -73,7 +75,7 @@ cc.Class({
     },
 
     back() {
-      cc.director.loadScene('game')
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },
 
     // 进食
