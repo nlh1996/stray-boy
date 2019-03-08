@@ -14,7 +14,8 @@ class 僵尸 {
 
 class 白毛僵尸 extends 僵尸 {
   constructor(lv,life,attack,defence,hostility) {
-    super(lv,life,attack,defence,hostility)
+    super(10,100,10,10,30)
+    this.name = '白毛僵尸'
   }
   clone() {
     return new 白毛僵尸(this.lv,this.life,this.attack,this.defence,this.hostility)
@@ -23,7 +24,8 @@ class 白毛僵尸 extends 僵尸 {
 
 class 灰眼僵尸 extends 僵尸 {
   constructor(lv,life,attack,defence,hostility) {
-    super(lv,life,attack,defence,hostility)
+    super(20,200,15,15,50)
+    this.name = '灰眼僵尸'
   }
   clone() {
     return new 灰眼僵尸(this.lv,this.life,this.attack,this.defence,this.hostility)

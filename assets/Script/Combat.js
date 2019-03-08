@@ -14,6 +14,11 @@ cc.Class({
       Node: {
         default: null,
         type: cc.Node
+      },
+
+      Monster: {
+        default: null,
+        type: cc.Label
       }
     },
 
@@ -37,7 +42,9 @@ cc.Class({
     },
 
     initMonster() {
-
+      let monster = new 白毛僵尸()
+      console.log(monster)
+      this.Monster.string = monster.name + ' lv ' + monster.lv + ' hp ' + monster.life
     },
 
     start () {

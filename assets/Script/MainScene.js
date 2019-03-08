@@ -87,12 +87,12 @@ cc.Class({
       this.Btn_Eat.on('click', this.eat, this)
 
       //注册监听事件
-      et.on(EVENT.NO_HUNGER,this.hungry)
+      et.on(EVENT.NO_HUNGER, this.hungry)
 
       //注销先前的事件，确保新注册的事件this总是指向当前组件
       et.off(EVENT.COMBAT)
       //每次加载组件都重新注册
-      et.on(EVENT.COMBAT,() => { 
+      et.on(EVENT.COMBAT, () => { 
         this.node1.active = false
       })
     },

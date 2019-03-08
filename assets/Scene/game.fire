@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.41439144736842104,
-      "y": 0.41439144736842104,
-      "z": 0.41439144736842104
+      "x": 0.4174107142857143,
+      "y": 0.4174107142857143,
+      "z": 0.4174107142857143
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -4359,6 +4359,9 @@
     "Node": {
       "__id__": 76
     },
+    "Monster": {
+      "__id__": 88
+    },
     "_id": "f6UKvUlmRJB4IPMEPS10/o"
   },
   {
@@ -4923,7 +4926,7 @@
     "_useOriginalSize": false,
     "_string": "",
     "_N$string": "",
-    "_fontSize": 60,
+    "_fontSize": 45,
     "_lineHeight": 60,
     "_enableWrapText": true,
     "_N$file": null,

@@ -108,7 +108,7 @@ class PlayerManager {
   // 执行逃跑
   runAway() {
     console.log('逃跑')
-    cc.director.reloadScene('game')
+    cc.director.loadScene('game')
   }
 
   // 制造物品
