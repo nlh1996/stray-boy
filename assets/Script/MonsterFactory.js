@@ -14,7 +14,7 @@ class 僵尸 {
 
 class 白毛僵尸 extends 僵尸 {
   constructor(lv,life,attack,defence,hostility) {
-    super(10,100,10,10,30)
+    super(10,100,30,10,30)
     this.name = '白毛僵尸'
   }
   clone() {

@@ -95,6 +95,7 @@ cc.Class({
       et.on(EVENT.COMBAT, () => { 
         this.node1.active = false
       })
+      et.on(EVENT.HURT,this.updateLabel,this)
     },
 
     start () {
@@ -121,7 +122,7 @@ cc.Class({
 
     // 人物休息
     rest() {
-      player.properties.currentHunger += 20
+      player.properties.health += 1
       this.updateLabel()
     },
 

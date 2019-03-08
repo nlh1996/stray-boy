@@ -23,7 +23,9 @@ cc.Class({
     },
 
     onLoad() {
-      this.initMonster()
+      let monster = new 白毛僵尸()
+      this.monster =  monster
+      this.updateLabel()
       this.Node.active = false
       this.Btn_Combat.node.on('click',this.combat,this)
       this.Btn_RunAway.node.on('click',this.runAway,this)
@@ -31,20 +33,21 @@ cc.Class({
       et.on(EVENT.COMBAT,() => {
         this.Node.active = true
       })
+      et.on(EVENT.HURT,this.updateLabel,this)
     },
 
     combat() {
-      player.setState(BEHAVIOR.COMBAT)
+      //player.setState(BEHAVIOR.COMBAT)
+      player.combat(this.monster)
+      // this.updateLabel()
     },
 
     runAway() {
       player.setState(BEHAVIOR.RUNAWAY)
     },
 
-    initMonster() {
-      let monster = new 白毛僵尸()
-      console.log(monster)
-      this.Monster.string = monster.name + ' lv ' + monster.lv + ' hp ' + monster.life
+    updateLabel() {
+      this.Monster.string = this.monster.name + ' lv ' + this.monster.lv + ' hp ' + this.monster.life
     },
 
     start () {

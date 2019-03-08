@@ -1,4 +1,5 @@
 // 该脚本负责制造场景的逻辑
+import {EVENT} from './Enum'
 const player = require('PlayerManager') 
 cc.Class({
     extends: cc.Component,
@@ -28,6 +29,14 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      label5: {
+        default: null,
+        type: cc.Label
+      },
+      label6: {
+        default: null,
+        type: cc.Label
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -47,6 +56,7 @@ cc.Class({
       this.Btn_Drug.good = player.goods.drug
 
       this.btnState()
+
     },
 
     // 判断按钮是否为可用状态
@@ -68,19 +78,35 @@ cc.Class({
 
     // 进食
     eatFood(button) {
-      player.eat(button.good)
+      let result = player.eat(button.good)
       this.unscheduleAllCallbacks()
-      this.labelSchedule(button.good)
-      // 视图更新
-      this.updateData()
-      // 按钮状态判断
-      this.btnState()
+      if(result != EVENT.FULL) {
+        this.labelSchedule(button.good)
+        // 视图更新
+        this.updateData()
+        // 按钮状态判断
+        this.btnState()
+      }else {
+        this.title.string = ''
+        var content = '您已经吃饱了!'
+        let index = 0
+        let i = content.length - 1
+        this.schedule(() => {
+          this.title.string = this.title.string + content[index]
+          index++
+        },0.08,i,0)
+      }
     },
 
     // 文字出现效果
     labelSchedule(good) {
       this.title.string = ''
-      let content = '饥饿+' + good.hunger + '!'
+      if(good.hunger) {
+        var content = '饥饿+' + good.hunger + '!'
+      }
+      if(good.life) {
+        var content = '生命+' + good.life + '!'
+      }
       let index = 0
       let i = content.length - 1
       this.schedule(() => {
@@ -94,6 +120,8 @@ cc.Class({
       this.label2.string = '#效果：饥饿+20，15%几率恢复1点健康值'
       this.label3.string = '#拥有：' + player.goods.cooked_meat.num
       this.label4.string = '#效果: 饥饿+70'
+      this.label5.string = '#拥有：' + player.goods.drug.num
+      this.label6.string = '#效果: 生命回复+30'
     },
 
     start () {

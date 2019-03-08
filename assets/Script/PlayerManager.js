@@ -101,13 +101,22 @@ class PlayerManager {
   }
 
   // 执行战斗
-  combat() {
-    console.log('战斗')
+  combat(mst) {
+    if(this.properties.attack>mst.defence) {
+      mst.life -= (this.properties.attack-mst.defence)
+    }else {
+      mst.life -= 1
+    }
+    if(mst.attack>this.properties.attack) {
+      this.properties.life -= (mst.attack-this.properties.defence)
+    }else {
+      this.properties.life -= 1
+    }
+    et.emit(EVENT.HURT)
   }
 
   // 执行逃跑
   runAway() {
-    console.log('逃跑')
     cc.director.loadScene('game')
   }
 
@@ -129,14 +138,25 @@ class PlayerManager {
     good.num += 1
   }
 
+  // 玩家进食
   eat(good) {
-    if(good.hunger) {
+    let result = ''
+    if(good.hunger&&this.properties.currentHunger < this.properties.hunger) {
       this.properties.currentHunger += good.hunger
+      if(this.properties.currentHunger > this.properties.hunger){
+        this.properties.currentHunger = this.properties.hunger
+      }
+      result = EVENT.HUNGER
+      good.num -= 1
+    } else {
+      result = EVENT.FULL
     }
     if(good.life) {
       this.properties.life += good.life
+      good.num -= 1
+      result = ''
     }
-    good.num -= 1
+    return result
   }
 
   // 属性改变
