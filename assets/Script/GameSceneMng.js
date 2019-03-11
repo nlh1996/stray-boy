@@ -37,7 +37,6 @@ class GameSceneMng {
         cc.director.loadScene(scene)
         break
     }
-
   }
 }
 

@@ -58,7 +58,11 @@ cc.Class({
     btnState() {
       for(let i=0; i<this.arr.length; i++) {
         // 验证是否满足制造需求
+        let date1 = new Date()
         let result = player.validate(this.arr[i].good)
+        let date2 = new Date() 
+        console.log(date2 - date1)
+        
         if(result) {
           this.arr[i].getComponent(cc.Button).enabled = true
           this.arr[i].node.getChildByName('Label').color = cc.color(20,240,36)
@@ -77,6 +81,7 @@ cc.Class({
     makeGood(button) {
       // 角色执行制造行为
       player.make(button.good)
+
       // 更新title提示
       this.unscheduleAllCallbacks()
       this.labelSchedule(button.good.name)

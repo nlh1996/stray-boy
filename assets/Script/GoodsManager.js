@@ -1,0 +1,6 @@
+class BaseGood {
+  constructor() {
+
+  }
+   
+}
