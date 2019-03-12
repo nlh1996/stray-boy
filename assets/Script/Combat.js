@@ -19,21 +19,34 @@ cc.Class({
       Monster: {
         default: null,
         type: cc.Label
-      }
+      },
+
+      Content: {
+        default: null,
+        type: cc.Label
+      },
+
     },
 
     onLoad() {
-      let monster = new 白毛僵尸()
-      this.monster =  monster
-      this.updateLabel()
       this.Node.active = false
       this.Btn_Combat.node.on('click',this.combat,this)
       this.Btn_RunAway.node.on('click',this.runAway,this)
 
       et.on(EVENT.COMBAT,() => {
         this.Node.active = true
+        let monster = new 白毛僵尸()
+        this.monster =  monster
+        this.updateLabel()
       })
-      et.on(EVENT.HURT,this.updateLabel,this)
+
+      et.on(EVENT.HURT, this.updateLabel, this)
+      
+      et.on(EVENT.WIN, () => {
+        this.Node.active = false
+        this.labelSchedule('恭喜您获得胜利！')
+      })
+      
     },
 
     combat() {
@@ -46,8 +59,23 @@ cc.Class({
       player.setState(BEHAVIOR.RUNAWAY)
     },
 
+    win() {
+      this.monster.die()
+      this.labelSchedule('你胜利了！')
+    },
+
     updateLabel() {
       this.Monster.string = this.monster.name + ' lv ' + this.monster.lv + ' hp ' + this.monster.life
+    },
+
+    labelSchedule(content) {
+      this.Content.string = ''
+      let index = 0
+      let i = content.length - 1
+      this.schedule(() => {
+        this.Content.string = this.Content.string + content[index]
+        index++
+      },0.08,i,0)
     },
 
     start () {

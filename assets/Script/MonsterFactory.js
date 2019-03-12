@@ -10,11 +10,14 @@ class 僵尸 {
   }
   clone() {
   }
+  die() {
+    console.log(" I'am die! " )
+  }
 }
 
 class 白毛僵尸 extends 僵尸 {
   constructor(lv,life,attack,defence,hostility) {
-    super(10,100,30,10,30)
+    super(10,100,10,5,30)
     this.name = '白毛僵尸'
   }
   clone() {
@@ -24,7 +27,7 @@ class 白毛僵尸 extends 僵尸 {
 
 class 灰眼僵尸 extends 僵尸 {
   constructor(lv,life,attack,defence,hostility) {
-    super(20,200,15,15,50)
+    super(20,200,15,10,50)
     this.name = '灰眼僵尸'
   }
   clone() {

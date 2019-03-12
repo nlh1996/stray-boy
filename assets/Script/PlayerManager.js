@@ -116,8 +116,13 @@ class PlayerManager {
     }else {
       this.properties.life -= 1
     }
+    // 人物死亡
     if(this.properties.life <= 0) {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
+    }
+    // 怪物死亡
+    if(mst.life <= 0) {
+      et.emit(EVENT.WIN)
     }
     et.emit(EVENT.HURT)
   }

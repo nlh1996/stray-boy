@@ -95,7 +95,11 @@ cc.Class({
       et.on(EVENT.COMBAT, () => { 
         this.node1.active = false
       })
-      et.on(EVENT.HURT,this.updateLabel,this)
+      et.off(EVENT.WIN)
+      et.on(EVENT.WIN, () => {
+        this.node1.active = true
+      })
+      et.on(EVENT.HURT, this.updateLabel, this)
     },
 
     start () {
@@ -152,7 +156,7 @@ cc.Class({
       }
     },
 
-    // 文字出现效果
+    // 文字出现效果，带按钮状态改变
     labelSchedule(content) {
       this.content.string = ''
       let index = 0
