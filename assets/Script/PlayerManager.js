@@ -40,8 +40,11 @@ class PlayerManager {
       corselet: {name: '皮甲', num: 0, needs: []}
     }
 
-    this.time = 0
-    this.duraction = 100
+    this.dt = 0
+    this.second = 0
+    this.minute = 0
+    this.hour = 0
+    this.duraction = 1000
     this._state = {}
   }
 

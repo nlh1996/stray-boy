@@ -28,11 +28,11 @@ class Watcher {
   constructor() {
     this.listeners = []
   }
-  //添加监听者
+  // 添加监听者
   addListener(obj) {
     this.listeners.push(obj)
   }
-  //移除监听者
+  // 移除监听者
   removeListener(event) {
     for(let i=0; i<this.listeners.length; i++) {
       if(this.listeners[i].event == event) {
@@ -40,7 +40,7 @@ class Watcher {
       }
     }
   }
-  //观察事件分发
+  // 观察事件分发
   dispatch(event) {
     for(let i=0; i<this.listeners.length; i++) {
       if(this.listeners[i].event == event) {

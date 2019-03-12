@@ -178,7 +178,7 @@ cc.Class({
         }else {
           let action2 = cc.fadeIn(dt)
           let action1 = cc.delayTime(0.2)
-          let seq = cc.sequence(action1,action2)
+          let seq = cc.sequence(action1, action2)
           arr[i].runAction(seq)
         }
       }
@@ -215,5 +215,41 @@ cc.Class({
       this.duraction.string = player.duraction
     },
 
-    // update (dt) {},
+    update (dt) {
+      player.dt += 1
+      if(player.dt == 60) {
+        player.dt = 0
+        player.second += 1
+        player.duraction -= 1
+      }
+      if(player.second == 60) {
+        player.second = 0
+        player.minute += 1
+      }
+      if(player.minute == 60) {
+        player.minute = 0
+        player.hour += 1
+      }
+      this.updateTime()
+    },
+
+    updateTime() {
+      if(player.second < 10) {
+        var second = '0' + player.second
+      }else{
+        var second = player.second
+      }
+      if(player.minute < 10) {
+        var minute = '0' + player.minute
+      }else{
+        var minute = player.minute
+      }
+      if(player.hour < 10) {
+        var hour = '0' + player.hour
+      }else{
+        var hour = player.hour
+      }
+      this.time.string = hour + ':' + minute + ':' + second
+      this.duraction.string = player.duraction
+    }
 });
