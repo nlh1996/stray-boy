@@ -106,16 +106,20 @@ class PlayerManager {
 
   // 执行战斗
   combat(mst) {
+    // 角色攻击
     if(this.properties.attack>mst.defence) {
-      mst.life -= (this.properties.attack-mst.defence)
+      var damage1 = this.properties.attack-mst.defence
     }else {
-      mst.life -= 1
+      var damage1 = 1
     }
+    mst.life -= damage1
+    // 怪物反击
     if(mst.attack>this.properties.attack) {
-      this.properties.life -= (mst.attack-this.properties.defence)
+      var damage2 = mst.attack-this.properties.defence
     }else {
-      this.properties.life -= 1
+      var damage2 = 1
     }
+    this.properties.life -= damage2
     // 人物死亡
     if(this.properties.life <= 0) {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
@@ -125,6 +129,8 @@ class PlayerManager {
       et.emit(EVENT.WIN)
     }
     et.emit(EVENT.HURT)
+    // 返回伤害值
+    return [damage1,damage2]
   }
 
   // 执行逃跑
@@ -155,7 +161,7 @@ class PlayerManager {
     let result = ''
     if(good.hunger&&this.properties.currentHunger < this.properties.hunger) {
       this.properties.currentHunger += good.hunger
-      if(this.properties.currentHunger > this.properties.hunger){
+      if(this.properties.currentHunger > this.properties.hunger) {
         this.properties.currentHunger = this.properties.hunger
       }
       result = EVENT.HUNGER
@@ -192,7 +198,7 @@ class PlayerManager {
             this.properties.currentHunger -= 10
           }
           if(this.properties.currentHunger == 0) {
-            //et.emit(EVENT.HUNGER)
+            // et.emit(EVENT.HUNGER)
             return
           }
           break

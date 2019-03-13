@@ -156,7 +156,7 @@ cc.Class({
       }
     },
 
-    // 文字出现效果，带按钮状态改变
+    // 文字出现效果
     labelSchedule(content) {
       this.content.string = ''
       let index = 0
@@ -194,7 +194,7 @@ cc.Class({
         case TALENT.学霸:
           player.properties.knowledge = 2
           break
-        case TALENT.强壮:
+        case TALENT.强壮: 
           player.properties.sport = 2
           break
         case TALENT.多才:
@@ -219,12 +219,16 @@ cc.Class({
       this.duraction.string = player.duraction
     },
 
+    // 计时器
     update (dt) {
       player.dt += 1
       if(player.dt == 60) {
         player.dt = 0
         player.second += 1
         player.duraction -= 1
+        if(player.duraction <= 0) {
+          GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
+        }
       }
       if(player.second == 60) {
         player.second = 0
@@ -237,6 +241,7 @@ cc.Class({
       this.updateTime()
     },
 
+    // 显示时间
     updateTime() {
       if(player.second < 10) {
         var second = '0' + player.second

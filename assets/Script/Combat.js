@@ -25,7 +25,6 @@ cc.Class({
         default: null,
         type: cc.Label
       },
-
     },
 
     onLoad() {
@@ -51,7 +50,10 @@ cc.Class({
 
     combat() {
       //player.setState(BEHAVIOR.COMBAT)
-      player.combat(this.monster)
+      this.damage = player.combat(this.monster)
+      let content = '你丢出了一张符箓 【僵尸生命-' + this.damage[0] + '】' 
+      + '僵尸还你一爪【生命-' + this.damage[1] + '】'
+      this.labelSchedule(content)
       // this.updateLabel()
     },
 
@@ -69,13 +71,17 @@ cc.Class({
     },
 
     labelSchedule(content) {
+      this.Btn_Combat.enabled = false
       this.Content.string = ''
       let index = 0
       let i = content.length - 1
       this.schedule(() => {
         this.Content.string = this.Content.string + content[index]
         index++
-      },0.08,i,0)
+        if(index>i) {
+          this.Btn_Combat.enabled = true
+        }
+      },0.06,i,0)
     },
 
     start () {
