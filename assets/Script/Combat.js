@@ -1,6 +1,6 @@
 // 本脚本负责游戏的战斗场景
 import player from './PlayerManager'
-import {BEHAVIOR,EVENT} from './Enum'
+import {EVENT} from './Enum'
 import {白毛僵尸,灰眼僵尸,绿眼僵尸,僵尸王,僵尸工厂} from './MonsterFactory'
 const et = require('Listener')
 
@@ -45,11 +45,9 @@ cc.Class({
         this.Node.active = false
         this.labelSchedule('恭喜您获得胜利！')
       })
-      
     },
 
     combat() {
-      //player.setState(BEHAVIOR.COMBAT)
       this.damage = player.combat(this.monster)
       let content = '你丢出了一张符箓 【僵尸生命-' + this.damage[0] + '】' 
       + '僵尸还你一爪【生命-' + this.damage[1] + '】'

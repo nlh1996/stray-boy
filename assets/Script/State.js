@@ -1,4 +1,3 @@
-import {BEHAVIOR} from 'Enum'
 
 // 状态模式
 class BaseState {
@@ -36,8 +35,8 @@ class StateMng {
     this.stateArr = []
   }
   init() {
-    this.stateArr[BEHAVIOR.COMBAT] = new Combat() 
-    this.stateArr[BEHAVIOR.RUNAWAY] = new RunAway() 
+    this.stateArr[0] = new Combat() 
+    this.stateArr[1] = new RunAway() 
   }
   getState(num) {
     return this.stateArr[num]

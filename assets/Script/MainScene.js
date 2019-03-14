@@ -2,8 +2,7 @@
 import player from './PlayerManager'
 const gameEvent = require("Event")
 const et = require('Listener')
-import {TALENT,EVENT,GAME_SCENE} from 'Enum'
-const Command = require('Command')
+import {TALENT,EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 cc.Class({
     extends: cc.Component,
@@ -112,12 +111,16 @@ cc.Class({
 
     // 探索事件
     search() {
-      if(player.properties.currentHunger > 0) {
-        let command = new Command(gameEvent.getSearchEvent())
-        command.execute(player)
-        var event = command.getEvent()
+      // 玩家探索消耗 返回状态
+      let status = player.consume(5,5)
+      if(status == STATUS.STATUS_OK) {
+        var event = gameEvent.getSearchEvent(30+player.properties.charm)
+        // 获得物品
+        if(event.code) {
+          player.setProperty(event.code)
+        }
       }else {
-        var event = gameEvent.noEnergy()
+        var event = gameEvent.abnormalState(status)
       }
       const content = event.content
       this.labelSchedule(content)
@@ -141,12 +144,16 @@ cc.Class({
 
     // 前进按钮事件回调
     forward() {
-      if(player.properties.currentHunger > 0) {
-        var command = new Command(gameEvent.getRandomEvent())
-        var event = command.getEvent()
-        command.execute(player)
+      let status = player.consume(10,10)
+      if(status == STATUS.STATUS_OK) {
+        // 发现物品
+        var event = gameEvent.getSearchEvent(10 + player.properties.charm)
       }else {
-        var event = gameEvent.noEnergy()
+        var event = gameEvent.abnormalState(status)
+        // 获得物品
+        if(event.code) {
+          player.setProperty(event.code)
+        }
       }
       const content = event.content
       this.labelSchedule(content)

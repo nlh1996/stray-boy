@@ -23,11 +23,6 @@ var EVENT = cc.Enum({
   GAMEOVER: '游戏结束' 
 })
 
-var BEHAVIOR = cc.Enum({
-  COMBAT: 0,
-  RUNAWAY: 1,
-  DIE: 2
-})
 
 var GAME_SCENE = cc.Enum({
   START: 'start',
@@ -37,4 +32,10 @@ var GAME_SCENE = cc.Enum({
   GAME_OVER: 'game_over'
 })
 
-export default {TALENT,EVENT,MATERIALS,BEHAVIOR,GAME_SCENE}
+var STATUS = cc.Enum({
+  STATUS_OK: 0,
+  NO_ENERGY: 1,
+  NO_HUNGER: 2
+})
+
+export default {TALENT,EVENT,MATERIALS,GAME_SCENE,STATUS}

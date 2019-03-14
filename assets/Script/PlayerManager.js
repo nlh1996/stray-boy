@@ -1,6 +1,6 @@
 // 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
-import {MATERIALS,EVENT,GAME_SCENE} from 'Enum'
+import {MATERIALS,EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 import stateMng from './State'
 
@@ -9,17 +9,19 @@ class PlayerManager {
   constructor() {
     // 人物属性
     this.properties = {
-      life: 100,
-      attack: 10,
+      life: 200,
+      attack: 20,
       defence: 10,
-      knowledge: 0,
-      sport: 0,
-      charm: 0,
-      health: 0,
-      attackSpeed: 10,
-      moveSpeed: 100,
+      knowledge: 10,
+      sport: 10,
+      charm: 10,
+      health: 100,
+      attackSpeed: 2,
+      moveSpeed: 5,
       hunger: 100,
       currentHunger: 100,
+      energy: 100,
+      currentEnergy: 100,
     },
     
     // 材料
@@ -138,6 +140,22 @@ class PlayerManager {
     GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
   }
 
+  // 玩家消耗精力，饥饿
+  consume(energy,hunger) {
+    if(this.properties.currentEnergy>=energy && this.properties.currentHunger>=hunger) {
+      this.properties.currentEnergy -= energy
+      this.properties.currentHunger -= hunger
+      return STATUS.STATUS_OK
+    }
+    if(this.properties.currentEnergy<energy) {
+      return STATUS.NO_ENERGY
+    }
+    if(this.properties.currentHunger<hunger) {
+      return STATUS.NO_HUNGER
+    }
+  }
+
+
   // 制造物品
   make(good) {
     for(let i=0; i<good.needs.length; i++) {
@@ -191,16 +209,6 @@ class PlayerManager {
         // 角色前进
         case 101:
           this.duraction += this.properties.moveSpeed
-          break
-        // 消耗饥饿值
-        case 111:
-          if(this.properties.currentHunger > 0) {
-            this.properties.currentHunger -= 10
-          }
-          if(this.properties.currentHunger == 0) {
-            // et.emit(EVENT.HUNGER)
-            return
-          }
           break
 
         case 201:
