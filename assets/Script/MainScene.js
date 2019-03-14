@@ -63,11 +63,15 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      place: {
+        default: null,
+        type: cc.Label
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      this.initTalent()
+      //this.initTalent()
       this.updateLabel()
       //当前前面主要按钮
       this.node1 = this.node.getChildByName('Node1')
@@ -147,13 +151,16 @@ cc.Class({
       let status = player.consume(10,10)
       if(status == STATUS.STATUS_OK) {
         // 发现物品
-        var event = gameEvent.getSearchEvent(10 + player.properties.charm)
-      }else {
-        var event = gameEvent.abnormalState(status)
-        // 获得物品
+        var event = gameEvent.getForwardEvent(10 + player.properties.charm)
+        // 没发现物品，遇到敌人
+        if(event.type == 'combat') {
+          et.emit('EVENT.COMBAT')
+        }
         if(event.code) {
           player.setProperty(event.code)
         }
+      }else {
+        var event = gameEvent.abnormalState(status)
       }
       const content = event.content
       this.labelSchedule(content)
@@ -224,6 +231,7 @@ cc.Class({
       this.hunger.string = '饥饿 ' + player.properties.currentHunger + '/' + player.properties.hunger
       this.time.string = player.time + '分钟'
       this.duraction.string = player.duraction
+      this.place.string = player.properties.currentPlace
     },
 
     // 计时器
@@ -232,7 +240,6 @@ cc.Class({
       if(player.dt == 60) {
         player.dt = 0
         player.second += 1
-        player.duraction -= 1
         if(player.duraction <= 0) {
           GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
         }

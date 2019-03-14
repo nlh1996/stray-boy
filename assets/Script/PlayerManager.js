@@ -22,6 +22,8 @@ class PlayerManager {
       currentHunger: 100,
       energy: 100,
       currentEnergy: 100,
+      currentPlace: '孙庄',
+      moveDuration: 0
     },
     
     // 材料
@@ -42,11 +44,45 @@ class PlayerManager {
       corselet: {name: '皮甲', num: 0, needs: []}
     }
 
+    // 地图
+    this.map = [
+      {name:'孙庄' ,duraction: 0},
+      {name:'仁桥' ,duraction: 10},
+      {name:'双楼' ,duraction: 20},
+      {name:'曲塘' ,duraction: 30},
+      {name:'白米' ,duraction: 40},
+      {name:'姜堰' ,duraction: 50},
+      {name:'黄桥' ,duraction: 75},
+      {name:'泰州' ,duraction: 100},
+      {name:'扬州' ,duraction: 150},
+      {name:'仪征' ,duraction: 180},
+      {name:'南京' ,duraction: 200},
+      {name:'滁州' ,duraction: 250},
+      {name:'合肥' ,duraction: 300},
+      {name:'六安' ,duraction: 350},
+      {name:'金寨' ,duraction: 400},
+      {name:'麻城' ,duraction: 450},
+      {name:'武汉' ,duraction: 500},
+      {name:'天门' ,duraction: 550},
+      {name:'荆州' ,duraction: 600},
+      {name:'宜昌' ,duraction: 650},
+      {name:'恩施' ,duraction: 700},
+      {name:'涪陵' ,duraction: 800},
+      {name:'重庆' ,duraction: 1000},
+      {name:'自贡' ,duraction: 1200},
+      {name:'内江' ,duraction: 1500},
+      {name:'雅安' ,duraction: 1800},
+      {name:'林芝' ,duraction: 2500},
+      {name:'西藏' ,duraction: 4000},
+    ]
+
     this.dt = 0
     this.second = 0
     this.minute = 0
     this.hour = 0
-    this.duraction = 1000
+    this.duraction = 300
+    this.mstMoveSpeed = 1
+    this.mstattackSpeed = 2
     this._state = {}
   }
 
@@ -201,7 +237,7 @@ class PlayerManager {
       switch(code[i]) {
         // 僵尸移动
         case 100:
-          this.duraction -= 50
+          this.duraction -= this.mstMoveSpeed
           if(this.duraction <= 0) {
             et.emit(EVENT.GAMEOVER)
           } 
@@ -209,6 +245,8 @@ class PlayerManager {
         // 角色前进
         case 101:
           this.duraction += this.properties.moveSpeed
+          this.properties.moveDuration += this.properties.moveSpeed
+          this.where(this.properties.moveDuration)
           break
 
         case 201:
@@ -235,7 +273,16 @@ class PlayerManager {
           break
       }
     }
-
+  }
+  // 我在哪
+  where(duraction) {
+    for(let i=0; i<this.map.length; i++) {
+      if(this.map[i].duraction>duraction) {
+        i -= 1
+        this.properties.currentPlace = this.map[i].name
+        return
+      }
+    }
   }
 }
 

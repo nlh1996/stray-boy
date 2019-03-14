@@ -1,6 +1,7 @@
 // 本脚本负责游戏的战斗场景
 import player from './PlayerManager'
-import {EVENT} from './Enum'
+import {EVENT,GAME_SCENE} from './Enum'
+import GameSceneMng from './GameSceneMng'
 import {白毛僵尸,灰眼僵尸,绿眼僵尸,僵尸王,僵尸工厂} from './MonsterFactory'
 const et = require('Listener')
 
@@ -51,12 +52,13 @@ cc.Class({
       this.damage = player.combat(this.monster)
       let content = '你丢出了一张符箓 【僵尸生命-' + this.damage[0] + '】' 
       + '僵尸还你一爪【生命-' + this.damage[1] + '】'
-      this.labelSchedule(content)
-      // this.updateLabel()
+      if(this.monster.life>0) {
+        this.labelSchedule(content)
+      }
     },
 
     runAway() {
-      player.setState(BEHAVIOR.RUNAWAY)
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },
 
     win() {
@@ -79,7 +81,7 @@ cc.Class({
         if(index>i) {
           this.Btn_Combat.enabled = true
         }
-      },0.06,i,0)
+      },0.04,i,0)
     },
 
     start () {

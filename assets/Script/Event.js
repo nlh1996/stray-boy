@@ -21,21 +21,34 @@ var Event = cc.Class({
     ]
   },
 
+  // 获取随机事件
   getRandomEvent() {
     let i = Math.floor(Math.random()*3)
     return this.RandomEvent[i]
   },
 
+  // 获取探索事件
   getSearchEvent(probability) {
     let pro = Math.floor(Math.random()*100) 
     if(probability >= pro) {
       let i = Math.floor(Math.random()*4)
       return this.SearchEvent[i]
-    } else {
-      return {content: '很可惜，什么都没有发现。。。'}
+    } 
+    return {content: '很可惜，什么都没有发现。。。', code: [100]}
+  },
+
+  // 前进事件
+  getForwardEvent(probability) {
+    let pro = Math.floor(Math.random()*100) 
+    if(probability >= pro) {
+      let i = Math.floor(Math.random()*this.SearchEvent.length)
+      return this.SearchEvent[i]
     }
+    let i = Math.floor(Math.random()*this.RandomEvent.length)
+    return this.RandomEvent[i]
   },
   
+  // 异常状态事件
   abnormalState(status) {
     if(status == STATUS.NO_HUNGER) {
       return this.ErrorEvent[0]
