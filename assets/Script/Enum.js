@@ -23,7 +23,6 @@ var EVENT = cc.Enum({
   GAMEOVER: '游戏结束' 
 })
 
-
 var GAME_SCENE = cc.Enum({
   START: 'start',
   GAME: 'game',

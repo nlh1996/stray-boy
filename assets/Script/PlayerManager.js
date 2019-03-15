@@ -9,7 +9,7 @@ class PlayerManager {
   constructor() {
     // 人物属性
     this.properties = {
-      exp: 0,
+      exp: 10,
       life: 200,
       attack: 20,
       defence: 10,
@@ -175,7 +175,6 @@ class PlayerManager {
   // 战斗获胜结算
   win(mst) {
     this.properties.exp += mst.exp
-    console.log(this.properties.exp)
   }
 
   // 执行逃跑

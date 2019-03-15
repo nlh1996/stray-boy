@@ -68,6 +68,10 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      lv: {
+        default: null,
+        type: cc.Label
+      },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -230,6 +234,7 @@ cc.Class({
       this.time.string = player.time + '分钟'
       this.duraction.string = player.duraction
       this.place.string = player.properties.currentPlace
+      this.lv.string = 'lv:' + parseInt(player.properties.exp/10)
     },
 
     // 计时器

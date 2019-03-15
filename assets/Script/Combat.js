@@ -47,7 +47,7 @@ cc.Class({
       et.on(EVENT.WIN, () => {
         this.Node.active = false
         player.win(this.monster)
-        let content = '【恭喜您获得胜利！】经验+' + this.monster.exp
+        let content = '恭喜您获得胜利！【经验+' + this.monster.exp + '】'
         this.labelSchedule(content)
       })
     },
@@ -63,11 +63,6 @@ cc.Class({
 
     runAway() {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
-    },
-
-    win() {
-      this.monster.die()
-      this.labelSchedule('你胜利了！')
     },
 
     updateLabel() {
