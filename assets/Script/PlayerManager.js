@@ -191,7 +191,6 @@ class PlayerManager {
     }
   }
 
-
   // 制造物品
   make(good) {
     for(let i=0; i<good.needs.length; i++) {
@@ -274,13 +273,19 @@ class PlayerManager {
       }
     }
   }
+
   // 我在哪
   where(duraction) {
     for(let i=0; i<this.map.length; i++) {
       if(this.map[i].duraction>duraction) {
-        i -= 1
-        this.properties.currentPlace = this.map[i].name
-        return
+        let index = i - 1
+        if(this.properties.currentPlace == this.map[index].name) {
+          return
+        }else {
+          this.properties.currentPlace = this.map[index].name
+          console.log(this.properties.currentPlace + '欢迎你的到来！')
+          return
+        }
       }
     }
   }

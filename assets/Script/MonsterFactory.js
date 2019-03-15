@@ -25,43 +25,6 @@ class 白毛僵尸 extends 僵尸 {
   }
 }
 
-class 灰眼僵尸 extends 僵尸 {
-  constructor(lv,life,attack,defence,hostility) {
-    super(20,200,15,10,50)
-    this.name = '灰眼僵尸'
-  }
-  clone() {
-    return new 灰眼僵尸(this.lv,this.life,this.attack,this.defence,this.hostility)
-  }
-}
-
-class 蓝眼僵尸 extends 僵尸 {
-  constructor(lv,life,attack,defence,hostility) {
-    super(lv,life,attack,defence,hostility)
-  }
-  clone() {
-    return new 蓝眼僵尸(this.lv,this.life,this.attack,this.defence,this.hostility)
-  }
-}
-
-class 绿眼僵尸 extends 僵尸 {
-  constructor(lv,life,attack,defence,hostility) {
-    super(lv,life,attack,defence,hostility)
-  }
-  clone() {
-    return new 绿眼僵尸(this.lv,this.life,this.attack,this.defence,this.hostility)
-  }
-}
-
-class 僵尸王 extends 僵尸 {
-  constructor(lv,life,attack,defence,hostility) {
-    super(lv,life,attack,defence,hostility)
-  }
-  clone() {
-    return new 僵尸王(this.lv,this.life,this.attack,this.defence,this.hostility)
-  }
-}
-
 class 僵尸工厂 {
   constructor(obj) {
     this.prototype = obj
@@ -71,4 +34,4 @@ class 僵尸工厂 {
   }
 }
 
-export default {白毛僵尸,灰眼僵尸,绿眼僵尸,僵尸王,僵尸工厂}
+export default {白毛僵尸,僵尸工厂}

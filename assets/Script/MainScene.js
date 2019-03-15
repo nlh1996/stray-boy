@@ -4,6 +4,8 @@ const gameEvent = require("Event")
 const et = require('Listener')
 import {TALENT,EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
+
+import conf from '../conf/Sheet1'
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -103,6 +105,8 @@ cc.Class({
         this.node1.active = true
       })
       et.on(EVENT.HURT, this.updateLabel, this)
+
+      console.log(conf)
     },
 
     start () {
@@ -118,7 +122,7 @@ cc.Class({
       // 玩家探索消耗 返回状态
       let status = player.consume(5,5)
       if(status == STATUS.STATUS_OK) {
-        var event = gameEvent.getSearchEvent(30+player.properties.charm)
+        var event = gameEvent.getSearchEvent(30 + player.properties.charm)
         // 获得物品
         if(event.code) {
           player.setProperty(event.code)
