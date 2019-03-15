@@ -2,7 +2,7 @@
 import player from './PlayerManager'
 import {EVENT,GAME_SCENE} from './Enum'
 import GameSceneMng from './GameSceneMng'
-import {白毛僵尸,灰眼僵尸,绿眼僵尸,僵尸王,僵尸工厂} from './MonsterFactory'
+import Monster from './MonsterFactory'
 const et = require('Listener')
 
 cc.Class({
@@ -35,23 +35,27 @@ cc.Class({
 
       et.on(EVENT.COMBAT,() => {
         this.Node.active = true
-        let monster = new 白毛僵尸()
+        let id = parseInt((player.properties.moveDuration+10)/10)
+        let monster = new Monster(id)
         this.monster =  monster
         this.updateLabel()
+        this.labelSchedule(this.monster.about)
       })
 
       et.on(EVENT.HURT, this.updateLabel, this)
       
       et.on(EVENT.WIN, () => {
         this.Node.active = false
-        this.labelSchedule('恭喜您获得胜利！')
+        player.win(this.monster)
+        let content = '【恭喜您获得胜利！】经验+' + this.monster.exp
+        this.labelSchedule(content)
       })
     },
 
     combat() {
       this.damage = player.combat(this.monster)
       let content = '你丢出了一张符箓 【僵尸生命-' + this.damage[0] + '】' 
-      + '僵尸还你一爪【生命-' + this.damage[1] + '】'
+      + this.monster.attackType +'【生命-' + this.damage[1] + '】'
       if(this.monster.life>0) {
         this.labelSchedule(content)
       }

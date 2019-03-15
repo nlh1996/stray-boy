@@ -44,8 +44,7 @@ var Event = cc.Class({
       let i = Math.floor(Math.random()*this.SearchEvent.length)
       return this.SearchEvent[i]
     }
-    let i = Math.floor(Math.random()*this.RandomEvent.length)
-    return this.RandomEvent[i]
+    return null
   },
   
   // 异常状态事件

@@ -9,6 +9,7 @@ class PlayerManager {
   constructor() {
     // 人物属性
     this.properties = {
+      exp: 0,
       life: 200,
       attack: 20,
       defence: 10,
@@ -171,6 +172,12 @@ class PlayerManager {
     return [damage1,damage2]
   }
 
+  // 战斗获胜结算
+  win(mst) {
+    this.properties.exp += mst.exp
+    console.log(this.properties.exp)
+  }
+
   // 执行逃跑
   runAway() {
     GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
@@ -178,6 +185,11 @@ class PlayerManager {
 
   // 玩家消耗精力，饥饿
   consume(energy,hunger) {
+    // 僵尸前进
+    this.duraction -= this.mstMoveSpeed
+    if(this.duraction <= 0) {
+      et.emit(EVENT.GAMEOVER)
+    } 
     if(this.properties.currentEnergy>=energy && this.properties.currentHunger>=hunger) {
       this.properties.currentEnergy -= energy
       this.properties.currentHunger -= hunger
@@ -230,24 +242,17 @@ class PlayerManager {
     return result
   }
 
+  // 角色前进
+  forward() {
+    this.duraction += this.properties.moveSpeed
+    this.properties.moveDuration += this.properties.moveSpeed
+    this.where(this.properties.moveDuration)
+  }
+
   // 属性改变
   setProperty(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
-        // 僵尸移动
-        case 100:
-          this.duraction -= this.mstMoveSpeed
-          if(this.duraction <= 0) {
-            et.emit(EVENT.GAMEOVER)
-          } 
-          break
-        // 角色前进
-        case 101:
-          this.duraction += this.properties.moveSpeed
-          this.properties.moveDuration += this.properties.moveSpeed
-          this.where(this.properties.moveDuration)
-          break
-
         case 201:
 
           break

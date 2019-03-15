@@ -5,7 +5,6 @@ const et = require('Listener')
 import {TALENT,EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 
-import conf from '../conf/Sheet1'
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -105,8 +104,6 @@ cc.Class({
         this.node1.active = true
       })
       et.on(EVENT.HURT, this.updateLabel, this)
-
-      console.log(conf)
     },
 
     start () {
@@ -154,24 +151,21 @@ cc.Class({
     forward() {
       let status = player.consume(10,10)
       if(status == STATUS.STATUS_OK) {
+        //角色前进
+        player.forward()
+        this.updateLabel()
         // 发现物品
         var event = gameEvent.getForwardEvent(10 + player.properties.charm)
         // 没发现物品，遇到敌人
-        if(event.type == 'combat') {
-          et.emit('EVENT.COMBAT')
-        }
-        if(event.code) {
-          player.setProperty(event.code)
+        if(event == null) {
+          et.emit(EVENT.COMBAT)
+          return
         }
       }else {
         var event = gameEvent.abnormalState(status)
       }
       const content = event.content
       this.labelSchedule(content)
-      this.updateLabel()
-      if(event.type == 'combat') {
-        et.emit(EVENT.COMBAT)
-      }
     },
 
     // 文字出现效果
