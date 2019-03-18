@@ -2339,8 +2339,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "lv:1",
-    "_N$string": "lv:1",
+    "_string": "lv:0",
+    "_N$string": "lv:0",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -5612,6 +5612,24 @@
     "countLabel": {
       "__id__": 113
     },
+    "knowledge": {
+      "__id__": 35
+    },
+    "sport": {
+      "__id__": 37
+    },
+    "charm": {
+      "__id__": 39
+    },
+    "life": {
+      "__id__": 29
+    },
+    "attack": {
+      "__id__": 31
+    },
+    "defence": {
+      "__id__": 33
+    },
     "_id": "87FPpIMvRAnIatBdYt7FEl"
   },
   {
@@ -6142,21 +6160,6 @@
     },
     "life": {
       "__id__": 29
-    },
-    "attack": {
-      "__id__": 31
-    },
-    "defence": {
-      "__id__": 33
-    },
-    "knowledge": {
-      "__id__": 35
-    },
-    "sport": {
-      "__id__": 37
-    },
-    "charm": {
-      "__id__": 39
     },
     "health": {
       "__id__": 41

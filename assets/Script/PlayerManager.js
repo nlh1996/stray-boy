@@ -11,6 +11,7 @@ class PlayerManager {
     this.properties = {
       exp: 10,
       life: 200,
+      maxlife: 200,
       attack: 20,
       defence: 10,
       knowledge: 10,
@@ -186,7 +187,7 @@ class PlayerManager {
     GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
   }
 
-  // 玩家消耗精力，饥饿
+  // 角色消耗精力，饥饿
   consume(energy,hunger) {
     // 僵尸前进
     this.duraction -= this.mstMoveSpeed
@@ -224,22 +225,22 @@ class PlayerManager {
     good.num += 1
   }
 
-  // 玩家进食
-  eat(good) {
+  // 角色进食
+  eat(food) {
     let result = ''
-    if(good.hunger&&this.properties.currentHunger < this.properties.hunger) {
-      this.properties.currentHunger += good.hunger
+    if(food.hunger&&this.properties.currentHunger < this.properties.hunger) {
+      this.properties.currentHunger += food.hunger
       if(this.properties.currentHunger > this.properties.hunger) {
         this.properties.currentHunger = this.properties.hunger
       }
       result = EVENT.HUNGER
-      good.num -= 1
+      food.num -= 1
     } else {
       result = EVENT.FULL
     }
-    if(good.life) {
-      this.properties.life += good.life
-      good.num -= 1
+    if(food.life) {
+      this.properties.life += food.life
+      food.num -= 1
       result = ''
     }
     return result
@@ -282,6 +283,25 @@ class PlayerManager {
     }
   }
 
+  // 加点
+  jiadian(type) {
+    switch(type) {
+      case '智商':
+        this.properties.knowledge++
+      break
+      case '情商':
+        this.properties.charm++
+      break
+      case '体质':
+        this.properties.sport++
+        this.properties.attack += 2
+        this.properties.defence += 1
+        this.properties.life += 20
+        this.properties.maxlife += 20
+      break
+    }
+  }
+  
   // 我在哪
   where(duraction) {
     for(let i=0; i<this.map.length; i++) {

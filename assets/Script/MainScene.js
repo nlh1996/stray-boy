@@ -16,26 +16,6 @@ cc.Class({
         default: null,
         type: cc.Label
       },
-      attack: {
-        default: null,
-        type: cc.Label
-      },
-      defence: {
-        default: null,
-        type: cc.Label
-      },
-      knowledge: {
-        default: null,
-        type: cc.Label
-      },
-      sport: {
-        default: null,
-        type: cc.Label
-      },
-      charm: {
-        default: null,
-        type: cc.Label
-      },
       health: {
         default: null,
         type: cc.Label
@@ -100,12 +80,16 @@ cc.Class({
         this.node1.active = true
       })
       et.on(EVENT.HURT, this.updateLabel, this)
+
       et.on(EVENT.UPGRADE, this.upGrade, this)
+      et.on(EVENT.FINISH, () => {
+        this.node1.active = true
+      })
     },
 
     //升级
     upGrade() {
-      console.log(111)
+      this.node1.active = false
     },
 
     start () {
@@ -220,11 +204,6 @@ cc.Class({
     // 更新人物属性面板
     updateLabel() {
       this.life.string = player.properties.life
-      this.attack.string = player.properties.attack
-      this.defence.string = player.properties.defence
-      this.knowledge.string = player.properties.knowledge
-      this.sport.string = player.properties.sport
-      this.charm.string = player.properties.charm
       this.health.string = player.properties.health
       this.attackSpeed.string = player.properties.attackSpeed
       this.moveSpeed.string = player.properties.moveSpeed

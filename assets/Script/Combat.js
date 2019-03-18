@@ -32,23 +32,24 @@ cc.Class({
     },
 
     onLoad() {
-      this.Node.active = false
+      this.updateLabel()
+      this.node.active = false
       this.Btn_Combat.node.on('click',this.combat, this)
       this.Btn_RunAway.node.on('click',this.runAway, this)
 
       et.on(EVENT.COMBAT,() => {
-        this.Node.active = true
+        this.node.active = true
         let id = parseInt((player.properties.moveDuration+10)/10)
         let monster = new Monster(id)
         this.monster =  monster
-        this.updateLabel()
+        this.updateMonster()
         this.labelSchedule(this.monster.about)
       })
 
-      et.on(EVENT.HURT, this.updateLabel, this)
+      et.on(EVENT.HURT, this.updateMonster, this)
       
       et.on(EVENT.WIN, () => {
-        this.Node.active = false
+        this.node.active = false
         player.win(this.monster)
         let content = '恭喜您获得胜利！【经验+' + this.monster.exp + '】'
         this.labelSchedule(content)
@@ -70,12 +71,15 @@ cc.Class({
     },
 
     updateLabel() {
-      this.Monster.string = this.monster.name + ' lv ' + this.monster.lv + ' hp ' + this.monster.life
       let str = 'lv:' + parseInt(player.properties.exp/10)
       if(str != this.level.string) {
+        this.level.string = str
         et.emit(EVENT.UPGRADE)
       }
-      this.level.string = 'lv:' + parseInt(player.properties.exp/10)
+    },
+
+    updateMonster() {
+      this.Monster.string = this.monster.name + ' lv ' + this.monster.lv + ' hp ' + this.monster.life
     },
 
     labelSchedule(content) {
@@ -89,11 +93,10 @@ cc.Class({
         if(index>i) {
           this.Btn_Combat.enabled = true
         }
-      },0.04,i,0)
+      },0.02,i,0)
     },
 
     start () {
-
     },
 
     // update (dt) {},
