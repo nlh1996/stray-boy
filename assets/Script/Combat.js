@@ -11,7 +11,10 @@ cc.Class({
     properties: {
       Btn_Combat: cc.Button,
       Btn_RunAway: cc.Button,
-
+      level: {
+        default: null,
+        type: cc.Label
+      },
       Node: {
         default: null,
         type: cc.Node
@@ -30,8 +33,8 @@ cc.Class({
 
     onLoad() {
       this.Node.active = false
-      this.Btn_Combat.node.on('click',this.combat,this)
-      this.Btn_RunAway.node.on('click',this.runAway,this)
+      this.Btn_Combat.node.on('click',this.combat, this)
+      this.Btn_RunAway.node.on('click',this.runAway, this)
 
       et.on(EVENT.COMBAT,() => {
         this.Node.active = true
@@ -49,6 +52,7 @@ cc.Class({
         player.win(this.monster)
         let content = '恭喜您获得胜利！【经验+' + this.monster.exp + '】'
         this.labelSchedule(content)
+        this.updateLabel()
       })
     },
 
@@ -67,6 +71,11 @@ cc.Class({
 
     updateLabel() {
       this.Monster.string = this.monster.name + ' lv ' + this.monster.lv + ' hp ' + this.monster.life
+      let str = 'lv:' + parseInt(player.properties.exp/10)
+      if(str != this.level.string) {
+        et.emit(EVENT.UPGRADE)
+      }
+      this.level.string = 'lv:' + parseInt(player.properties.exp/10)
     },
 
     labelSchedule(content) {

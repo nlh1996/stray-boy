@@ -48,10 +48,6 @@ cc.Class({
         default: null,
         type: cc.Label
       },
-      level: {
-        default: null,
-        type: cc.Label
-      },
       hunger: {
         default: null,
         type: cc.Label
@@ -65,10 +61,6 @@ cc.Class({
         type: cc.Label
       },
       place: {
-        default: null,
-        type: cc.Label
-      },
-      lv: {
         default: null,
         type: cc.Label
       },
@@ -108,6 +100,12 @@ cc.Class({
         this.node1.active = true
       })
       et.on(EVENT.HURT, this.updateLabel, this)
+      et.on(EVENT.UPGRADE, this.upGrade, this)
+    },
+
+    //升级
+    upGrade() {
+      console.log(111)
     },
 
     start () {
@@ -206,7 +204,7 @@ cc.Class({
 
     // 人物天赋初始化
     initTalent() {
-      switch(player.talent) {
+      switch(player.properties.talent) {
         case TALENT.学霸:
           player.properties.knowledge = 2
           break
@@ -234,7 +232,6 @@ cc.Class({
       this.time.string = player.time + '分钟'
       this.duraction.string = player.duraction
       this.place.string = player.properties.currentPlace
-      this.lv.string = 'lv:' + parseInt(player.properties.exp/10)
     },
 
     // 计时器

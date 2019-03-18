@@ -24,7 +24,8 @@ class PlayerManager {
       energy: 100,
       currentEnergy: 100,
       currentPlace: '孙庄',
-      moveDuration: 0
+      moveDuration: 0,
+      talent: null
     },
     
     // 材料
@@ -152,6 +153,12 @@ class PlayerManager {
       var damage1 = 1
     }
     mst.life -= damage1
+    // 怪物死亡
+    if(mst.life <= 0) {
+      et.emit(EVENT.WIN)
+      return [damage1, 0]
+    }
+
     // 怪物反击
     if(mst.attack>this.properties.attack) {
       var damage2 = mst.attack-this.properties.defence
@@ -163,13 +170,10 @@ class PlayerManager {
     if(this.properties.life <= 0) {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
     }
-    // 怪物死亡
-    if(mst.life <= 0) {
-      et.emit(EVENT.WIN)
-    }
+
     et.emit(EVENT.HURT)
     // 返回伤害值
-    return [damage1,damage2]
+    return [damage1, damage2]
   }
 
   // 战斗获胜结算
