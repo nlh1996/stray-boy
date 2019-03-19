@@ -10,6 +10,7 @@ class PlayerManager {
     // 人物属性
     this.properties = {
       exp: 10,
+      level: 1,
       life: 200,
       maxlife: 200,
       attack: 20,
@@ -31,9 +32,9 @@ class PlayerManager {
     
     // 材料
     this.materials = {
-      raw_meat: {num: 0, name: '生肉'}, 
+      raw_meat: {num: 0, name: '兽肉'}, 
       fruit: {num: 0, hunger: 20, name: '果子'},    
-      herb: {num: 0, name: '草药'},     
+      herb: {num: 0, name: '药草'},     
       wood: {num: 0, name: '木材'},     
       sulphur: {num: 0, name: '硫磺'},  
       leather: {num: 0, name: '皮革'},  

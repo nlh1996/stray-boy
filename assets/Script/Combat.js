@@ -71,11 +71,12 @@ cc.Class({
     },
 
     updateLabel() {
-      let str = 'lv:' + parseInt(player.properties.exp/10)
-      if(str != this.level.string) {
-        this.level.string = str
+      let lv = parseInt(player.properties.exp/10)
+      if(lv != player.properties.level) {
+        player.properties.level = lv
         et.emit(EVENT.UPGRADE)
       }
+      this.level.string = 'lv:' + player.properties.level
     },
 
     updateMonster() {

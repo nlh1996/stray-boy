@@ -2,20 +2,20 @@
 const player = require('PlayerManager') 
 import {GAME_SCENE} from './Enum'
 import GameSceneMng from './GameSceneMng'
+import {Weaponry,Backpack} from './GoodsManager'
+
 cc.Class({
     extends: cc.Component,
 
     properties: {
+      pageView: cc.PageView,
       Btn_back: cc.Button,
       Btn_Meat: cc.Button,
       Btn_Drug: cc.Button,
-      Btn_Tent: cc.Button,
-      Btn_Corselet: cc.Button,
       title: {
         default: null,
         type: cc.Label
       },
-
       label1: {
         default: null,
         type: cc.Label
@@ -41,19 +41,25 @@ cc.Class({
 
       this.Btn_Meat.node.on('click', this.makeGood, this)
       this.Btn_Drug.node.on('click', this.makeGood, this)
-      this.Btn_Tent.node.on('click', this.makeGood, this)
-      this.Btn_Corselet.node.on('click', this.makeGood, this)
-      this.arr = [this.Btn_Meat,this.Btn_Drug,this.Btn_Tent,this.Btn_Corselet]
+
+      this.arr = [this.Btn_Meat,this.Btn_Drug]
 
       // 绑定按钮和特定物品
       this.Btn_Meat.good = player.goods.cooked_meat
       this.Btn_Drug.good = player.goods.drug
-      this.Btn_Tent.good = player.goods.tent
-      this.Btn_Corselet.good = player.goods.corselet
 
       this.btnState()
     },
 
+    createNode() {
+      for(let i=0; i<3; i++) {
+
+      }
+    },
+
+    callback(arg1) {
+      console.log(arg1.getCurrentPageIndex())
+    },
     // 判断按钮是否为可用状态
     btnState() {
       for(let i=0; i<this.arr.length; i++) {

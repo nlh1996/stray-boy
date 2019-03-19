@@ -122,21 +122,6 @@ cc.Class({
       this.updateLabel()
     },
 
-    // 人物休息
-    rest() {
-      player.properties.health += 1
-      this.updateLabel()
-    },
-
-    // 打开制造页
-    make() {
-      GameSceneMng.getInstance().setGameScene(GAME_SCENE.MAKE)
-    }, 
-
-    eat() {
-      GameSceneMng.getInstance().setGameScene(GAME_SCENE.FOOD_LIST)
-    },
-
     // 前进按钮事件回调
     forward() {
       let status = player.consume(10,10)
@@ -150,12 +135,29 @@ cc.Class({
         if(event == null) {
           et.emit(EVENT.COMBAT)
           return
+        }else {
+          player.setProperty(event.code)
         }
       }else {
         var event = gameEvent.abnormalState(status)
       }
       const content = event.content
       this.labelSchedule(content)
+    },
+
+    // 人物休息
+    rest() {
+      player.properties.currentEnergy += 10
+      this.updateLabel()
+    },
+
+    // 打开制造页
+    make() {
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.MAKE)
+    }, 
+
+    eat() {
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.FOOD_LIST)
     },
 
     // 文字出现效果
