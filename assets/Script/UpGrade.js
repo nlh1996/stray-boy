@@ -1,8 +1,8 @@
 // 角色升级脚本,负责升级加点
 const et = require('Listener')
 import player from './PlayerManager'
-import {EVENT,GAME_SCENE} from 'Enum'
-import GameSceneMng from './GameSceneMng'
+import {EVENT} from 'Enum'
+
 cc.Class({
     extends: cc.Component,
 

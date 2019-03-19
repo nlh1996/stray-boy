@@ -32,6 +32,10 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      energy: {
+        default: null,
+        type: cc.Label
+      },
       time: {
         default: null,
         type: cc.Label
@@ -71,16 +75,16 @@ cc.Class({
 
       //注销先前的事件，确保新注册的事件this总是指向当前组件
       et.off(EVENT.COMBAT)
+      et.off(EVENT.WIN)
+      et.off(EVENT.FINISH)
       //每次加载组件都重新注册
       et.on(EVENT.COMBAT, () => { 
         this.node1.active = false
       })
-      et.off(EVENT.WIN)
       et.on(EVENT.WIN, () => {
         this.node1.active = true
       })
       et.on(EVENT.HURT, this.updateLabel, this)
-
       et.on(EVENT.UPGRADE, this.upGrade, this)
       et.on(EVENT.FINISH, () => {
         this.node1.active = true
@@ -208,6 +212,7 @@ cc.Class({
       this.attackSpeed.string = player.properties.attackSpeed
       this.moveSpeed.string = player.properties.moveSpeed
       this.hunger.string = '饥饿 ' + player.properties.currentHunger + '/' + player.properties.hunger
+      this.energy.string = '精力 ' + player.properties.currentEnergy + '/' + player.properties.energy
       this.time.string = player.time + '分钟'
       this.duraction.string = player.duraction
       this.place.string = player.properties.currentPlace
@@ -238,17 +243,17 @@ cc.Class({
     updateTime() {
       if(player.second < 10) {
         var second = '0' + player.second
-      }else{
+      }else {
         var second = player.second
       }
       if(player.minute < 10) {
         var minute = '0' + player.minute
-      }else{
+      }else {
         var minute = player.minute
       }
       if(player.hour < 10) {
         var hour = '0' + player.hour
-      }else{
+      }else {
         var hour = player.hour
       }
       this.time.string = hour + ':' + minute + ':' + second
