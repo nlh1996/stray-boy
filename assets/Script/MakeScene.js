@@ -6,60 +6,32 @@ import {Weaponry,Backpack} from './GoodsManager'
 
 cc.Class({
     extends: cc.Component,
-
     properties: {
       pageView: cc.PageView,
       Btn_back: cc.Button,
-      Btn_Meat: cc.Button,
-      Btn_Drug: cc.Button,
       title: {
         default: null,
         type: cc.Label
       },
-      label1: {
-        default: null,
-        type: cc.Label
-      },
-      label2: {
-        default: null,
-        type: cc.Label
-      },
-      label3: {
-        default: null,
-        type: cc.Label
-      },
-      label4: {
-        default: null,
-        type: cc.Label
-      },
+      prefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
       this.updateData()
-      this.Btn_back.node.on('click', this.back, this)
-
-      this.Btn_Meat.node.on('click', this.makeGood, this)
-      this.Btn_Drug.node.on('click', this.makeGood, this)
-
-      this.arr = [this.Btn_Meat,this.Btn_Drug]
-
-      // 绑定按钮和特定物品
-      this.Btn_Meat.good = player.goods.cooked_meat
-      this.Btn_Drug.good = player.goods.drug
-
-      this.btnState()
+      this.node.pages = this.pageView.getPages()
+      this.Btn_back.node.on('click',this.back,this)
+      //this.btnState()
     },
 
     createNode() {
-      for(let i=0; i<3; i++) {
 
-      }
     },
 
-    callback(arg1) {
-      console.log(arg1.getCurrentPageIndex())
+    callback(pageView) {
+      let index = pageView.getCurrentPageIndex()
     },
+
     // 判断按钮是否为可用状态
     btnState() {
       for(let i=0; i<this.arr.length; i++) {
@@ -80,20 +52,6 @@ cc.Class({
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },
 
-    // 物品制造事件
-    makeGood(button) {
-      // 角色执行制造行为
-      player.make(button.good)
-
-      // 更新title提示
-      this.unscheduleAllCallbacks()
-      this.labelSchedule(button.good.name)
-      // 更新物品数量显示
-      this.updateData()
-      // 按钮状态判断
-      this.btnState()
-    },
-
     // 文字出现效果
     labelSchedule(name) {
       this.title.string = ''
@@ -107,15 +65,22 @@ cc.Class({
     },
 
     updateData() {
-      this.label1.string = '#需【生肉】' + player.materials.raw_meat.num+'/1'+'【木材】' 
-      + player.materials.wood.num + '/1'
-      this.label2.string = '#获得【熟肉】' + '(拥有'+player.goods.cooked_meat.num+')'
-      this.label3.string = '#需【草药】' + player.materials.herb.num+'/2'
-      this.label4.string = '#获得【药品】' + '(拥有'+player.goods.drug.num+')'
+      // this.label1.string = '#需【生肉】' + player.materials.raw_meat.num+'/1'+'【木材】' 
+      // + player.materials.wood.num + '/1'
+      // this.label2.string = '#获得【熟肉】' + '(拥有'+player.goods.cooked_meat.num+')'
+      // this.label3.string = '#需【草药】' + player.materials.herb.num+'/2'
+      // this.label4.string = '#获得【药品】' + '(拥有'+player.goods.drug.num+')'
     },
 
     start () {
-      
+      for(let index = 0; index<3; index++) {
+        for(let i = 0; i<4; i++) {
+          let y = 380 - 210*i
+          let node = cc.instantiate(this.prefab)
+          node.parent = this.node.pages[index]
+          node.setPosition(0,y)
+        }
+      }
     },
 
     // update (dt) {},
