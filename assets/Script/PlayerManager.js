@@ -29,16 +29,6 @@ class PlayerManager {
       moveDuration: 0,
       talent: null
     },
-    
-    // 材料
-    this.materials = {
-      raw_meat: {num: 0, name: '兽肉'}, 
-      fruit: {num: 0, hunger: 20, name: '果子'},    
-      herb: {num: 0, name: '药草'},     
-      wood: {num: 0, name: '木材'},     
-      sulphur: {num: 0, name: '硫磺'},  
-      leather: {num: 0, name: '皮革'},  
-    }
 
     // 成品
     this.goods = {
@@ -206,24 +196,6 @@ class PlayerManager {
     if(this.properties.currentHunger<hunger) {
       return STATUS.NO_HUNGER
     }
-  }
-
-  // 制造物品
-  make(good) {
-    for(let i=0; i<good.needs.length; i++) {
-      switch(good.needs[i].type) {
-        case MATERIALS.RAW_MEAT:
-          this.materials.raw_meat.num -= good.needs[i].num
-          break
-        case MATERIALS.WOOD:
-          this.materials.wood.num -= good.needs[i].num
-          break
-        case MATERIALS.HERB:
-          this.materials.herb.num -= good.needs[i].num
-          break
-      }
-    }
-    good.num += 1
   }
 
   // 角色进食
