@@ -45,19 +45,7 @@ cc.Class({
     onLoad () {
       this.updateData()
       this.Btn_back.node.on('click', this.back, this)
-
-      this.Btn_Meat.node.on('click', this.eatFood, this)
-      this.Btn_Fruit.node.on('click', this.eatFood, this)
-      this.Btn_Drug.node.on('click', this.eatFood, this)
-
-      this.arr = [this.Btn_Fruit,this.Btn_Meat,this.Btn_Drug]
-
-      // 绑定按钮和特定物品
-      this.Btn_Fruit.good = player.materials.fruit
-      this.Btn_Meat.good = player.goods.cooked_meat
-      this.Btn_Drug.good = player.goods.drug
-
-      this.btnState()
+      //this.btnState()
 
     },
 
@@ -118,11 +106,11 @@ cc.Class({
     },
 
     updateData() {
-      this.label1.string = '#拥有：' + player.materials.fruit.num
+      this.label1.string = '#拥有：' 
       this.label2.string = '#效果：饥饿+20，15%几率恢复1点健康值'
-      this.label3.string = '#拥有：' + player.goods.cooked_meat.num
+      this.label3.string = '#拥有：' 
       this.label4.string = '#效果: 饥饿+70'
-      this.label5.string = '#拥有：' + player.goods.drug.num
+      this.label5.string = '#拥有：' 
       this.label6.string = '#效果: 生命回复+30'
     },
 

@@ -30,14 +30,6 @@ class PlayerManager {
       talent: null
     },
 
-    // 成品
-    this.goods = {
-      cooked_meat: {name: '熟肉', num: 0, needs: [{type: MATERIALS.RAW_MEAT, num: 1}, {type: MATERIALS.WOOD, num: 1}],success: 70 ,hunger: 70},  
-      drug: {name: '药品', num: 0, needs: [{type: MATERIALS.HERB, num: 2}], success: 70, life: 30},  
-      tent: {name: '帐篷', num: 0, needs: []},
-      corselet: {name: '皮甲', num: 0, needs: []}
-    }
-
     // 地图
     this.map = [
       {name:'孙庄' ,duraction: 0},
@@ -70,9 +62,9 @@ class PlayerManager {
       {name:'西藏' ,duraction: 4000},
     ]
 
-    this.dt = 0
-    this.second = 0
-    this.minute = 0
+    // this.dt = 0
+    // this.second = 0
+    // this.minute = 0
     this.hour = 0
     this.duraction = 300
     this.mstMoveSpeed = 1
@@ -87,45 +79,6 @@ class PlayerManager {
   Get() {
     const userData = JSON.parse(cc.sys.localStorage.getItem('userData'))
     return userData
-  }
-
-  // 判断制造是否满足物品制造需求
-  validate(good) {
-    for(let i=0; i<good.needs.length; i++) {
-      switch(good.needs[i].type) {
-        case MATERIALS.RAW_MEAT:
-          if(this.materials.raw_meat.num < good.needs[i].num) {
-            return false
-          }
-          break
-        case MATERIALS.WOOD:
-          if(this.materials.wood.num < good.needs[i].num) {
-            return false
-          }
-          break
-        case MATERIALS.HERB:
-          if(this.materials.herb.num < good.needs[i].num) {
-            return false
-          }
-          break
-        case MATERIALS.FRUIT:
-          if(this.materials.fruit.num < good.needs[i].num) {
-            return false
-          }
-          break
-        case MATERIALS.SULPHUR:
-          if(this.materials.sulphur.num < good.needs[i].num) {
-            return false
-          }
-          break
-        case MATERIALS.LEATHER:
-          if(this.materials.leather.num < good.needs[i].num) {
-            return false
-          }
-          break
-      }      
-    }
-    return true
   }
 
   // 设置角色状态
@@ -167,7 +120,12 @@ class PlayerManager {
     // 返回伤害值
     return [damage1, damage2]
   }
-
+  // 角色休息
+  rest() {
+    let diff = this.properties.energy - this.properties.currentEnergy
+    this.hour += diff*0.08
+    this.properties.currentEnergy = 100
+  }
   // 战斗获胜结算
   win(mst) {
     this.properties.exp += mst.exp
@@ -178,8 +136,9 @@ class PlayerManager {
     GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
   }
 
-  // 角色消耗精力，饥饿
-  consume(energy,hunger) {
+  // 角色消耗精力，饥饿,时间
+  consume(energy,hunger,hour) {
+    this.hour += hour
     // 僵尸前进
     this.duraction -= this.mstMoveSpeed
     if(this.duraction <= 0) {
@@ -226,35 +185,7 @@ class PlayerManager {
     this.where(this.properties.moveDuration)
   }
 
-  // 属性改变
-  setProperty(code) {
-    for(let i=0; i<code.length; i++) {
-      switch(code[i]) {
-        case 201:
 
-          break
-
-        case 202:
-
-          break
-        case 402:
-
-          break
-        case 503:
-          this.materials.wood.num += 3
-          break
-        case 603:
-          this.materials.herb.num += 3
-          break
-        case 703:
-          this.materials.raw_meat.num += 3
-          break
-        case 803:
-          this.materials.fruit.num += 3
-          break
-      }
-    }
-  }
 
   // 加点
   jiadian(type) {

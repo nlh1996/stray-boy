@@ -2,7 +2,7 @@
 const player = require('PlayerManager') 
 import {GAME_SCENE} from './Enum'
 import GameSceneMng from './GameSceneMng'
-import {Weaponry} from './GoodsManager'
+import {Weaponry,Backpack} from './GoodsManager'
 
 cc.Class({
     extends: cc.Component,
@@ -33,6 +33,7 @@ cc.Class({
 
     // 文字出现效果
     labelSchedule(name) {
+      this.unscheduleAllCallbacks()
       this.title.string = ''
       let content = '获得【' + name + '】*1' 
       let index = 0
@@ -49,6 +50,7 @@ cc.Class({
           let y = 380 - 210*i
           let node = cc.instantiate(this.prefab)
           let good = new Weaponry(i+index*4)
+          Backpack.getInstance().add(good)
           if(!good.id) {
             return
           }

@@ -2,7 +2,7 @@
 import {Backpack} from './GoodsManager'
 cc.Class({
     extends: cc.Component,
-
+    
     properties: {
       btn: cc.Button,
       btn_label: cc.Label,
@@ -10,31 +10,23 @@ cc.Class({
       label2: cc.Label,
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
-      this.updateData()
-      //this.btnState()
+   
     },
 
     // 物品制造事件
-    makeGood(event) {
+    makeGood() {
+      // 打造物品
       Backpack.getInstance().make(this.node.good)
-      // // 角色执行制造行为
-      // player.make(this.node.good)
-      // // 更新title提示
-      // this.unscheduleAllCallbacks()
-      // this.labelSchedule(button.good.name)
-      // // 更新物品数量显示
-      // this.updateData()
-      // // 按钮状态判断
-      // this.btnState()
+      // 更新title提示
+      cc.director.getScene().getChildByName('Canvas').getComponent('MakeScene').labelSchedule(this.node.good.name)
+
     },
 
     // 判断按钮是否为可用状态
     btnState() {
       // 验证是否满足制造需求
-      let result = player.validate(this.node.good)
+      let result =  Backpack.getInstance().validate(this.node.good)
       if(result) {
         this.btn.enabled = true
         this.btn_label.node.color = cc.color(20,240,36)
@@ -44,16 +36,25 @@ cc.Class({
       }     
     },
 
-    start () {
-
-    },
-
     updateData() {
-      this.btn_label.string = this.node.good.name
-      this.label1.string = '#需【' + this.node.good.needs[0].name + '】' + this.node.good.needs[0].num+'/1【'
-      + this.node.good.needs[1].name +'】' + this.node.good.needs[1].num + '/1'
-      this.label2.string = '#获得【' + this.node.good.name +'】' + '(拥有'+ this.node.good.num +')'
+      let good = this.node.good
+      let materials = Backpack.getInstance().materials
+      let arr = [] 
+      for(let a=0; a<good.needs.length; a++) {
+        for(let i=0; i<materials.length; i++) {
+          if(good.needs[a].name == materials[i].name) {
+            arr.push(materials[i].num)
+          }
+        }
+      }
+      this.btn_label.string = good.name
+      this.label1.string = '#需【' + good.needs[0].name + '】' + arr[0] +'/' + good.needs[0].num
+      + '【' + good.needs[1].name +'】' + arr[1] + '/' + good.needs[1].num
+      this.label2.string = '#获得【' + good.name +'】' + '(拥有'+ good.num +')'
     },
 
-    // update (dt) {},
+    update() {
+      this.updateData()
+      this.btnState()
+    }
 });

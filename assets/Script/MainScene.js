@@ -4,6 +4,7 @@ const gameEvent = require("Event")
 const et = require('Listener')
 import {TALENT,EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
+import {Backpack} from './GoodsManager'
 
 cc.Class({
     extends: cc.Component,
@@ -72,11 +73,6 @@ cc.Class({
 
       //注册监听事件
       et.on(EVENT.NO_HUNGER, this.hungry)
-
-      //注销先前的事件，确保新注册的事件this总是指向当前组件
-      et.off(EVENT.COMBAT)
-      et.off(EVENT.WIN)
-      et.off(EVENT.FINISH)
       //每次加载组件都重新注册
       et.on(EVENT.COMBAT, () => { 
         this.node1.active = false
@@ -91,6 +87,14 @@ cc.Class({
       })
     },
 
+    onDestroy() {
+      //注销先前的事件，确保新注册的事件this总是指向当前组件
+      et.off(EVENT.COMBAT)
+      et.off(EVENT.WIN)
+      et.off(EVENT.FINISH)
+      et.off(EVENT.UPGRADE)
+      et.off(EVENT.HURT)
+    },
     //升级
     upGrade() {
       this.node1.active = false
@@ -107,12 +111,12 @@ cc.Class({
     // 探索事件
     search() {
       // 玩家探索消耗 返回状态
-      let status = player.consume(5,5)
+      let status = player.consume(5,5,0.5)
       if(status == STATUS.STATUS_OK) {
         var event = gameEvent.getSearchEvent(30 + player.properties.charm)
         // 获得物品
         if(event.code) {
-          player.setProperty(event.code)
+          Backpack.getInstance().setProperty(event.code)
         }
       }else {
         var event = gameEvent.abnormalState(status)
@@ -124,7 +128,7 @@ cc.Class({
 
     // 前进按钮事件回调
     forward() {
-      let status = player.consume(10,10)
+      let status = player.consume(10,10,1)
       if(status == STATUS.STATUS_OK) {
         //角色前进
         player.forward()
@@ -136,7 +140,7 @@ cc.Class({
           et.emit(EVENT.COMBAT)
           return
         }else {
-          player.setProperty(event.code)
+          Backpack.getInstance().setProperty(event.code)
         }
       }else {
         var event = gameEvent.abnormalState(status)
@@ -147,7 +151,7 @@ cc.Class({
 
     // 人物休息
     rest() {
-      player.properties.currentEnergy += 10
+      player.rest()
       this.updateLabel()
     },
 
@@ -215,50 +219,50 @@ cc.Class({
       this.moveSpeed.string = player.properties.moveSpeed
       this.hunger.string = '饥饿 ' + player.properties.currentHunger + '/' + player.properties.hunger
       this.energy.string = '精力 ' + player.properties.currentEnergy + '/' + player.properties.energy
-      this.time.string = player.time + '分钟'
+      this.time.string = player.hour + '小时'
       this.duraction.string = player.duraction
       this.place.string = player.properties.currentPlace
     },
 
-    // 计时器
-    update (dt) {
-      player.dt += 1
-      if(player.dt == 60) {
-        player.dt = 0
-        player.second += 1
-        if(player.duraction <= 0) {
-          GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
-        }
-      }
-      if(player.second == 60) {
-        player.second = 0
-        player.minute += 1
-      }
-      if(player.minute == 60) {
-        player.minute = 0
-        player.hour += 1
-      }
-      this.updateTime()
-    },
+    // // 计时器
+    // update (dt) {
+    //   player.dt += 1
+    //   if(player.dt == 60) {
+    //     player.dt = 0
+    //     player.second += 1
+    //     if(player.duraction <= 0) {
+    //       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
+    //     }
+    //   }
+    //   if(player.second == 60) {
+    //     player.second = 0
+    //     player.minute += 1
+    //   }
+    //   if(player.minute == 60) {
+    //     player.minute = 0
+    //     player.hour += 1
+    //   }
+    //   this.updateTime()
+    // },
 
-    // 显示时间
-    updateTime() {
-      if(player.second < 10) {
-        var second = '0' + player.second
-      }else {
-        var second = player.second
-      }
-      if(player.minute < 10) {
-        var minute = '0' + player.minute
-      }else {
-        var minute = player.minute
-      }
-      if(player.hour < 10) {
-        var hour = '0' + player.hour
-      }else {
-        var hour = player.hour
-      }
-      this.time.string = hour + ':' + minute + ':' + second
-      this.duraction.string = player.duraction
-    }
+    // // 显示时间
+    // updateTime() {
+    //   if(player.second < 10) {
+    //     var second = '0' + player.second
+    //   }else {
+    //     var second = player.second
+    //   }
+    //   if(player.minute < 10) {
+    //     var minute = '0' + player.minute
+    //   }else {
+    //     var minute = player.minute
+    //   }
+    //   if(player.hour < 10) {
+    //     var hour = '0' + player.hour
+    //   }else {
+    //     var hour = player.hour
+    //   }
+    //   this.time.string = hour + ':' + minute + ':' + second
+    //   this.duraction.string = player.duraction
+    // }
 });
