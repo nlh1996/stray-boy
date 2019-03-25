@@ -49,10 +49,16 @@ cc.Class({
         for(let i=0; i<4; i++) {
           let y = 380 - 210*i
           let node = cc.instantiate(this.prefab)
-          let good = new Weaponry(i+index*4)
-          Backpack.getInstance().add(good)
-          if(!good.id) {
-            return
+          let goodsList = Backpack.getInstance().goodsList
+          // 制造物品存在直接赋值，不存在就创建物品列表
+          if(goodsList[i+index*4]) {
+            var good = goodsList[i+index*4]
+          } else {
+            var good = new Weaponry(i+index*4)
+            if(!good.id) {
+              return
+            }
+            Backpack.getInstance().add(good)
           }
           node.good = good
           node.parent = this.node.pages[index]
@@ -60,5 +66,5 @@ cc.Class({
         }
       }
     },
-    // update (dt) {},
+
 });

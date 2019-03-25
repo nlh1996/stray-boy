@@ -30,7 +30,7 @@ class Backpack{
   }
   // 添加物品到背包
   add(good) {
-    this.goodsList = good
+    this.goodsList.push(good)
   }
 
   // 判断制造是否满足物品制造需求

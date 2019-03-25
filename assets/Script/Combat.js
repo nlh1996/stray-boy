@@ -36,7 +36,6 @@ cc.Class({
       this.node.active = false
       this.Btn_Combat.node.on('click',this.combat, this)
       this.Btn_RunAway.node.on('click',this.runAway, this)
-
       et.on(EVENT.COMBAT,() => {
         this.node.active = true
         let id = parseInt((player.properties.moveDuration+10)/10)
@@ -56,6 +55,12 @@ cc.Class({
         this.updateLabel()
       })
     },
+
+    onDestroy() {
+      et.off(EVENT.COMBAT)
+      et.off(EVENT.HURT)
+      et.off(EVENT.WIN)
+    },  
 
     combat() {
       this.damage = player.combat(this.monster)
@@ -97,8 +102,4 @@ cc.Class({
       },0.02,i,0)
     },
 
-    start () {
-    },
-
-    // update (dt) {},
 });
