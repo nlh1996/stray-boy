@@ -41,7 +41,7 @@ const et = new cc.EventTarget()
 //     }
 //   }
 //   // 观察事件分发
-//   dispatch(event) {
+//   emit(event) {
 //     for(let i=0; i<this.listeners.length; i++) {
 //       if(this.listeners[i].event == event) {
 //         this.listeners[i].execute()

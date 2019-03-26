@@ -1,6 +1,6 @@
 // 本脚本定义了角色的所有属性以及行为
 const et = require('Listener')
-import {MATERIALS,EVENT,GAME_SCENE,STATUS} from 'Enum'
+import {EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 import stateMng from './State'
 
@@ -120,12 +120,14 @@ class PlayerManager {
     // 返回伤害值
     return [damage1, damage2]
   }
+
   // 角色休息
   rest() {
     let diff = this.properties.energy - this.properties.currentEnergy
     this.hour += diff*0.08
     this.properties.currentEnergy = 100
   }
+
   // 战斗获胜结算
   win(mst) {
     this.properties.exp += mst.exp
@@ -184,8 +186,6 @@ class PlayerManager {
     this.properties.moveDuration += this.properties.moveSpeed
     this.where(this.properties.moveDuration)
   }
-
-
 
   // 加点
   jiadian(type) {

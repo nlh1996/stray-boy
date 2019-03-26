@@ -55,7 +55,7 @@ cc.Class({
     onLoad () {
       //this.initTalent()
       this.updateLabel()
-      //当前前面主要按钮
+      //当前界面主要按钮
       this.node1 = this.node.getChildByName('Node1')
       this.Btn_Forward = this.node1.getChildByName('Btn_Forward')
       this.Btn_Search = this.node1.getChildByName('Btn_Search')
@@ -85,6 +85,7 @@ cc.Class({
       et.on(EVENT.FINISH, () => {
         this.node1.active = true
       })
+
     },
 
     onDestroy() {
@@ -95,13 +96,13 @@ cc.Class({
       et.off(EVENT.UPGRADE)
       et.off(EVENT.HURT)
     },
-    //升级
+
+    //升级显示加点UI
     upGrade() {
       this.node1.active = false
     },
 
     start () {
-
     },
 
     hungry() {

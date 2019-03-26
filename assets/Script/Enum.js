@@ -5,15 +5,6 @@ var TALENT = cc.Enum({
   多才: 3
 })
 
-var MATERIALS = cc.Enum({
-  RAW_MEAT: 1,
-  FRUIT: 2,
-  HERB: 3,
-  WOOD: 4,
-  SULPHUR: 5,
-  LEATHER: 6
-})
-
 var EVENT = cc.Enum({
   HUNGER: '饿了',
   COMBAT: '触发战斗',

@@ -1,15 +1,16 @@
 // 所有物品的管理
-import duanzao from '../conf/duanzao'
-import goods from '../conf/goods'
+import duanzao from '../Conf/duanzao'
+import goods from '../Conf/goods'
 
 // 背包类 单例
-class Backpack{
+class Backpack {
   constructor() {
     this.backpack = null
     this.goods = goods
     this.goodsList = []
     this.materials = []
   }
+
   static getInstance() {
     if(this.backpack == null) {
       this.backpack = new Backpack()
@@ -28,6 +29,7 @@ class Backpack{
     }
     good.num += 1
   }
+  
   // 添加物品到背包
   add(good) {
     this.goodsList.push(good)
@@ -73,7 +75,7 @@ class Backpack{
 }
 
 // 打造类
-class Weaponry{
+class Weaponry {
   constructor(index) {
     if(index < duanzao.length) {
       this.id = duanzao[index].id
@@ -91,7 +93,7 @@ class Weaponry{
 }
 
 // 材料类
-class Materals{
+class Materals {
   constructor(index) {
     if(goods[index].type == '材料') {
       this.name = goods[index].name
@@ -104,7 +106,7 @@ class Materals{
 }
 
 // 道具类
-class Prop{
+class Prop {
   constructor(index) {
 
   }
