@@ -30,4 +30,4 @@ var STATUS = cc.Enum({
   NO_HUNGER: 2
 })
 
-export default {TALENT,EVENT,MATERIALS,GAME_SCENE,STATUS}
+export default {TALENT,EVENT,GAME_SCENE,STATUS}
