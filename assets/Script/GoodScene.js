@@ -19,19 +19,6 @@ cc.Class({
       //this.btnState()
     },
 
-    // 判断按钮是否为可用状态
-    btnState() {
-      for(let i=0; i<this.arr.length; i++) {
-        if(this.arr[i].good.num > 0) {
-          this.arr[i].getComponent(cc.Button).enabled = true
-          this.arr[i].node.getChildByName('Label').color = cc.color(20,240,36)
-        } else {
-          this.arr[i].getComponent(cc.Button).enabled = false
-          this.arr[i].node.getChildByName('Label').color = cc.color(105,105,105)
-        }
-      }
-    },
-
     back() {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },

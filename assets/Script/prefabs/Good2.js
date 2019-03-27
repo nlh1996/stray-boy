@@ -20,10 +20,11 @@ cc.Class({
     eat() {
       let result = player.eat(this.node.good)
       if(result != EVENT.FULL) {
-        cc.director.getScene().getChildByName('Canvas').getComponent('GoodScene').labelSchedule('没吃饱')
+        var content = '饥饿+20'
       }else{
-        cc.director.getScene().getChildByName('Canvas').getComponent('GoodScene').labelSchedule('吃饱了')
+        var content = '吃饱了'
       }
+      cc.director.getScene().getChildByName('Canvas').getComponent('GoodScene').labelSchedule(content)
     },
 
     start () {
