@@ -20,7 +20,7 @@ var GAME_SCENE = cc.Enum({
   START: 'start',
   GAME: 'game',
   MAKE: 'make',
-  FOOD_LIST: 'food_list',
+  GOOD_LIST: 'good_list',
   GAME_OVER: 'game_over'
 })
 

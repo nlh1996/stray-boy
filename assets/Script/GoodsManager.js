@@ -93,7 +93,7 @@ class Weaponry {
 }
 
 // 材料类
-class Materals {
+class Materials {
   constructor(index) {
     if(goods[index].type == '材料') {
       this.name = goods[index].name
@@ -113,7 +113,7 @@ class Prop {
 }
 
 for(let i=0; i<goods.length; i++) {
-  let obj = new Materals(i)
+  let obj = new Materials(i)
   if(obj.id) {
     Backpack.getInstance().materials.push(obj)
   }

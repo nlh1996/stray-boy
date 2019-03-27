@@ -66,10 +66,10 @@ cc.Class({
 
       //按钮监听
       this.Btn_Forward.on('click', this.forward, this)
-      this.Btn_Make.on('click', this.make, this)
+      this.Btn_Make.on('click', this.openMake, this)
       this.Btn_Search.on('click', this.search, this)
       this.Btn_Rest.on('click', this.rest, this)
-      this.Btn_Eat.on('click', this.eat, this)
+      this.Btn_Eat.on('click', this.opneBackpack, this)
 
       //注册监听事件
       et.on(EVENT.NO_HUNGER, this.hungry)
@@ -85,7 +85,6 @@ cc.Class({
       et.on(EVENT.FINISH, () => {
         this.node1.active = true
       })
-
     },
 
     onDestroy() {
@@ -131,7 +130,7 @@ cc.Class({
     forward() {
       let status = player.consume(10,10,1)
       if(status == STATUS.STATUS_OK) {
-        //角色前进
+        // 角色前进
         player.forward()
         this.updateLabel()
         // 发现物品
@@ -157,12 +156,12 @@ cc.Class({
     },
 
     // 打开制造页
-    make() {
+    openMake() {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.MAKE)
     }, 
 
-    eat() {
-      GameSceneMng.getInstance().setGameScene(GAME_SCENE.FOOD_LIST)
+    opneBackpack() {
+      GameSceneMng.getInstance().setGameScene(GAME_SCENE.GOOD_LIST)
     },
 
     // 文字出现效果

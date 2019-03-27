@@ -15,35 +15,11 @@ cc.Class({
         default: null,
         type: cc.Label
       },
-      label1: {
-        default: null,
-        type: cc.Label
-      },
-      label2: {
-        default: null,
-        type: cc.Label
-      },
-      label3: {
-        default: null,
-        type: cc.Label
-      },
-      label4: {
-        default: null,
-        type: cc.Label
-      },
-      label5: {
-        default: null,
-        type: cc.Label
-      },
-      label6: {
-        default: null,
-        type: cc.Label
-      },
     },
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      this.updateData()
+      // this.updateData()
       this.Btn_back.node.on('click', this.back, this)
       //this.btnState()
 

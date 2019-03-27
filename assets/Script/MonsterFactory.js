@@ -1,6 +1,6 @@
 // 本脚本定义游戏怪物
 // 原型设计模式（类实现）
-import mstList from '../conf/mst'
+import mstList from '../Conf/mst'
 // class 僵尸 {
 //   constructor(lv,life,attack,defence,hostility) {
 //     this.lv = lv

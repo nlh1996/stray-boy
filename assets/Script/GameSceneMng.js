@@ -30,11 +30,14 @@ class GameSceneMng {
       case GAME_SCENE.MAKE:
         cc.director.loadScene(scene)
         break
-      case GAME_SCENE.FOOD_LIST:
+      case GAME_SCENE.GOOD_LIST:
         cc.director.loadScene(scene)
         break
       case GAME_SCENE.GAME_OVER:
         cc.director.loadScene(scene)
+        break
+      default:
+        console.log('切换失败')
         break
     }
   }

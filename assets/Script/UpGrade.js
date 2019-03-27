@@ -65,6 +65,11 @@ cc.Class({
       this.btn3.type = '体质'
     },
 
+    onDestroy() {
+      et.off(EVENT.UPGRADE)
+      et.off(EVENT.FINISH)
+    },
+
     jiadian(btn) {
       this.count --
       player.jiadian(btn.type)
