@@ -17,12 +17,10 @@ cc.Class({
       },
     },
 
-    // LIFE-CYCLE CALLBACKS:
     onLoad () {
       // this.updateData()
       this.Btn_back.node.on('click', this.back, this)
       //this.btnState()
-
     },
 
     // 判断按钮是否为可用状态
