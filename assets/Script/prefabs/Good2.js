@@ -1,41 +1,56 @@
-// Learn cc.Class:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-
+// good2预制件的脚本
+import player from '../PlayerManager'
+import {EVENT} from 'Enum'
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+      btn: cc.Button,
+      btn_label: cc.Label,
+      label1: cc.Label,
+      label2: cc.Label,
     },
 
     // LIFE-CYCLE CALLBACKS:
+    onLoad () {
+      this.btn.node.on('click', this.eat, this)
+    },
 
-    // onLoad () {},
+    // 进食
+    eat() {
+      let result = player.eat(this.node.good)
+      if(result != EVENT.FULL) {
+        cc.director.getScene().getChildByName('Canvas').getComponent('GoodScene').labelSchedule('没吃饱')
+      }else{
+        cc.director.getScene().getChildByName('Canvas').getComponent('GoodScene').labelSchedule('吃饱了')
+      }
+    },
 
     start () {
 
     },
 
-    // update (dt) {},
+    // label数据更新
+    updateData() {
+      let good = this.node.good
+      this.btn_label.string = good.name
+      this.label1.string = '#拥有：' + good.num
+      this.label2.string = '#效果：' + good.about
+    },
+
+    // 判断按钮是否为可用状态
+    btnState() {
+      if(this.node.good.num > 0) {
+        this.btn.enabled = true
+        this.btn_label.node.color = cc.color(20,240,36)
+      } else {
+        this.btn.enabled = false
+        this.btn_label.node.color = cc.color(105,105,105)
+      }     
+    },
+
+    update (dt) {
+      this.updateData()
+      this.btnState()
+    },
 });

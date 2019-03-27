@@ -3,7 +3,7 @@ const et = require('Listener')
 import {EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 import stateMng from './State'
-
+import {Backpack} from './GoodsManager'
 class PlayerManager {
   // 成员变量
   constructor() {
@@ -162,20 +162,15 @@ class PlayerManager {
   // 角色进食
   eat(food) {
     let result = ''
-    if(food.hunger&&this.properties.currentHunger < this.properties.hunger) {
-      this.properties.currentHunger += food.hunger
+    if(food.effect&&this.properties.currentHunger < this.properties.hunger) {
+      this.properties.currentHunger += food.effect[1]
       if(this.properties.currentHunger > this.properties.hunger) {
         this.properties.currentHunger = this.properties.hunger
       }
       result = EVENT.HUNGER
-      food.num -= 1
+      Backpack.getInstance().consume(food.id)
     } else {
       result = EVENT.FULL
-    }
-    if(food.life) {
-      this.properties.life += food.life
-      food.num -= 1
-      result = ''
     }
     return result
   }

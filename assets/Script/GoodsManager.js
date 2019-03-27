@@ -1,6 +1,7 @@
 // 所有物品的管理
 import duanzao from '../Conf/duanzao'
 import goods from '../Conf/goods'
+import prop from '../Conf/prop'
 
 // 背包类 单例
 class Backpack {
@@ -9,6 +10,7 @@ class Backpack {
     this.goods = goods
     this.goodsList = []
     this.materials = []
+    this.propList = []
   }
 
   static getInstance() {
@@ -72,6 +74,16 @@ class Backpack {
       }
     }
   }
+
+  //物品消耗
+  consume(id) {
+    for(let i=0; i<this.propList.length; i++) {
+      if(id == this.propList[i].id) {
+        this.propList[i].num -- 
+        return
+      }
+    }
+  }
 }
 
 // 打造类
@@ -108,14 +120,29 @@ class Materials {
 // 道具类
 class Prop {
   constructor(index) {
-
+    this.id = prop[index].id
+    this.name = prop[index].name
+    this.effect = prop[index].effect
+    this.buy = prop[index].buy
+    this.sell = prop[index].sell
+    this.num = 20
+    this.about = prop[index].about
   }
 }
 
+// 初始化材料
 for(let i=0; i<goods.length; i++) {
   let obj = new Materials(i)
   if(obj.id) {
     Backpack.getInstance().materials.push(obj)
+  }
+}
+
+// 初始化道具
+for(let i=0; i<prop.length; i++) {
+  let obj = new Prop(i)
+  if(obj.id) {
+    Backpack.getInstance().propList.push(obj)
   }
 }
 

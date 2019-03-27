@@ -1,5 +1,5 @@
 // good1预制件的脚本
-import {Backpack} from './GoodsManager'
+import {Backpack} from '../GoodsManager'
 cc.Class({
     extends: cc.Component,
     
@@ -20,7 +20,6 @@ cc.Class({
       Backpack.getInstance().make(this.node.good)
       // 更新title提示
       cc.director.getScene().getChildByName('Canvas').getComponent('MakeScene').labelSchedule(this.node.good.name)
-
     },
 
     // 判断按钮是否为可用状态
