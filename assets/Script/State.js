@@ -26,17 +26,6 @@ class BaseState {
   }
 }
 
-// 战斗状态
-class Combat extends BaseState {
-  constructor() {
-    super()
-
-  }
-  doSomething(obj) {
-
-  }
-}
-
 // 探索状态
 class Search extends BaseState {
   constructor() {
@@ -131,18 +120,6 @@ class Forward extends BaseState {
   }
 }
 
-// 剧情
-class PlotState extends BaseState {
-  constructor() {
-    super()
-    this.event = [
-      {about:'前方发现一个山洞', need: [{map: 3}], result: [{id:101,num:1}], }
-    ]
-  }
-  doSomething(obj) {
-    obj.runAway()
-  }
-}
 
 // 状态管理
 class StateMng {

@@ -63,15 +63,6 @@ cc.Class({
       this.Btn_Rest = this.node1.getChildByName('Btn_Rest')
       this.Btn_Eat = this.node1.getChildByName('Btn_Eat')
       this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
-    },
-
-    start () {
-      //按钮监听
-      this.Btn_Forward.on('click', this.callback, this)
-      this.Btn_Make.on('click', this.openMake, this)
-      this.Btn_Search.on('click', this.callback, this)
-      this.Btn_Rest.on('click', this.rest, this)
-      this.Btn_Eat.on('click', this.opneBackpack, this)
 
       //注册监听事件
       et.on(EVENT.NO_HUNGER, this.hungry)
@@ -87,6 +78,15 @@ cc.Class({
       et.on(EVENT.FINISH, () => {
         this.node1.active = true
       })
+    },
+
+    start () {
+      //按钮监听
+      this.Btn_Forward.on('click', this.callback, this)
+      this.Btn_Make.on('click', this.openMake, this)
+      this.Btn_Search.on('click', this.callback, this)
+      this.Btn_Rest.on('click', this.rest, this)
+      this.Btn_Eat.on('click', this.opneBackpack, this)
     },
 
     onDestroy() {
@@ -136,7 +136,6 @@ cc.Class({
 
     // 文字出现效果
     labelSchedule(content) {
-      this.unscheduleAllCallbacks()
       this.content.string = ''
       let index = 0
       let i = content.length - 1

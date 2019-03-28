@@ -89,6 +89,7 @@ cc.Class({
     },
 
     labelSchedule(content) {
+      this.unscheduleAllCallbacks()
       this.Btn_Combat.enabled = false
       this.Content.string = ''
       let index = 0

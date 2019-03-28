@@ -11,16 +11,23 @@ cc.Class({
       title: cc.Label,
       prefab: cc.Prefab,
       content: cc.Node,
+      btn_food: cc.Button,
+      btn_weapon: cc.Button
     },
 
     onLoad () {
       // this.updateData()
       this.Btn_back.node.on('click', this.back, this)
+      this.btn_weapon.node.on('click', this.callback, this)
       //this.btnState()
     },
 
     back() {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
+    },
+
+    callback() {
+      this.content.removeAllChildren()
     },
 
     // 文字出现效果
