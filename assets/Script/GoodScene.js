@@ -1,8 +1,8 @@
 // 该脚本负责制造场景的逻辑
-import {EVENT,GAME_SCENE} from './Enum'
+import {GAME_SCENE} from './Enum'
 import GameSceneMng from './GameSceneMng'
-import {Prop,Backpack} from './GoodsManager'
-const player = require('PlayerManager') 
+import {Backpack} from './GoodsManager'
+
 cc.Class({
     extends: cc.Component,
 

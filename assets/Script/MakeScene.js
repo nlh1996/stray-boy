@@ -1,8 +1,7 @@
 // 该脚本负责制造场景的逻辑
-const player = require('PlayerManager') 
 import {GAME_SCENE} from './Enum'
 import GameSceneMng from './GameSceneMng'
-import {Weaponry,Backpack} from './GoodsManager'
+import {Duanzao,Backpack} from './GoodsManager'
 
 cc.Class({
     extends: cc.Component,
@@ -54,7 +53,7 @@ cc.Class({
           if(goodsList[i+index*4]) {
             var good = goodsList[i+index*4]
           } else {
-            var good = new Weaponry(i+index*4)
+            var good = new Duanzao(i+index*4)
             if(!good.id) {
               return
             }

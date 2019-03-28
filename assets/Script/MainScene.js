@@ -136,6 +136,7 @@ cc.Class({
 
     // 文字出现效果
     labelSchedule(content) {
+      this.unscheduleAllCallbacks()
       this.content.string = ''
       let index = 0
       let i = content.length - 1

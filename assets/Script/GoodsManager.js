@@ -2,6 +2,7 @@
 import duanzao from '../Conf/duanzao'
 import goods from '../Conf/goods'
 import prop from '../Conf/prop'
+import weapon from '../Conf/weapon'
 
 // 背包类 单例
 class Backpack {
@@ -11,6 +12,7 @@ class Backpack {
     this.goodsList = []
     this.materials = []
     this.propList = []
+    this.weaponList = []
   }
 
   static getInstance() {
@@ -87,7 +89,7 @@ class Backpack {
 }
 
 // 打造类
-class Weaponry {
+class Duanzao {
   constructor(index) {
     if(index < duanzao.length) {
       this.id = duanzao[index].id
@@ -102,6 +104,20 @@ class Weaponry {
       this.pro = duanzao[index].pro    
     }
   }   
+}
+
+// 装备类
+class Weapon {
+  constructor(index) {
+    if(index < weapon.length) {
+      this.id = weapon[index].id
+      this.name = weapon[index].name
+      this.num = 0
+      this.attack = weapon[index].attack
+      this.defence = weapon[index].defence
+      this.life = weapon[index].life
+    }
+  }
 }
 
 // 材料类
@@ -146,4 +162,12 @@ for(let i=0; i<prop.length; i++) {
   }
 }
 
-export default {Backpack,Weaponry}
+// 初始化装备
+for(let i=0; i<weapon.length; i++) {
+  let obj = new Weapon(i)
+  if(obj.id) {
+    Backpack.getInstance().weaponList.push(obj)
+  }
+}
+
+export default {Backpack,Duanzao}

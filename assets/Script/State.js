@@ -102,6 +102,7 @@ class Forward extends BaseState {
     }
   }
 
+  // 一定几率触发特殊事件
   getPlotEvent(obj) {
     for(let i=0; i<obj.properties.currentPlace.arr.length; i++) {
       for(let x=0; x<this.plot.length; x++) {
@@ -114,7 +115,7 @@ class Forward extends BaseState {
     }
     return false
   }
-  
+
   // 前进事件
   getForwardEvent(obj) {
     let pro = Math.floor(Math.random()*100) 
@@ -128,7 +129,6 @@ class Forward extends BaseState {
       et.emit(EVENT.COMBAT)
     }
   }
-
 }
 
 // 剧情
