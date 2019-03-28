@@ -56,16 +56,20 @@ cc.Class({
       //当前界面主要按钮
       this.node1 = this.node.getChildByName('Node1')
       this.Btn_Forward = this.node1.getChildByName('Btn_Forward')
+      this.Btn_Forward.state = STATE.FORWARD
       this.Btn_Search = this.node1.getChildByName('Btn_Search')
+      this.Btn_Search.state = STATE.SEARCH
       this.Btn_Make = this.node1.getChildByName('Btn_Make')
       this.Btn_Rest = this.node1.getChildByName('Btn_Rest')
       this.Btn_Eat = this.node1.getChildByName('Btn_Eat')
       this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
+    },
 
+    start () {
       //按钮监听
-      this.Btn_Forward.on('click', this.forward, this)
+      this.Btn_Forward.on('click', this.callback, this)
       this.Btn_Make.on('click', this.openMake, this)
-      this.Btn_Search.on('click', this.search, this)
+      this.Btn_Search.on('click', this.callback, this)
       this.Btn_Rest.on('click', this.rest, this)
       this.Btn_Eat.on('click', this.opneBackpack, this)
 
@@ -99,28 +103,15 @@ cc.Class({
       this.node1.active = false
     },
 
-    start () {
-    },
-
     hungry() {
       console.log('I am hungry!')
     },
 
-    // 探索事件
-    search() {
-      // 设置玩家当前状态为探索
-      player.setState(STATE.SEARCH)
+    // 按键回调
+    callback(btn) {
+      // 设置玩家当前状态
+      player.setState(btn.node.state)
       // 获得玩家当前事件描述
-      const event = player.getCurrentEvent()
-      if(event) {
-        this.labelSchedule(event.about)
-      }
-      this.updateLabel()
-    },
-
-    // 前进按钮事件回调
-    forward() {
-      player.setState(STATE.FORWARD)
       const event = player.getCurrentEvent()
       if(event) {
         this.labelSchedule(event.about)
@@ -200,7 +191,7 @@ cc.Class({
       this.energy.string = '精力 ' + player.properties.currentEnergy + '/' + player.properties.energy
       this.time.string = player.hour + '小时'
       this.duraction.string = player.duraction
-      this.place.string = player.properties.currentPlace
+      this.place.string = player.properties.currentPlace.name
     },
 
     // // 计时器

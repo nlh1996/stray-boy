@@ -36,19 +36,21 @@ import mstList from '../Conf/mst'
 // }
 class Monster {
   constructor(id) {
-    this.name = mstList[id].name
-    this.lv = mstList[id].lv
-    this.attack = mstList[id].attack
-    this.defence = mstList[id].defence
-    this.life = mstList[id].life
-    this.duraction = mstList[id].duraction
-    this.about = mstList[id].about
-    this.attackType = mstList[id].attackType
-    this.exp = mstList[id].exp
-    this.goods = [
-      {good1: mstList[id].good1, num: mstList[id].good1num, por: mstList[id].por},
-      {good2: mstList[id].good2, num: mstList[id].good2num, por: mstList[id].por},
-    ]
+    if(id<mstList.length) {
+      this.name = mstList[id].name
+      this.lv = mstList[id].lv
+      this.attack = mstList[id].attack
+      this.defence = mstList[id].defence
+      this.life = mstList[id].life
+      this.duraction = mstList[id].duraction
+      this.about = mstList[id].about
+      this.attackType = mstList[id].attackType
+      this.exp = mstList[id].exp
+      this.goods = [
+        {good1: mstList[id].good1, num: mstList[id].good1num, por: mstList[id].por},
+        {good2: mstList[id].good2, num: mstList[id].good2num, por: mstList[id].por},
+      ]
+    }
   }
 }
 

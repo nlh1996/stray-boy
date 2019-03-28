@@ -4,6 +4,7 @@ import {EVENT,GAME_SCENE,STATUS} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 import stateMng from './State'
 import {Backpack} from './GoodsManager'
+import map from '../Conf/map'
 class PlayerManager {
   // 成员变量
   constructor() {
@@ -25,43 +26,13 @@ class PlayerManager {
       currentHunger: 100,
       energy: 100,
       currentEnergy: 100,
-      currentPlace: '孙庄',
+      currentPlace: {name:'孙庄'},
       moveDuration: 0,
       talent: null
     },
 
     // 地图
-    this.map = [
-      {name:'孙庄' ,duraction: 0},
-      {name:'仁桥' ,duraction: 10},
-      {name:'双楼' ,duraction: 20},
-      {name:'曲塘' ,duraction: 30},
-      {name:'白米' ,duraction: 40},
-      {name:'姜堰' ,duraction: 50},
-      {name:'黄桥' ,duraction: 75},
-      {name:'泰州' ,duraction: 100},
-      {name:'扬州' ,duraction: 150},
-      {name:'仪征' ,duraction: 180},
-      {name:'南京' ,duraction: 200},
-      {name:'滁州' ,duraction: 250},
-      {name:'合肥' ,duraction: 300},
-      {name:'六安' ,duraction: 350},
-      {name:'金寨' ,duraction: 400},
-      {name:'麻城' ,duraction: 450},
-      {name:'武汉' ,duraction: 500},
-      {name:'天门' ,duraction: 550},
-      {name:'荆州' ,duraction: 600},
-      {name:'宜昌' ,duraction: 650},
-      {name:'恩施' ,duraction: 700},
-      {name:'涪陵' ,duraction: 800},
-      {name:'重庆' ,duraction: 1000},
-      {name:'自贡' ,duraction: 1200},
-      {name:'内江' ,duraction: 1500},
-      {name:'雅安' ,duraction: 1800},
-      {name:'林芝' ,duraction: 2500},
-      {name:'西藏' ,duraction: 4000},
-    ]
-
+    this.map = map
     // this.dt = 0
     // this.second = 0
     // this.minute = 0
@@ -215,8 +186,8 @@ class PlayerManager {
         if(this.properties.currentPlace == this.map[index].name) {
           return
         }else {
-          this.properties.currentPlace = this.map[index].name
-          console.log(this.properties.currentPlace + '欢迎你的到来！')
+          this.properties.currentPlace = this.map[index]
+          console.log(this.properties.currentPlace.name + '欢迎你的到来！')
           return
         }
       }

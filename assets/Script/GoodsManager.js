@@ -7,6 +7,7 @@ import prop from '../Conf/prop'
 class Backpack {
   constructor() {
     this.backpack = null
+    this.goods = goods
     this.goodsList = []
     this.materials = []
     this.propList = []

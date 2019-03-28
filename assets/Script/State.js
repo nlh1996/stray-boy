@@ -82,18 +82,39 @@ class Forward extends BaseState {
       {about:'收集到【生肉】*3', code: [703]},
       {about:'收集到【果子】*3', code: [803]},
     ]
+    this.plot = [
+      {about:'前方发现一个山洞', id: 5, result: {id:101, num:1}},
+      {about:'发现地上有五块钱，是否捡起', id: 6, result: {id:101, num:1}}
+    ]
   }
+
   doSomething(obj) {
     let status = obj.consume(10,10,1)
     if(status == STATUS.STATUS_OK) {
       // 角色前进
       obj.forward()
-      // 前进事件
-      this.getForwardEvent(obj)
+      let res = this.getPlotEvent(obj)
+      if(!res) {
+        this.getForwardEvent(obj)
+      }
     }else {
       this.abnormalState(obj,status)
     }
   }
+
+  getPlotEvent(obj) {
+    for(let i=0; i<obj.properties.currentPlace.arr.length; i++) {
+      for(let x=0; x<this.plot.length; x++) {
+        if(obj.properties.currentPlace.arr[i] == this.plot[x].id) {
+          console.log(this.plot[x].about)
+          obj.currentEvent = this.plot[x]
+          return true
+        }
+      }
+    }
+    return false
+  }
+  
   // 前进事件
   getForwardEvent(obj) {
     let pro = Math.floor(Math.random()*100) 
@@ -107,12 +128,16 @@ class Forward extends BaseState {
       et.emit(EVENT.COMBAT)
     }
   }
+
 }
 
 // 剧情
 class PlotState extends BaseState {
   constructor() {
     super()
+    this.event = [
+      {about:'前方发现一个山洞', need: [{map: 3}], result: [{id:101,num:1}], }
+    ]
   }
   doSomething(obj) {
     obj.runAway()
