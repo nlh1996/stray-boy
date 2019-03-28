@@ -70,6 +70,11 @@ class PlayerManager {
     this.mstMoveSpeed = 1
     this.mstattackSpeed = 2
     this._state = {}
+    this.currentEvent = {}
+  }
+
+  getCurrentEvent() {
+    return this.currentEvent
   }
 
   Save() {
@@ -124,7 +129,8 @@ class PlayerManager {
   // 角色休息
   rest() {
     let diff = this.properties.energy - this.properties.currentEnergy
-    this.hour += diff*0.08
+    this.hour = (this.hour*100 + diff*8)/100
+    console.log(this.hour)
     this.properties.currentEnergy = 100
   }
 

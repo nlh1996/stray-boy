@@ -7,7 +7,6 @@ import prop from '../Conf/prop'
 class Backpack {
   constructor() {
     this.backpack = null
-    this.goods = goods
     this.goodsList = []
     this.materials = []
     this.propList = []
@@ -146,4 +145,4 @@ for(let i=0; i<prop.length; i++) {
   }
 }
 
-export default {Backpack,Weaponry,Prop}
+export default {Backpack,Weaponry}

@@ -2,7 +2,7 @@
 import player from './PlayerManager'
 const gameEvent = require("Event")
 const et = require('Listener')
-import {TALENT,EVENT,GAME_SCENE,STATUS} from 'Enum'
+import {TALENT,EVENT,GAME_SCENE,STATUS,STATE} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 import {Backpack} from './GoodsManager'
 
@@ -110,18 +110,10 @@ cc.Class({
 
     // 探索事件
     search() {
-      // 玩家探索消耗 返回状态
-      let status = player.consume(5,5,0.5)
-      if(status == STATUS.STATUS_OK) {
-        var event = gameEvent.getSearchEvent(30 + player.properties.charm)
-        // 获得物品
-        if(event.code) {
-          Backpack.getInstance().setProperty(event.code)
-        }
-      }else {
-        var event = gameEvent.abnormalState(status)
-      }
-      const content = event.content
+      // 设置玩家当前状态为探索
+      player.setState(STATE.SEARCH)
+      // 获得玩家当前事件描述
+      const content = player.getCurrentEvent().about
       this.labelSchedule(content)
       this.updateLabel()
     },

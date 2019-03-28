@@ -8,16 +8,12 @@ var Event = cc.Class({
       {content:'遇到一只僵尸王！！！', type: 'combat'}
     ] 
     this.SureEvent = []
-    this.ConditionalEvent = []
+
     this.SearchEvent = [
       {content:'收集到【木材】*3', code: [503]},
       {content:'收集到【药草】*3', code: [603]},
       {content:'收集到【生肉】*3', code: [703]},
       {content:'收集到【果子】*3', code: [803]},
-    ]
-    this.ErrorEvent = [
-      {content:'处于饥饿状态，您需要进食！'},
-      {content:'没有精力啦，您需要休息！'},
     ]
   },
 
@@ -27,15 +23,7 @@ var Event = cc.Class({
     return this.RandomEvent[i]
   },
 
-  // 获取探索事件
-  getSearchEvent(probability) {
-    let pro = Math.floor(Math.random()*100) 
-    if(probability >= pro) {
-      let i = Math.floor(Math.random()*4)
-      return this.SearchEvent[i]
-    } 
-    return {content: '很可惜，什么都没有发现。。。', code: [100]}
-  },
+
 
   // 前进事件
   getForwardEvent(probability) {

@@ -30,4 +30,9 @@ var STATUS = cc.Enum({
   NO_HUNGER: 2
 })
 
-export default {TALENT,EVENT,GAME_SCENE,STATUS}
+// 有限状态机状态
+var STATE = cc.Enum({
+  SEARCH: 0
+})
+
+export default {TALENT,EVENT,GAME_SCENE,STATUS,STATE}
