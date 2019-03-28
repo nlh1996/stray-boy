@@ -1,10 +1,8 @@
 // 本脚本为游戏的主要逻辑脚本
 import player from './PlayerManager'
-const gameEvent = require("Event")
 const et = require('Listener')
-import {TALENT,EVENT,GAME_SCENE,STATUS,STATE} from 'Enum'
+import {TALENT,EVENT,GAME_SCENE,STATE} from 'Enum'
 import GameSceneMng from './GameSceneMng'
-import {Backpack} from './GoodsManager'
 
 cc.Class({
     extends: cc.Component,
@@ -113,32 +111,21 @@ cc.Class({
       // 设置玩家当前状态为探索
       player.setState(STATE.SEARCH)
       // 获得玩家当前事件描述
-      const content = player.getCurrentEvent().about
-      this.labelSchedule(content)
+      const event = player.getCurrentEvent()
+      if(event) {
+        this.labelSchedule(event.about)
+      }
       this.updateLabel()
     },
 
     // 前进按钮事件回调
     forward() {
-      let status = player.consume(10,10,1)
-      if(status == STATUS.STATUS_OK) {
-        // 角色前进
-        player.forward()
-        this.updateLabel()
-        // 发现物品
-        var event = gameEvent.getForwardEvent(10 + player.properties.charm)
-        // 没发现物品，遇到敌人
-        if(event == null) {
-          et.emit(EVENT.COMBAT)
-          return
-        }else {
-          Backpack.getInstance().setProperty(event.code)
-        }
-      }else {
-        var event = gameEvent.abnormalState(status)
+      player.setState(STATE.FORWARD)
+      const event = player.getCurrentEvent()
+      if(event) {
+        this.labelSchedule(event.about)
       }
-      const content = event.content
-      this.labelSchedule(content)
+      this.updateLabel()
     },
 
     // 人物休息

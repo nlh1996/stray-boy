@@ -32,7 +32,8 @@ var STATUS = cc.Enum({
 
 // 有限状态机状态
 var STATE = cc.Enum({
-  SEARCH: 0
+  SEARCH: 0,
+  FORWARD: 1,
 })
 
 export default {TALENT,EVENT,GAME_SCENE,STATUS,STATE}

@@ -1,5 +1,6 @@
-import {STATUS} from 'Enum'
+import {STATUS,EVENT} from 'Enum'
 import {Backpack} from './GoodsManager'
+const et = require('Listener')
 // 状态模式
 
 // 状态基类
@@ -15,7 +16,7 @@ class BaseState {
     return
   }
   // 异常状态事件
-  abnormalState(status) {
+  abnormalState(obj,status) {
     if(status == STATUS.NO_HUNGER) {
       obj.currentEvent = this.abnormalEvent[0]
     }
@@ -32,8 +33,7 @@ class Combat extends BaseState {
 
   }
   doSomething(obj) {
-    obj.consume()
-    obj.combat()
+
   }
 }
 
@@ -57,7 +57,7 @@ class Search extends BaseState {
         Backpack.getInstance().setProperty(obj.currentEvent.code)
       }
     }else {
-      this.abnormalState(status)
+      this.abnormalState(obj,status)
     }
   }
   // 获取探索事件
@@ -73,12 +73,39 @@ class Search extends BaseState {
 }
 
 // 前进状态
-class GoForward extends BaseState {
+class Forward extends BaseState {
   constructor() {
     super()
+    this.event = [
+      {about:'收集到【木材】*3', code: [503]},
+      {about:'收集到【药草】*3', code: [603]},
+      {about:'收集到【生肉】*3', code: [703]},
+      {about:'收集到【果子】*3', code: [803]},
+    ]
   }
   doSomething(obj) {
-
+    let status = obj.consume(10,10,1)
+    if(status == STATUS.STATUS_OK) {
+      // 角色前进
+      obj.forward()
+      // 前进事件
+      this.getForwardEvent(obj)
+    }else {
+      this.abnormalState(obj,status)
+    }
+  }
+  // 前进事件
+  getForwardEvent(obj) {
+    let pro = Math.floor(Math.random()*100) 
+    // 发现物品或者遇敌
+    if(10 + obj.properties.charm >= pro) {
+      let i = Math.floor(Math.random()*this.event.length)
+      obj.currentEvent = this.event[i]
+      Backpack.getInstance().setProperty(obj.currentEvent.code)
+    } else {
+      obj.currentEvent = null
+      et.emit(EVENT.COMBAT)
+    }
   }
 }
 
@@ -99,6 +126,7 @@ class StateMng {
   }
   init() {
     this.stateArr[0] = new Search() 
+    this.stateArr[1] = new Forward() 
   }
   getState(num) {
     return this.stateArr[num]
