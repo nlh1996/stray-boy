@@ -9,7 +9,8 @@ cc.Class({
     properties: {
       Btn_back: cc.Button,
       title: cc.Label,
-      prefab: cc.Prefab,
+      prefab1: cc.Prefab,
+      prefab2: cc.Prefab,
       content: cc.Node,
       btn_food: cc.Button,
       btn_weapon: cc.Button
@@ -18,7 +19,8 @@ cc.Class({
     onLoad () {
       // this.updateData()
       this.Btn_back.node.on('click', this.back, this)
-      this.btn_weapon.node.on('click', this.callback, this)
+      this.btn_weapon.node.on('click', this.callback2, this)
+      this.btn_food.node.on('click', this.callback1, this)
       //this.btnState()
     },
 
@@ -26,8 +28,30 @@ cc.Class({
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },
 
-    callback() {
+    callback1() {
       this.content.removeAllChildren()
+      let arr  = Backpack.getInstance().propList
+      this.content.height = 300*arr.length
+      for(let i=0; i<arr.length; i++) {
+        let y = -150 - 300*i
+        let node = cc.instantiate(this.prefab1)
+        node.good = arr[i]
+        node.parent = this.content
+        node.setPosition(0,y)
+      }
+    },
+
+    callback2() {
+      this.content.removeAllChildren()
+      let arr  = Backpack.getInstance().weaponList
+      this.content.height = 310*arr.length
+      for(let i=0; i<arr.length; i++) {
+        let y = -150 - 310*i
+        let node = cc.instantiate(this.prefab2)
+        node.good = arr[i]
+        node.parent = this.content
+        node.setPosition(0,y)
+      }
     },
 
     // 文字出现效果
@@ -43,13 +67,7 @@ cc.Class({
     },
 
     start () {
-      for(let i=0; i<5; i++) {
-        let y = -150 - 300*i
-        let node = cc.instantiate(this.prefab)
-        node.good = Backpack.getInstance().propList[i]
-        node.parent = this.content
-        node.setPosition(0,y)
-      }
+      this.callback1()
     },
 
     // update (dt) {},

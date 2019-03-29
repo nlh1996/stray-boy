@@ -1805,8 +1805,11 @@
     "title": {
       "__id__": 36
     },
-    "prefab": {
+    "prefab1": {
       "__uuid__": "d8101e13-a164-4af7-89e1-0ccca264fda4"
+    },
+    "prefab2": {
+      "__uuid__": "e41f1919-d9e1-476b-b5b7-90f85a35eaf0"
     },
     "content": {
       "__id__": 20

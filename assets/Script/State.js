@@ -96,7 +96,6 @@ class Forward extends BaseState {
     for(let i=0; i<obj.properties.currentPlace.arr.length; i++) {
       for(let x=0; x<this.plot.length; x++) {
         if(obj.properties.currentPlace.arr[i] == this.plot[x].id) {
-          console.log(this.plot[x].about)
           obj.currentEvent = this.plot[x]
           return true
         }
@@ -119,7 +118,6 @@ class Forward extends BaseState {
     }
   }
 }
-
 
 // 状态管理
 class StateMng {

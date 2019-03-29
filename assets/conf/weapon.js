@@ -7,7 +7,7 @@ export default [
         "life": 0
     },
     {
-        "id": 2,
+        "id": 4,
         "name": "皮甲",
         "attack": 6,
         "defence": 2,
@@ -21,7 +21,7 @@ export default [
         "life": 0
     },
     {
-        "id": 4,
+        "id": 2,
         "name": "遮阳帽",
         "attack": 8,
         "defence": 1,

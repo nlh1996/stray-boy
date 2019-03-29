@@ -32,6 +32,11 @@ class Backpack {
       }
     }
     good.num += 1
+    for(let i=0; i<this.weaponList.length; i++) {
+      if(good.id == this.weaponList[i].id) {
+        this.weaponList[i].num += 1
+      }
+    }
   }
   
   // 添加物品到背包
@@ -57,7 +62,7 @@ class Backpack {
   setProperty(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
-        //木材
+        // 木材
         case 503:
           this.materials[3].num += 3
           break
@@ -77,7 +82,7 @@ class Backpack {
     }
   }
 
-  //物品消耗
+  // 物品消耗
   consume(id) {
     for(let i=0; i<this.propList.length; i++) {
       if(id == this.propList[i].id) {
@@ -116,6 +121,7 @@ class Weapon {
       this.attack = weapon[index].attack
       this.defence = weapon[index].defence
       this.life = weapon[index].life
+      this.about = '上古众神使用过的武器'
     }
   }
 }
