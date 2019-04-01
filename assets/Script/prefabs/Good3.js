@@ -1,4 +1,4 @@
-
+import player from '../PlayerManager'
 cc.Class({
     extends: cc.Component,
 

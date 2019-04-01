@@ -93,9 +93,10 @@ class Forward extends BaseState {
 
   // 一定几率触发特殊事件
   getPlotEvent(obj) {
-    for(let i=0; i<obj.properties.currentPlace.arr.length; i++) {
+    for(let key in obj.properties.currentPlace.arr) {
       for(let x=0; x<this.plot.length; x++) {
-        if(obj.properties.currentPlace.arr[i] == this.plot[x].id) {
+        if(obj.properties.currentPlace.arr[key] == this.plot[x].id) {
+          obj.properties.currentPlace.arr[key] = -1
           obj.currentEvent = this.plot[x]
           return true
         }
