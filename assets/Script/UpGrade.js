@@ -52,11 +52,8 @@ cc.Class({
     onLoad () {
       this.count = 3
       this.updateLabel()
-      this.node.active = false
       et.on(EVENT.UPGRADE, this.upGrade, this)
-      et.on(EVENT.FINISH, () => {
-        this.node.active = false
-      })
+
       this.btn1.node.on('click', this.jiadian, this)
       this.btn2.node.on('click', this.jiadian, this)
       this.btn3.node.on('click', this.jiadian, this)
@@ -67,7 +64,7 @@ cc.Class({
 
     onDestroy() {
       et.off(EVENT.UPGRADE)
-      et.off(EVENT.FINISH)
+
     },
 
     jiadian(btn) {
@@ -81,7 +78,6 @@ cc.Class({
     },
 
     upGrade() {
-      this.node.active = true
       this.updateLabel()
     },
 

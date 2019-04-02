@@ -7,7 +7,8 @@ var TALENT = cc.Enum({
 
 var EVENT = cc.Enum({
   HUNGER: '饿了',
-  COMBAT: '触发战斗',
+  BEFORE_COMBAT: '触发战斗',
+  ENTER_COMBAT: '进入战斗',
   HURT: '受到伤害',
   WIN: '战斗获得胜利',
   FULL: '吃饱了',

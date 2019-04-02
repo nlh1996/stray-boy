@@ -115,7 +115,7 @@ class Forward extends BaseState {
       Backpack.getInstance().setProperty(obj.currentEvent.code)
     } else {
       obj.currentEvent = null
-      et.emit(EVENT.COMBAT)
+      et.emit(EVENT.BEFORE_COMBAT)
     }
   }
 }

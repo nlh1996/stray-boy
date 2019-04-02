@@ -33,34 +33,34 @@ cc.Class({
 
     onLoad() {
       this.updateLabel()
-      this.node.active = false
       this.Btn_Combat.node.on('click',this.combat, this)
       this.Btn_RunAway.node.on('click',this.runAway, this)
-      et.on(EVENT.COMBAT,() => {
-        this.node.active = true
-        let id = parseInt((player.properties.moveDuration+10)/10)
-        let monster = new Monster(id)
-        this.monster =  monster
-        this.updateMonster()
-        this.labelSchedule(this.monster.about)
-      })
+      et.on(EVENT.ENTER_COMBAT, this.enterCombat, this)
+      et.on(EVENT.HURT, this.updateMonster, this)      
+      et.on(EVENT.WIN, this.win, this)
 
-      et.on(EVENT.HURT, this.updateMonster, this)
-      
-      et.on(EVENT.WIN, () => {
-        this.node.active = false
-        player.win(this.monster)
-        let content = '恭喜您获得胜利！【经验+' + this.monster.exp + '】'
-        this.labelSchedule(content)
-        this.updateLabel()
-      })
     },
-
+    
     onDestroy() {
-      et.off(EVENT.COMBAT)
+      et.off(EVENT.ENTER_COMBAT)
       et.off(EVENT.HURT)
       et.off(EVENT.WIN)
     },  
+
+    enterCombat() {
+      let id = parseInt((player.properties.moveDuration+10)/10)
+      let monster = new Monster(id)
+      this.monster =  monster
+      this.updateMonster()
+      this.labelSchedule(this.monster.about)
+    },
+
+    win() {
+      player.win(this.monster)
+      let content = '恭喜您获得胜利！【经验+' + this.monster.exp + '】'
+      this.labelSchedule(content)
+      this.updateLabel()
+    },
 
     combat() {
       this.damage = player.combat(this.monster)

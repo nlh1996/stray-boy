@@ -19,8 +19,8 @@ cc.Class({
     onLoad () {
       // this.updateData()
       this.Btn_back.node.on('click', this.back, this)
-      this.btn_weapon.node.on('click', this.callback2, this)
       this.btn_food.node.on('click', this.callback1, this)
+      this.btn_weapon.node.on('click', this.callback2, this)
       //this.btnState()
     },
 

@@ -55,6 +55,8 @@ cc.Class({
       this.updateLabel()
       //当前界面主要按钮
       this.node1 = this.node.getChildByName('Node1')
+      this.node2 = this.node.getChildByName('Node2')
+      this.node3 = this.node.getChildByName('Node3')
       this.Btn_Forward = this.node1.getChildByName('Btn_Forward')
       this.Btn_Forward.state = STATE.FORWARD
       this.Btn_Search = this.node1.getChildByName('Btn_Search')
@@ -63,21 +65,33 @@ cc.Class({
       this.Btn_Rest = this.node1.getChildByName('Btn_Rest')
       this.Btn_Eat = this.node1.getChildByName('Btn_Eat')
       this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
-
+      this.nodeActive(this.node1)
       //注册监听事件
-      et.on(EVENT.NO_HUNGER, this.hungry)
-      //每次加载组件都重新注册
-      et.on(EVENT.COMBAT, () => { 
-        this.node1.active = false
-      })
+      et.on(EVENT.NO_HUNGER, this.hungry, this)
+      //每次加载组件都重新注册)
       et.on(EVENT.WIN, () => {
-        this.node1.active = true
+        this.nodeActive(this.node1)
+      })
+      et.on(EVENT.BEFORE_COMBAT, this.beforeCombat, this)
+      et.on(EVENT.UPGRADE, () => {
+        this.nodeActive(this.node3)
       })
       et.on(EVENT.HURT, this.updateLabel, this)
-      et.on(EVENT.UPGRADE, this.upGrade, this)
       et.on(EVENT.FINISH, () => {
-        this.node1.active = true
+        this.nodeActive(this.node1)
       })
+    },
+
+    beforeCombat() {
+      this.nodeActive(this.node2)
+      et.emit(EVENT.ENTER_COMBAT)
+    },
+
+    nodeActive(node) {
+      this.node1.active = false
+      this.node2.active = false
+      this.node3.active = false
+      node.active = true
     },
 
     start () {
@@ -96,11 +110,6 @@ cc.Class({
       et.off(EVENT.FINISH)
       et.off(EVENT.UPGRADE)
       et.off(EVENT.HURT)
-    },
-
-    //升级显示加点UI
-    upGrade() {
-      this.node1.active = false
     },
 
     hungry() {
