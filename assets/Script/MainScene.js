@@ -53,19 +53,9 @@ cc.Class({
     onLoad () {
       //this.initTalent()
       this.updateLabel()
-      //当前界面主要按钮
       this.node1 = this.node.getChildByName('Node1')
       this.node2 = this.node.getChildByName('Node2')
       this.node3 = this.node.getChildByName('Node3')
-      this.Btn_Forward = this.node1.getChildByName('Btn_Forward')
-      this.Btn_Forward.state = STATE.FORWARD
-      this.Btn_Search = this.node1.getChildByName('Btn_Search')
-      this.Btn_Search.state = STATE.SEARCH
-      this.Btn_Make = this.node1.getChildByName('Btn_Make')
-      this.Btn_Rest = this.node1.getChildByName('Btn_Rest')
-      this.Btn_Eat = this.node1.getChildByName('Btn_Eat')
-      this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
-      this.nodeActive(this.node1)
       //注册监听事件
       et.on(EVENT.NO_HUNGER, this.hungry, this)
       //每次加载组件都重新注册)
@@ -82,6 +72,25 @@ cc.Class({
       })
     },
 
+    start () {
+      this.nodeActive(this.node1)
+      //当前界面主要按钮
+      this.Btn_Forward = this.node1.getChildByName('Btn_Forward')
+      this.Btn_Forward.state = STATE.FORWARD
+      this.Btn_Search = this.node1.getChildByName('Btn_Search')
+      this.Btn_Search.state = STATE.SEARCH
+      this.Btn_Make = this.node1.getChildByName('Btn_Make')
+      this.Btn_Rest = this.node1.getChildByName('Btn_Rest')
+      this.Btn_Eat = this.node1.getChildByName('Btn_Eat')
+      this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
+      //按钮监听
+      this.Btn_Forward.on('click', this.callback, this)
+      this.Btn_Make.on('click', this.openMake, this)
+      this.Btn_Search.on('click', this.callback, this)
+      this.Btn_Rest.on('click', this.rest, this)
+      this.Btn_Eat.on('click', this.opneBackpack, this)
+    },
+
     beforeCombat() {
       this.nodeActive(this.node2)
       et.emit(EVENT.ENTER_COMBAT)
@@ -92,15 +101,6 @@ cc.Class({
       this.node2.active = false
       this.node3.active = false
       node.active = true
-    },
-
-    start () {
-      //按钮监听
-      this.Btn_Forward.on('click', this.callback, this)
-      this.Btn_Make.on('click', this.openMake, this)
-      this.Btn_Search.on('click', this.callback, this)
-      this.Btn_Rest.on('click', this.rest, this)
-      this.Btn_Eat.on('click', this.opneBackpack, this)
     },
 
     onDestroy() {
@@ -139,6 +139,7 @@ cc.Class({
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.MAKE)
     }, 
 
+    // 打开背包
     opneBackpack() {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GOOD_LIST)
     },

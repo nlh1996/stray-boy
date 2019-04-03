@@ -38,7 +38,6 @@ cc.Class({
       et.on(EVENT.ENTER_COMBAT, this.enterCombat, this)
       et.on(EVENT.HURT, this.updateMonster, this)      
       et.on(EVENT.WIN, this.win, this)
-
     },
     
     onDestroy() {
@@ -47,6 +46,7 @@ cc.Class({
       et.off(EVENT.WIN)
     },  
 
+    // 进入战斗
     enterCombat() {
       let id = parseInt((player.properties.moveDuration+10)/10)
       let monster = new Monster(id)
@@ -55,6 +55,7 @@ cc.Class({
       this.labelSchedule(this.monster.about)
     },
 
+    // 获胜
     win() {
       player.win(this.monster)
       let content = '恭喜您获得胜利！【经验+' + this.monster.exp + '】'
@@ -62,6 +63,7 @@ cc.Class({
       this.updateLabel()
     },
 
+    // 战斗
     combat() {
       this.damage = player.combat(this.monster)
       let content = '你丢出了一张符箓 【僵尸生命-' + this.damage[0] + '】' 
@@ -71,10 +73,12 @@ cc.Class({
       }
     },
 
+    // 逃跑
     runAway() {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
     },
 
+    // 触发升级
     updateLabel() {
       let lv = parseInt(player.properties.exp/10)
       if(lv != player.properties.level) {
@@ -84,10 +88,12 @@ cc.Class({
       this.level.string = 'lv:' + player.properties.level
     },
 
+    // 跟新怪物状态
     updateMonster() {
       this.Monster.string = this.monster.name + ' lv ' + this.monster.lv + ' hp ' + this.monster.life
     },
 
+    // 文字提示
     labelSchedule(content) {
       this.unscheduleAllCallbacks()
       this.Btn_Combat.enabled = false
@@ -102,5 +108,4 @@ cc.Class({
         }
       },0.02,i,0)
     },
-
 });
