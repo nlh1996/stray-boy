@@ -36,7 +36,7 @@
   },
   "startScene": "828571c2-ffa0-4a7b-9f7d-e795d5982d55",
   "title": "ccc",
-  "webOrientation": "auto",
+  "webOrientation": "portrait",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
     "appid": "wx77e87e24c5609405",
