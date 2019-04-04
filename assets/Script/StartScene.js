@@ -2,6 +2,8 @@
 const player = require("PlayerManager")
 import {TALENT,GAME_SCENE} from 'Enum'
 import GameSceneMng from './GameSceneMng'
+import talent from '../Conf/talent'
+
 cc.Class({
     extends: cc.Component,
 
@@ -10,6 +12,7 @@ cc.Class({
       button2: cc.Button,
       button3: cc.Button,
       button4: cc.Button,
+      content: cc.Label
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -30,12 +33,15 @@ cc.Class({
       switch(button.node.name) {
         case 'Button_1':
           player.properties.talent = TALENT.健身达人
+          this.labelSchedule(talent[0].about)
           break
         case 'Button_2':
           player.properties.talent = TALENT.情场高手
+          this.labelSchedule(talent[1].about)
           break
         case 'Button_3':
           player.properties.talent = TALENT.理工男
+          this.labelSchedule(talent[2].about)
           break
       }
     },
@@ -45,8 +51,20 @@ cc.Class({
         //初始化人物属性
         player.init(player.properties.talent)
         //开始游戏
-        GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
+        GameSceneMng.getInstance().setGameScene(GAME_SCENE.STORY)
       }
+    },
+
+    // 文字提示
+    labelSchedule(content) {
+      this.unscheduleAllCallbacks()
+      this.content.string = ''
+      let index = 0
+      let i = content.length - 1
+      this.schedule(() => {
+        this.content.string = this.content.string + content[index]
+        index++
+      },0.04,i,0)
     },
 
     start () {

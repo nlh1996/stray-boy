@@ -36,6 +36,9 @@ class GameSceneMng {
       case GAME_SCENE.GAME_OVER:
         cc.director.loadScene(scene)
         break
+      case GAME_SCENE.STORY:
+        cc.director.loadScene(scene)
+        break
       default:
         console.log('切换失败')
         break
