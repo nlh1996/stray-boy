@@ -51,7 +51,6 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      //this.initTalent()
       this.updateLabel()
       this.node1 = this.node.getChildByName('Node1')
       this.node2 = this.node.getChildByName('Node2')
@@ -176,20 +175,6 @@ cc.Class({
       }
     },
 
-    // 人物天赋初始化
-    initTalent() {
-      switch(player.properties.talent) {
-        case TALENT.学霸:
-          player.properties.knowledge = 2
-          break
-        case TALENT.强壮: 
-          player.properties.sport = 2
-          break
-        case TALENT.多才:
-          player.properties.charm = 2
-          break
-      }
-    },
 
     // 更新人物属性面板
     updateLabel() {

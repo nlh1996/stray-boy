@@ -5,6 +5,8 @@ import GameSceneMng from './GameSceneMng'
 import stateMng from './State'
 import {Backpack} from './GoodsManager'
 import map from '../Conf/map'
+import talent from '../Conf/talent'
+
 class PlayerManager {
   // 成员变量
   constructor() {
@@ -42,6 +44,17 @@ class PlayerManager {
     this.mstattackSpeed = 2
     this._state = {}
     this.currentEvent = {}
+  }
+
+  init(id) {
+    let index = id-1
+    this.properties.life = talent[index].life
+    this.properties.maxlife = talent[index].life
+    this.properties.attack = talent[index].attack
+    this.properties.defence = talent[index].defence
+    this.properties.knowledge = talent[index].knowladge
+    this.properties.sport = talent[index].sport
+    this.properties.charm = talent[index].charm
   }
 
   getCurrentEvent() {

@@ -29,19 +29,22 @@ cc.Class({
       button.normalColor = cc.Color.GREEN
       switch(button.node.name) {
         case 'Button_1':
-          player.properties.talent = TALENT.学霸
+          player.properties.talent = TALENT.健身达人
           break
         case 'Button_2':
-          player.properties.talent = TALENT.强壮
+          player.properties.talent = TALENT.情场高手
           break
         case 'Button_3':
-          player.properties.talent = TALENT.多才
+          player.properties.talent = TALENT.理工男
           break
       }
     },
 
     gameStart() {
       if(player.properties.talent != null) {
+        //初始化人物属性
+        player.init(player.properties.talent)
+        //开始游戏
         GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
       }
     },

@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.7771630984176887,
-      "y": 0.7771630984176887,
-      "z": 0.7771630984176887
+      "x": 0.621968984962406,
+      "y": 0.621968984962406,
+      "z": 0.621968984962406
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -1049,8 +1049,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
-      "height": 80
+      "width": 80,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1065,8 +1065,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5,
-      "y": 0.5,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "_quat": {
@@ -1098,8 +1098,8 @@
     "_useOriginalSize": false,
     "_string": "健康",
     "_N$string": "健康",
-    "_fontSize": 80,
-    "_lineHeight": 80,
+    "_fontSize": 40,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
