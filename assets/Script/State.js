@@ -20,10 +20,10 @@ class BaseState {
   // 异常状态事件
   abnormalState(obj,status) {
     if(status == STATUS.NO_HUNGER) {
-      obj.currentEvent = this.abnormalEvent[0]
+      obj.setCurrentEvent(this.abnormalEvent[0])
     }
     if(status == STATUS.NO_ENERGY) {
-      obj.currentEvent = this.abnormalEvent[1]
+      obj.setCurrentEvent(this.abnormalEvent[1])
     }
   }
 }
@@ -58,7 +58,8 @@ class Search extends BaseState {
       let i = Math.floor(Math.random()*4)
       obj.currentEvent = this.event[i]
     } else {
-      obj.currentEvent = {about: '很可惜，什么都没有发现。。。', code: [100]}
+      const event = {about: '很可惜，什么都没有发现。。。', code: [100]}
+      obj.setCurrentEvent(event)
     }
   }
 }
@@ -99,7 +100,7 @@ class Forward extends BaseState {
       for(let x=0; x<this.plot.length; x++) {
         if(obj.properties.currentPlace.arr[key] == this.plot[x].id) {
           obj.properties.currentPlace.arr[key] = -1
-          obj.currentEvent = this.plot[x]
+          obj.setCurrentEvent(this.plot[x])
           return true
         }
       }
@@ -113,10 +114,10 @@ class Forward extends BaseState {
     // 发现物品或者遇敌
     if(10 + obj.properties.charm >= pro) {
       let i = Math.floor(Math.random()*this.event.length)
-      obj.currentEvent = this.event[i]
+      obj.setCurrentEvent(this.event[i])
       Backpack.getInstance().setProperty(obj.currentEvent.code)
     } else {
-      obj.currentEvent = null
+      obj.setCurrentEvent(null)
       et.emit(EVENT.BEFORE_COMBAT)
     }
   }
@@ -133,7 +134,8 @@ class Sleep extends BaseState {
     obj.rest()
     let res = this.getPlotEvent(obj)
     if(!res) {
-      obj.currentEvent = {about: "精力充沛，又是崭新的一天！"}
+      const event = {about: "精力充沛，又是崭新的一天！"}
+      obj.setCurrentEvent(event)
     }
   }
 
@@ -142,7 +144,7 @@ class Sleep extends BaseState {
       for(let x=0; x<this.event.length; x++) {
         if(obj.properties.currentPlace.arr[key] == this.event[x].id) {
           obj.properties.currentPlace.arr[key] = -1
-          obj.currentEvent = this.event[x]
+          obj.setCurrentEvent(this.event[x])
           return true
         }
       }

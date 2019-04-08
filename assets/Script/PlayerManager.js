@@ -61,6 +61,10 @@ class PlayerManager {
     return this.currentEvent
   }
 
+  setCurrentEvent(event) {
+    this.currentEvent = event
+  }
+
   Save() {
     cc.sys.localStorage.setItem('userData', JSON.stringify(this))
   }

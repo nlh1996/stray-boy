@@ -1,4 +1,4 @@
-import story from '../Conf/story'
+import player from './PlayerManager'
 import GameSceneMng from './GameSceneMng'
 import {GAME_SCENE} from 'Enum'
 cc.Class({
@@ -12,10 +12,13 @@ cc.Class({
     // onLoad () {},
 
     start () {
-      this.labelSchedule(story[0].about)
+      // 获得玩家当前事件描述
+      const event = player.getCurrentEvent()
+      if(event) {
+        this.labelSchedule(event.about)
+      }
       this.btn.node.on('click', this.startGame, this)
     },
-
 
     // 文字提示
     labelSchedule(content) {

@@ -3,6 +3,7 @@ const player = require("PlayerManager")
 import {TALENT,GAME_SCENE} from 'Enum'
 import GameSceneMng from './GameSceneMng'
 import talent from '../Conf/talent'
+import story from '../Conf/story'
 
 cc.Class({
     extends: cc.Component,
@@ -50,6 +51,8 @@ cc.Class({
       if(player.properties.talent != null) {
         //初始化人物属性
         player.init(player.properties.talent)
+        //添加开始剧情
+        player.setCurrentEvent(story[0])
         //开始游戏
         GameSceneMng.getInstance().setGameScene(GAME_SCENE.STORY)
       }
