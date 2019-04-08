@@ -1,7 +1,9 @@
 import {STATUS,EVENT} from 'Enum'
 import {Backpack} from './GoodsManager'
+import sleep from '../Conf/sleep'
+
 const et = require('Listener')
-// 状态模式
+// 有限状态机
 
 // 状态基类
 class BaseState {
@@ -120,6 +122,36 @@ class Forward extends BaseState {
   }
 }
 
+// 睡眠状态
+class Sleep extends BaseState { 
+  constructor() {
+    super()
+    this.event = sleep
+  }
+
+  doSomething(obj) {
+    obj.rest()
+    let res = this.getPlotEvent(obj)
+    if(!res) {
+      obj.currentEvent = {about: "精力充沛，又是崭新的一天！"}
+    }
+  }
+
+  getPlotEvent(obj) {
+    for(let key in obj.properties.currentPlace.arr) {
+      for(let x=0; x<this.event.length; x++) {
+        if(obj.properties.currentPlace.arr[key] == this.event[x].id) {
+          obj.properties.currentPlace.arr[key] = -1
+          obj.currentEvent = this.event[x]
+          return true
+        }
+      }
+    }
+    return false
+  }
+}
+
+
 // 状态管理
 class StateMng {
   constructor() {
@@ -128,6 +160,7 @@ class StateMng {
   init() {
     this.stateArr[0] = new Search() 
     this.stateArr[1] = new Forward() 
+    this.stateArr[2] = new Sleep() 
   }
   getState(num) {
     return this.stateArr[num]

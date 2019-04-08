@@ -112,10 +112,12 @@ class PlayerManager {
 
   // 角色休息
   rest() {
-    let diff = this.properties.energy - this.properties.currentEnergy
-    this.hour = (this.hour*100 + diff*8)/100
-    console.log(this.hour)
-    this.properties.currentEnergy = 100
+    if(this.properties.currentEnergy < this.properties.energy) {
+      let diff = this.properties.energy - this.properties.currentEnergy
+      this.hour = (this.hour*100 + diff*8)/100
+      console.log(this.hour)
+      this.properties.currentEnergy = 100
+    }
   }
 
   // 战斗获胜结算

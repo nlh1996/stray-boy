@@ -50,7 +50,7 @@ cc.Class({
     },                                                                                                                                     
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      this.node.opacity = 200
+      this.node.opacity = 220
       this.node.runAction(cc.fadeIn(1.0))
       this.updateLabel()
       this.node1 = this.node.getChildByName('Node1')
@@ -79,15 +79,16 @@ cc.Class({
       this.Btn_Forward.state = STATE.FORWARD
       this.Btn_Search = this.node1.getChildByName('Btn_Search')
       this.Btn_Search.state = STATE.SEARCH
-      this.Btn_Make = this.node1.getChildByName('Btn_Make')
       this.Btn_Rest = this.node1.getChildByName('Btn_Rest')
+      this.Btn_Rest.state = STATE.SLEEP
+      this.Btn_Make = this.node1.getChildByName('Btn_Make')
       this.Btn_Eat = this.node1.getChildByName('Btn_Eat')
       this.arrBtn = [this.Btn_Forward,this.Btn_Search,this.Btn_Make,this.Btn_Rest,this.Btn_Eat]
       //按钮监听
       this.Btn_Forward.on('click', this.callback, this)
       this.Btn_Make.on('click', this.openMake, this)
       this.Btn_Search.on('click', this.callback, this)
-      this.Btn_Rest.on('click', this.rest, this)
+      this.Btn_Rest.on('click', this.callback, this)
       this.Btn_Eat.on('click', this.opneBackpack, this)
     },
 
@@ -125,12 +126,6 @@ cc.Class({
       if(event) {
         this.labelSchedule(event.about)
       }
-      this.updateLabel()
-    },
-
-    // 人物休息
-    rest() {
-      player.rest()
       this.updateLabel()
     },
 
@@ -175,7 +170,6 @@ cc.Class({
         }
       }
     },
-
 
     // 更新人物属性面板
     updateLabel() {

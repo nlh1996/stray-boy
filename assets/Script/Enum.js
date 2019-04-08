@@ -36,6 +36,7 @@ var STATUS = cc.Enum({
 var STATE = cc.Enum({
   SEARCH: 0,
   FORWARD: 1,
+  SLEEP: 2,
 })
 
 export default {TALENT,EVENT,GAME_SCENE,STATUS,STATE}
