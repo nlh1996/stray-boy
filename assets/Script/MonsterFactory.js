@@ -44,11 +44,11 @@ class Monster {
       this.life = mstList[id].life
       this.duraction = mstList[id].duraction
       this.about = mstList[id].about
-      this.attackType = mstList[id].attackType
+      this.attackType = mstList[id].attacktype
       this.exp = mstList[id].exp
       this.goods = [
-        {good1: mstList[id].good1, num: mstList[id].good1num, por: mstList[id].por},
-        {good2: mstList[id].good2, num: mstList[id].good2num, por: mstList[id].por},
+        {good: mstList[id].good1, num: mstList[id].num1, pro: mstList[id].pro1},
+        {good: mstList[id].good2, num: mstList[id].num2, pro: mstList[id].pro2},
       ]
     }
   }

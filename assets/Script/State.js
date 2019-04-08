@@ -153,7 +153,6 @@ class Sleep extends BaseState {
   }
 }
 
-
 // 状态管理
 class StateMng {
   constructor() {

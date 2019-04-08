@@ -58,8 +58,9 @@ cc.Class({
     // 获胜
     win() {
       player.win(this.monster)
-      let content = '恭喜您获得胜利！【经验+' + this.monster.exp + '】'
-      this.labelSchedule(content)
+      let event = player.getCurrentEvent()
+      console.log(event)
+      this.labelSchedule(event.about)
       this.updateLabel()
     },
 
