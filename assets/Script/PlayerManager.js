@@ -118,7 +118,7 @@ class PlayerManager {
   rest() {
     if(this.properties.currentEnergy < this.properties.energy) {
       let diff = this.properties.energy - this.properties.currentEnergy
-      this.hour = (this.hour*100 + diff*8)/100
+      this.hour = (this.hour*1000 + diff*80)/100
       console.log(this.hour)
       this.properties.currentEnergy = 100
     }
@@ -166,15 +166,19 @@ class PlayerManager {
   // 角色进食
   eat(food) {
     let result = ''
-    if(food.effect&&this.properties.currentHunger < this.properties.hunger) {
-      this.properties.currentHunger += food.effect[1]
+    if(food.effect[0] == '饥饿' && this.properties.currentHunger < this.properties.hunger) {
+      this.properties.currentHunger += parseInt(food.effect[1])
       if(this.properties.currentHunger > this.properties.hunger) {
         this.properties.currentHunger = this.properties.hunger
       }
       result = EVENT.HUNGER
       Backpack.getInstance().consume(food.id)
-    } else {
+    } 
+    if(food.effect[0] == '饥饿' && this.properties.currentHunger >= this.properties.hunger) {
       result = EVENT.FULL
+    }
+    if(food.effect[0] == '生命') {
+      this.properties.life += parseInt(food.effect[1])
     }
     return result
   }

@@ -54,7 +54,7 @@ class Search extends BaseState {
   // 获取探索事件
   getSearchEvent(obj) {
     let pro = Math.floor(Math.random()*100) 
-    if(30+obj.properties.charm >= pro) {
+    if(obj.properties.charm*3 >= pro) {
       let i = Math.floor(Math.random()*4)
       obj.currentEvent = this.event[i]
     } else {

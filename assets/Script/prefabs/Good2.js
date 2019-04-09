@@ -1,4 +1,4 @@
-// good2预制件的脚本
+// good2道具预制件的脚本
 import player from '../PlayerManager'
 import {EVENT} from 'Enum'
 cc.Class({
@@ -20,8 +20,8 @@ cc.Class({
     eat() {
       let result = player.eat(this.node.good)
       if(result != EVENT.FULL) {
-        var content = '饥饿+20'
-      }else{
+        var content = this.node.good.about
+      }else {
         var content = '吃饱了'
       }
       cc.director.getScene().getChildByName('Canvas').getComponent('GoodScene').labelSchedule(content)

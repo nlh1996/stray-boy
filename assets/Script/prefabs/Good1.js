@@ -1,4 +1,4 @@
-// good1预制件的脚本
+// good1打造物品预制件的脚本
 import {Backpack} from '../GoodsManager'
 cc.Class({
     extends: cc.Component,
