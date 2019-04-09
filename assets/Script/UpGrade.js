@@ -64,7 +64,6 @@ cc.Class({
 
     onDestroy() {
       et.off(EVENT.UPGRADE)
-
     },
 
     jiadian(btn) {

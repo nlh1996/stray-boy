@@ -98,6 +98,7 @@ class Forward extends BaseState {
         if(obj.properties.currentPlace.arr[key] == this.plot[x].id) {
           obj.properties.currentPlace.arr[key] = -1
           obj.setCurrentEvent(this.plot[x])
+          et.emit(EVENT.CHOOSE)
           return true
         }
       }

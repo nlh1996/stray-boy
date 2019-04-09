@@ -14,7 +14,8 @@ var EVENT = cc.Enum({
   FULL: '吃饱了',
   GAMEOVER: '游戏结束',
   UPGRADE: '升级',
-  FINISH: '加点结束'
+  FINISH: '加点结束',
+  CHOOSE: '游戏选择'
 })
 
 var GAME_SCENE = cc.Enum({

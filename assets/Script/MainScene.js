@@ -56,6 +56,7 @@ cc.Class({
       this.node1 = this.node.getChildByName('Node1')
       this.node2 = this.node.getChildByName('Node2')
       this.node3 = this.node.getChildByName('Node3')
+      this.node4 = this.node.getChildByName('Node4')
       //注册监听事件
       et.on(EVENT.NO_HUNGER, this.hungry, this)
       //每次加载组件都重新注册)
@@ -67,6 +68,7 @@ cc.Class({
         this.nodeActive(this.node3)
       })
       et.on(EVENT.HURT, this.updateLabel, this)
+      et.on(EVENT.CHOOSE, this.choose, this)
       et.on(EVENT.FINISH, () => {
         this.nodeActive(this.node1)
       })
@@ -101,6 +103,7 @@ cc.Class({
       this.node1.active = false
       this.node2.active = false
       this.node3.active = false
+      this.node4.active = false
       node.active = true
     },
 
@@ -111,6 +114,7 @@ cc.Class({
       et.off(EVENT.FINISH)
       et.off(EVENT.UPGRADE)
       et.off(EVENT.HURT)
+      et.off(EVENT.CHOOSE)
     },
 
     hungry() {
@@ -124,9 +128,18 @@ cc.Class({
       // 获得玩家当前事件描述
       const event = player.getCurrentEvent()
       if(event) {
-        this.labelSchedule(event.about)
+        if(btn.node.state == STATE.SEARCH) {
+          this.labelSchedule1(event.about)
+        }else {
+          this.labelSchedule2(event.about)
+        }
       }
       this.updateLabel()
+    },
+
+    // 事件选择
+    choose() {
+      this.nodeActive(this.node4)
     },
 
     // 打开制造页
@@ -139,8 +152,9 @@ cc.Class({
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GOOD_LIST)
     },
 
-    // 文字出现效果
-    labelSchedule(content) {
+    // 文字出现效果带按钮特效
+    labelSchedule1(content) {
+      this.unscheduleAllCallbacks()
       this.content.string = ''
       let index = 0
       let i = content.length - 1
@@ -151,7 +165,19 @@ cc.Class({
         if(index>i) {
           this.changeBtnState(this.arrBtn, 1.0)
         }
-      },0.08,i,0)
+      },0.04,i,0)
+    },
+
+    // 文字提示不带按钮特效
+    labelSchedule2(content) {
+      this.unscheduleAllCallbacks()
+      this.content.string = ''
+      let index = 0
+      let i = content.length - 1
+      this.schedule(() => {
+        this.content.string = this.content.string + content[index]
+        index++
+      },0.02,i,0)
     },
 
     // 按钮状态改变

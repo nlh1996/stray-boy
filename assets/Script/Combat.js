@@ -32,6 +32,7 @@ cc.Class({
     },
 
     onLoad() {
+      this.node.parentComponent = this.node.parent.getComponent('MainScene')
       this.updateLabel()
       this.Btn_Combat.node.on('click',this.combat, this)
       this.Btn_RunAway.node.on('click',this.runAway, this)
@@ -52,14 +53,14 @@ cc.Class({
       let monster = new Monster(id)
       this.monster =  monster
       this.updateMonster()
-      this.labelSchedule(this.monster.about)
+      this.node.parentComponent.labelSchedule2(this.monster.about)
     },
 
     // 获胜
     win() {
       player.win(this.monster)
       const event = player.getCurrentEvent()
-      this.labelSchedule(event.about)
+      this.node.parentComponent.labelSchedule2(event.about)
       this.updateLabel()
     },
 
@@ -69,7 +70,7 @@ cc.Class({
       let content = '你丢出了一张符箓 【僵尸生命-' + this.damage[0] + '】' 
       + this.monster.attackType +'【生命-' + this.damage[1] + '】'
       if(this.monster.life>0) {
-        this.labelSchedule(content)
+        this.node.parentComponent.labelSchedule2(content)
       }
     },
 
@@ -93,19 +94,4 @@ cc.Class({
       this.Monster.string = this.monster.name + ' lv ' + this.monster.lv + ' hp ' + this.monster.life
     },
 
-    // 文字提示
-    labelSchedule(content) {
-      this.unscheduleAllCallbacks()
-      this.Btn_Combat.enabled = false
-      this.Content.string = ''
-      let index = 0
-      let i = content.length - 1
-      this.schedule(() => {
-        this.Content.string = this.Content.string + content[index]
-        index++
-        if(index>i) {
-          this.Btn_Combat.enabled = true
-        }
-      },0.02,i,0)
-    },
 });
