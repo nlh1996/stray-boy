@@ -1,7 +1,7 @@
 import {STATUS,EVENT} from 'Enum'
 import {Backpack} from './GoodsManager'
 import sleep from '../Conf/sleep'
-
+import plot from '../Conf/plot'
 const et = require('Listener')
 // 有限状态机
 
@@ -74,10 +74,7 @@ class Forward extends BaseState {
       {about:'收集到【生肉】*3', code: [703]},
       {about:'收集到【果子】*3', code: [803]},
     ]
-    this.plot = [
-      {about:'前方发现一个山洞', id: 5, result: {id:101, num:1}},
-      {about:'发现地上有五块钱，是否捡起', id: 6, result: {id:101, num:1}}
-    ]
+    this.plot = plot
   }
 
   doSomething(obj) {
@@ -166,7 +163,7 @@ class StateMng {
   getState(num) {
     return this.stateArr[num]
   }
-}
+} 
 
 const stateMng = new StateMng()
 stateMng.init()

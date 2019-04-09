@@ -39,7 +39,7 @@ cc.Class({
       var finished = cc.callFunc(function () {
         GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)
       })
-      var myAction = cc.sequence(cc.fadeOut(2.0), finished);
+      var myAction = cc.sequence(cc.fadeOut(1.5), finished);
       this.node.runAction(myAction)
     }
     // update (dt) {},

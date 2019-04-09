@@ -58,8 +58,7 @@ cc.Class({
     // 获胜
     win() {
       player.win(this.monster)
-      let event = player.getCurrentEvent()
-      console.log(event)
+      const event = player.getCurrentEvent()
       this.labelSchedule(event.about)
       this.updateLabel()
     },

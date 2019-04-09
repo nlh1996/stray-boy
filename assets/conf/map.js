@@ -7,9 +7,7 @@ export default[
         "num": 1,
         "pro": 70,
         "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 3
+
         }
     },
     {
@@ -20,8 +18,7 @@ export default[
         "num": 1,
         "pro": 71,
         "arr": {
-            "0": 2,
-            "2": 4
+
         }
     },
     {

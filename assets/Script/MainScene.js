@@ -50,7 +50,7 @@ cc.Class({
     },                                                                                                                                     
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
-      this.node.opacity = 220
+      this.node.opacity = 240
       this.node.runAction(cc.fadeIn(1.0))
       this.updateLabel()
       this.node1 = this.node.getChildByName('Node1')

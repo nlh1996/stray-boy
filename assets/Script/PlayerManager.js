@@ -127,14 +127,14 @@ class PlayerManager {
   // 战斗获胜结算
   win(mst) {
     this.properties.exp += mst.exp
-    var event = {about:'恭喜您获得胜利！【经验+' + mst.exp + '】'}
+    var event = {about:'战斗胜利！获得【经验+' + mst.exp + '】'}
     for(let i=0; i<mst.goods.length; i++) {
       let pro = Math.floor(Math.random()*100) 
       if(pro<mst.goods[i].pro) {
         event.about = event.about + '【' + mst.goods[i].good + '*' + mst.goods[i].num + '】'
       }
-      this.setCurrentEvent(event)
     }
+    this.setCurrentEvent(event)
   }
 
   // 执行逃跑
