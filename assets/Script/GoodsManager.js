@@ -117,11 +117,18 @@ class Weapon {
     if(index < weapon.length) {
       this.id = weapon[index].id
       this.name = weapon[index].name
-      this.num = 0
+      this.num = 1
       this.attack = weapon[index].attack
       this.defence = weapon[index].defence
+      this.speed = weapon[index].speed
       this.life = weapon[index].life
       this.about = '上古众神使用过的武器'
+      this.des = weapon[index].des
+      this.type = weapon[index].type
+      this.time = weapon[index].time
+      this.buff1 = weapon[index].buff1
+      this.buff2 = weapon[index].buff2
+      this.buff3 = weapon[index].buff3
     }
   }
 }

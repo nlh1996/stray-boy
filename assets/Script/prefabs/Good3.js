@@ -13,14 +13,62 @@ cc.Class({
     onLoad() {
       this.updateData()
       this.btn_label.node.color = cc.color(105,105,105)
-      this.btn.node.on('click', this.equip ,this)
-      if(this.node.good.num > 0) {
-        this.btn.enabled = true
-        this.btn_label.node.color = cc.color(20,240,36)
+      this.btn.node.on('click', this.equip, this)
+    },
+
+    start() {
+      if(this.node.good.type == '特殊') {
+        this.btn.enabled = false
+        if(this.node.good.num > 0) {
+          this.btn_label.node.color = cc.color(20,240,36)
+          this.btn_label.string = '已生效'
+        }else {
+          this.btn_label.node.color = cc.color(105,105,105)
+          this.btn_label.string = '未获得'
+        }
+      }
+
+      if(this.node.good.type == '武器') {
+        if(this.node.good.num > 0) {
+          if(player.weapon.id == this.node.good.id) {
+            this.btn.enabled = false
+            this.btn_label.node.color = cc.color(105,105,105)
+            this.btn_label.string = '穿戴中'
+          }else {
+            this.btn.enabled = true
+            this.btn_label.node.color = cc.color(20,240,36)
+            this.btn_label.string = '穿戴'
+          }           
+        }else {
+          this.btn.enabled = false
+          this.btn_label.node.color = cc.color(105,105,105)
+          this.btn_label.string = '未获得'
+        }
+      }
+
+      if(this.node.good.type == '盔甲') {
+        if(this.node.good.num > 0) {
+          if(player.armor.id == this.node.good.id) {
+            this.btn.enabled = false
+            this.btn_label.node.color = cc.color(105,105,105)
+            this.btn_label.string = '穿戴中'
+          }else {
+            this.btn.enabled = true
+            this.btn_label.node.color = cc.color(20,240,36)
+            this.btn_label.string = '穿戴'
+          }           
+        }else {
+          this.btn.enabled = false
+          this.btn_label.node.color = cc.color(105,105,105)
+          this.btn_label.string = '未获得'
+        }
       }
     },
 
+    // 装备
     equip() {
+      player.equip(this.node.good)
+      this.btn.enabled = false
       this.btn_label.node.color = cc.color(105,105,105)
       this.btn_label.string = '穿戴中'
     },
@@ -35,16 +83,23 @@ cc.Class({
 
     // 判断按钮是否为可用状态
     btnState() {
-      if(this.node.good.num > 0) {
-        this.btn.enabled = true
-        this.btn_label.node.color = cc.color(20,240,36)
-      } else {
-        this.btn.enabled = false
-        this.btn_label.node.color = cc.color(105,105,105)
-      }     
+      if(this.node.good.type == '武器') {
+        if(this.node.good.num > 0 && player.weapon.id != this.node.good.id) {
+          this.btn.enabled = true
+          this.btn_label.node.color = cc.color(20,240,36)
+          this.btn_label.string = '穿戴'
+        } 
+      }      
+      if(this.node.good.type == '盔甲') {
+        if(this.node.good.num > 0 && player.armor.id != this.node.good.id) {
+          this.btn.enabled = true
+          this.btn_label.node.color = cc.color(20,240,36)
+          this.btn_label.string = '穿戴'
+        } 
+      }
     },
 
-    update (dt) {
-      //this.btnState()
-    },
+    update() {
+      this.btnState()
+    }
 });

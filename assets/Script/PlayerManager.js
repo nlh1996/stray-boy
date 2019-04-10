@@ -44,6 +44,9 @@ class PlayerManager {
     this.mstattackSpeed = 2
     this._state = {}
     this.currentEvent = {}
+    this.attackDescribe = '挥舞拳头，重重一击'
+    this.weapon = {id: -1}
+    this.armor = {id: -1}
   }
 
   init(id) {
@@ -72,6 +75,32 @@ class PlayerManager {
   Get() {
     const userData = JSON.parse(cc.sys.localStorage.getItem('userData'))
     return userData
+  }
+
+  // 角色穿戴装备
+  equip(good) {
+    if(good.type == '武器') {
+      if(this.weapon.id != -1) {
+        this.properties.attack -= this.weapon.attack
+        this.properties.defence -= this.weapon.defence
+        this.properties.life -= this.weapon.life
+      }
+      this.weapon = good
+      this.properties.attack += this.weapon.attack
+      this.properties.defence += this.weapon.defence
+      this.properties.life += this.weapon.life
+    }
+    if(good.type == '盔甲') {
+      if(this.armor.id != -1) {
+        this.properties.attack -= this.weapon.attack
+        this.properties.defence -= this.weapon.defence
+        this.properties.life -= this.weapon.life
+      }
+      this.armor = good
+      this.properties.attack += this.armor.attack
+      this.properties.defence += this.armor.defence
+      this.properties.life += this.armor.life
+    }
   }
 
   // 设置角色状态
