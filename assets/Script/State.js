@@ -40,6 +40,7 @@ class Search extends BaseState {
     ]
   }
   doSomething(obj) {
+    obj.lackGood('遮阳帽')
     let status = obj.consume(5,5,0.5)
     if(status == STATUS.STATUS_OK) {
       this.getSearchEvent(obj)
@@ -78,6 +79,7 @@ class Forward extends BaseState {
   }
 
   doSomething(obj) {
+    obj.lackGood('遮阳帽')
     let status = obj.consume(10,10,1)
     if(status == STATUS.STATUS_OK) {
       // 角色前进
@@ -129,6 +131,7 @@ class Sleep extends BaseState {
   }
 
   doSomething(obj) {
+    obj.lackGood('帐篷')
     obj.rest()
     let res = this.getPlotEvent(obj)
     if(!res) {

@@ -86,6 +86,7 @@ class PlayerManager {
         this.properties.life -= this.weapon.life
       }
       this.weapon = good
+      this.attackDescribe = good.des
       this.properties.attack += this.weapon.attack
       this.properties.defence += this.weapon.defence
       this.properties.life += this.weapon.life
@@ -147,7 +148,7 @@ class PlayerManager {
   rest() {
     if(this.properties.currentEnergy < this.properties.energy) {
       let diff = this.properties.energy - this.properties.currentEnergy
-      this.hour = (this.hour*1000 + diff*80)/100
+      this.hour = (this.hour*1000 + diff*80)/1000
       console.log(this.hour)
       this.properties.currentEnergy = 100
     }
@@ -210,6 +211,14 @@ class PlayerManager {
       this.properties.life += parseInt(food.effect[1])
     }
     return result
+  }
+
+  // 缺少物品
+  lackGood(goodName) {
+    let result = Backpack.getInstance().isHaveGood(goodName)
+    if(!result) {
+      this.properties.health -= 1
+    }
   }
 
   // 角色前进

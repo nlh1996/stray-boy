@@ -58,7 +58,7 @@ class Backpack {
     return true
   }
 
-  // 属性改变
+  // 材料变化
   setProperty(code) {
     for(let i=0; i<code.length; i++) {
       switch(code[i]) {
@@ -91,6 +91,19 @@ class Backpack {
       }
     }
   }
+
+  // 是由拥有该物品
+  isHaveGood(goodName) {
+    for(let i=0; i<this.weaponList.length; i++) {
+      if(this.weaponList[i].name == goodName) {
+        if(this.weaponList[i].num>0) {
+          return true
+        }else {
+          return false
+        }
+      }
+    }
+  }
 }
 
 // 打造类
@@ -117,7 +130,7 @@ class Weapon {
     if(index < weapon.length) {
       this.id = weapon[index].id
       this.name = weapon[index].name
-      this.num = 1
+      this.num = 0
       this.attack = weapon[index].attack
       this.defence = weapon[index].defence
       this.speed = weapon[index].speed
