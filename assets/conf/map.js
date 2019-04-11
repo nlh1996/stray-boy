@@ -1,14 +1,12 @@
-export default[
+export default [
     {
         "id": 1,
         "name": "孙庄",
         "duraction": 0,
         "good": "草药",
         "num": 1,
-        "pro": 70,
-        "arr": {
-
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 2,
@@ -16,10 +14,8 @@ export default[
         "duraction": 10,
         "good": "果子",
         "num": 1,
-        "pro": 71,
-        "arr": {
-
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 3,
@@ -27,11 +23,8 @@ export default[
         "duraction": 20,
         "good": "皮",
         "num": 1,
-        "pro": 72,
-        "arr": {
-            "0": 1,
-            "2": 5
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 4,
@@ -39,11 +32,8 @@ export default[
         "duraction": 30,
         "good": "木材",
         "num": 1,
-        "pro": 73,
-        "arr": {
-            "0": 4,
-            "2": 6
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 5,
@@ -51,12 +41,8 @@ export default[
         "duraction": 40,
         "good": "兽肉",
         "num": 1,
-        "pro": 74,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 7
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 6,
@@ -64,12 +50,8 @@ export default[
         "duraction": 50,
         "good": "果子",
         "num": 1,
-        "pro": 75,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 8
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 7,
@@ -77,12 +59,8 @@ export default[
         "duraction": 75,
         "good": "药草",
         "num": 1,
-        "pro": 76,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 9
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 8,
@@ -90,12 +68,8 @@ export default[
         "duraction": 100,
         "good": "木材",
         "num": 1,
-        "pro": 77,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 10
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 9,
@@ -103,12 +77,8 @@ export default[
         "duraction": 150,
         "good": "皮",
         "num": 1,
-        "pro": 78,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 11
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 10,
@@ -116,12 +86,8 @@ export default[
         "duraction": 180,
         "good": "铁",
         "num": 1,
-        "pro": 79,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 12
-        }
+        "pro": 3,
+        "": ""
     },
     {
         "id": 11,
@@ -129,12 +95,8 @@ export default[
         "duraction": 200,
         "good": "硫磺",
         "num": 1,
-        "pro": 80,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 13
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 12,
@@ -142,12 +104,8 @@ export default[
         "duraction": 250,
         "good": "兽骨",
         "num": 1,
-        "pro": 81,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 14
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 13,
@@ -155,12 +113,8 @@ export default[
         "duraction": 300,
         "good": "鳞片",
         "num": 1,
-        "pro": 82,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 15
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 14,
@@ -168,12 +122,8 @@ export default[
         "duraction": 350,
         "good": "兽筋",
         "num": 1,
-        "pro": 83,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 16
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 15,
@@ -181,12 +131,8 @@ export default[
         "duraction": 400,
         "good": "变异兽骨",
         "num": 1,
-        "pro": 84,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 17
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 16,
@@ -194,12 +140,8 @@ export default[
         "duraction": 450,
         "good": "变异鳞片",
         "num": 1,
-        "pro": 85,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 18
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 17,
@@ -207,12 +149,8 @@ export default[
         "duraction": 500,
         "good": "猪王獠牙",
         "num": 1,
-        "pro": 86,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 19
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 18,
@@ -220,12 +158,8 @@ export default[
         "duraction": 550,
         "good": "猪王皮",
         "num": 1,
-        "pro": 87,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 20
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 19,
@@ -233,12 +167,8 @@ export default[
         "duraction": 600,
         "good": "铀矿石",
         "num": 1,
-        "pro": 88,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 21
-        }
+        "pro": 2,
+        "": ""
     },
     {
         "id": 20,
@@ -246,12 +176,8 @@ export default[
         "duraction": 650,
         "good": "变异兽骨",
         "num": 1,
-        "pro": 89,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 22
-        }
+        "pro": 1,
+        "": "                                                                                                                                          "
     },
     {
         "id": 21,
@@ -259,12 +185,8 @@ export default[
         "duraction": 700,
         "good": "变异鳞片",
         "num": 1,
-        "pro": 90,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 23
-        }
+        "pro": 1,
+        "": ""
     },
     {
         "id": 22,
@@ -272,12 +194,8 @@ export default[
         "duraction": 800,
         "good": "猪王獠牙",
         "num": 1,
-        "pro": 91,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 24
-        }
+        "pro": 1,
+        "": ""
     },
     {
         "id": 23,
@@ -285,12 +203,8 @@ export default[
         "duraction": 1000,
         "good": "猪王皮",
         "num": 1,
-        "pro": 92,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 25
-        }
+        "pro": 1,
+        "": ""
     },
     {
         "id": 24,
@@ -298,12 +212,8 @@ export default[
         "duraction": 1200,
         "good": "铀矿石",
         "num": 1,
-        "pro": 93,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 26
-        }
+        "pro": 1,
+        "": ""
     },
     {
         "id": 25,
@@ -311,12 +221,8 @@ export default[
         "duraction": 1500,
         "good": "变异兽骨",
         "num": 1,
-        "pro": 94,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 27
-        }
+        "pro": 1,
+        "": ""
     },
     {
         "id": 26,
@@ -324,12 +230,8 @@ export default[
         "duraction": 1800,
         "good": "变异鳞片",
         "num": 1,
-        "pro": 95,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 28
-        }
+        "pro": 1,
+        "": ""
     },
     {
         "id": 27,
@@ -337,12 +239,8 @@ export default[
         "duraction": 2500,
         "good": "猪王獠牙",
         "num": 1,
-        "pro": 96,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 29
-        }
+        "pro": 1,
+        "": ""
     },
     {
         "id": 28,
@@ -350,11 +248,7 @@ export default[
         "duraction": 4000,
         "good": "猪王皮",
         "num": 1,
-        "pro": 97,
-        "arr": {
-            "0": 1,
-            "1": 2,
-            "2": 30
-        }
+        "pro": 1,
+        "": ""
     }
 ]

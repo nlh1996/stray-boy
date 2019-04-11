@@ -2,6 +2,7 @@ import {STATUS,EVENT} from 'Enum'
 import {Backpack} from './GoodsManager'
 import sleep from '../Conf/sleep'
 import plot from '../Conf/plot'
+import goods from '../Conf/goods'
 const et = require('Listener')
 // 有限状态机
 
@@ -95,11 +96,57 @@ class Forward extends BaseState {
 
   // 一定几率触发特殊事件
   getPlotEvent(obj) {
-    for(let key in obj.properties.currentPlace.arr) {
-      for(let x=0; x<this.plot.length; x++) {
-        if(obj.properties.currentPlace.arr[key] == this.plot[x].id) {
-          obj.properties.currentPlace.arr[key] = -1
-          obj.setCurrentEvent(this.plot[x])
+    let pro = Math.floor(Math.random()*100)
+    if(pro<obj.properties.currentPlace.pro*obj.properties.charm) {
+      for(let i=0; i<this.plot.length; i++) {
+        let res = 0
+
+        if(this.plot[i].condition1 == 0) {
+          res += 1
+        }else {
+          if(this.plot[i].condition1 == obj.properties.talent) {
+            res += 1
+          }
+        }
+
+        if(JSON.stringify(this.plot[i].condition2) == "{}") {
+          res += 1
+        }else {
+          if(this.plot[i].condition2[0] == '体质') {
+            if(this.plot[i].condition2[1] >= obj.properties.sport) {
+              res += 1
+            }
+          }
+          if(this.plot[i].condition2[0] == '情商') {
+            if(this.plot[i].conditon2[1] >= obj.properties.charm) {
+              res += 1
+            }
+          }
+          if(this.plot[i].condition2[0] == '智商') {
+            if(this.plot[i].condition2[1] >= obj.properties.knowledge) {
+              res += 1
+            }
+          }
+        }
+
+        if(this.plot[i].condition3 == 0) {
+          res += 1
+        }else {
+          if(this.plot[i].condition3>obj.properties.currentPlace.id) {
+            res += 1
+          }
+        }
+
+        if(this.plot[i].condition4 == 0) {
+          res += 1
+        }else {
+          if(this.plot[i].condition4<obj.day) {
+            res += 1
+          }
+        }
+
+        if(res == 4) {
+          obj.setCurrentEvent(this.plot[i])
           et.emit(EVENT.CHOOSE)
           return true
         }
