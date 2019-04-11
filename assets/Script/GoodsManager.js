@@ -22,8 +22,8 @@ class Backpack {
     return this.backpack
   }
 
-  // 制造物品
-  make(good) {
+  // 制造物品成功
+  makeSuccess(good) {
     for(let i=0; i<good.needs.length; i++) {
       for(let index=0; index<this.materials.length; index++) {
         if(good.needs[i].name == this.materials[index].name) {
@@ -35,6 +35,17 @@ class Backpack {
     for(let i=0; i<this.weaponList.length; i++) {
       if(good.id == this.weaponList[i].id) {
         this.weaponList[i].num += 1
+      }
+    }
+  }
+  
+  // 制造物品失败
+  makeFail(good) {
+    for(let i=0; i<good.needs.length; i++) {
+      for(let index=0; index<this.materials.length; index++) {
+        if(good.needs[i].name == this.materials[index].name) {
+          this.materials[index].num -= good.needs[i].num
+        }
       }
     }
   }
@@ -116,7 +127,6 @@ class Duanzao {
       this.needs = [
         {name: duanzao[index].need1, num: duanzao[index].sum1},
         {name: duanzao[index].need2, num: duanzao[index].sum2},
-        {name: duanzao[index].need3, num: duanzao[index].sum3}
       ]
       this.time = duanzao[index].time
       this.pro = duanzao[index].pro    

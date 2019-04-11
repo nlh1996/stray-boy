@@ -24,7 +24,7 @@ cc.Class({
         return
       }
       if(btn.node.name == 'Btn_Yes') {
-        player.setCurrentEvent({about: player.getCurrentEvent().yes + player.getCurrentEvent().result})
+        player.setCurrentEvent({about: player.getCurrentEvent().yes})
       }else {
         player.setCurrentEvent({about: player.getCurrentEvent().no})
       }

@@ -100,48 +100,47 @@ class Forward extends BaseState {
     if(pro<obj.properties.currentPlace.pro*obj.properties.charm) {
       for(let i=0; i<this.plot.length; i++) {
         let res = 0
-
         if(this.plot[i].condition1 == 0) {
-          res += 1
+          res++
         }else {
           if(this.plot[i].condition1 == obj.properties.talent) {
-            res += 1
+            res++
           }
         }
 
         if(JSON.stringify(this.plot[i].condition2) == "{}") {
-          res += 1
+          res++
         }else {
           if(this.plot[i].condition2[0] == '体质') {
             if(this.plot[i].condition2[1] >= obj.properties.sport) {
-              res += 1
+              res++
             }
           }
           if(this.plot[i].condition2[0] == '情商') {
             if(this.plot[i].conditon2[1] >= obj.properties.charm) {
-              res += 1
+              res++
             }
           }
           if(this.plot[i].condition2[0] == '智商') {
             if(this.plot[i].condition2[1] >= obj.properties.knowledge) {
-              res += 1
+              res++
             }
           }
         }
 
         if(this.plot[i].condition3 == 0) {
-          res += 1
+          res++
         }else {
           if(this.plot[i].condition3>obj.properties.currentPlace.id) {
-            res += 1
+            res++
           }
         }
 
         if(this.plot[i].condition4 == 0) {
-          res += 1
+          res++
         }else {
           if(this.plot[i].condition4<obj.day) {
-            res += 1
+            res++
           }
         }
 

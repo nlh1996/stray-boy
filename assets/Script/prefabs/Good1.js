@@ -1,5 +1,6 @@
 // good1打造物品预制件的脚本
 import {Backpack} from '../GoodsManager'
+import player from '../PlayerManager'
 cc.Class({
     extends: cc.Component,
     
@@ -10,16 +11,17 @@ cc.Class({
       label2: cc.Label,
     },
 
-    onLoad () {
-   
+    start () {
+
     },
 
     // 物品制造事件
     makeGood() {
-      // 打造物品
-      Backpack.getInstance().make(this.node.good)
+      // 角色打造物品
+      player.make(this.node.good)
       // 更新title提示
-      cc.director.getScene().getChildByName('Canvas').getComponent('MakeScene').labelSchedule(this.node.good.name)
+      let event = player.getCurrentEvent()
+      cc.director.getScene().getChildByName('Canvas').getComponent('MakeScene').labelSchedule(event.about)
     },
 
     // 判断按钮是否为可用状态

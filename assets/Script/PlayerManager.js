@@ -104,6 +104,19 @@ class PlayerManager {
     }
   }
 
+  // 角色制造装备 
+  make(good) {
+    let pro = Math.floor(Math.random()*100) 
+    if(pro < 3*this.properties.knowledge) {
+      Backpack.getInstance().makeSuccess(good)
+      const str = '获得【' + good.name + '】*1' 
+      var event = {about: str}
+    }else {
+      Backpack.getInstance().makeFail(good)
+      var event = {about: '打造失败！'}
+    }
+    this.setCurrentEvent(event)
+  }
   // 设置角色状态
   setState(num) {
     this._state = stateMng.getState(num)

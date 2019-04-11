@@ -31,10 +31,9 @@ cc.Class({
     },
 
     // 文字出现效果
-    labelSchedule(name) {
+    labelSchedule(content) {
       this.unscheduleAllCallbacks()
       this.title.string = ''
-      let content = '获得【' + name + '】*1' 
       let index = 0
       let i = content.length - 1
       this.schedule(() => {
