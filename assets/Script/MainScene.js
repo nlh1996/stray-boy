@@ -205,7 +205,11 @@ cc.Class({
       this.moveSpeed.string = player.properties.moveSpeed
       this.hunger.string = '饥饿 ' + player.properties.currentHunger + '/' + player.properties.hunger
       this.energy.string = '精力 ' + player.properties.currentEnergy + '/' + player.properties.energy
-      this.time.string = player.hour + '小时'
+      if(player.day == 0) {
+        this.time.string = player.hour + '小时'
+      }else {
+        this.time.string = player.day + '天' + player.hour + '小时'
+      }
       this.duraction.string = player.duraction
       this.place.string = player.properties.currentPlace.name
     },

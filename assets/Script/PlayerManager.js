@@ -39,6 +39,7 @@ class PlayerManager {
     // this.second = 0
     // this.minute = 0
     this.hour = 0
+    this.day = 0
     this.duraction = 300
     this.mstMoveSpeed = 1
     this.mstattackSpeed = 2
@@ -161,12 +162,20 @@ class PlayerManager {
   rest() {
     if(this.properties.currentEnergy < this.properties.energy) {
       let diff = this.properties.energy - this.properties.currentEnergy
-      this.hour = (this.hour*1000 + diff*80)/1000
-      console.log(this.hour)
+      let hour = (diff*8)/100
+      this.computingTime(hour)
       this.properties.currentEnergy = 100
     }
   }
 
+  //计算时间 
+  computingTime(hour) {
+    this.hour = (hour*10 + this.hour*10)/10
+    if(this.hour >= 24) {
+      this.hour = (this.hour*10-24*10)/10
+      this.day += 1
+    }
+  }
   // 战斗获胜结算
   win(mst) {
     this.properties.exp += mst.exp
@@ -187,7 +196,7 @@ class PlayerManager {
 
   // 角色消耗精力，饥饿,时间
   consume(energy,hunger,hour) {
-    this.hour += hour
+    this.computingTime(hour)
     // 僵尸前进
     this.duraction -= this.mstMoveSpeed
     if(this.duraction <= 0) {

@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.5866306390977443,
-      "y": 0.5866306390977443,
-      "z": 0.5866306390977443
+      "x": 0.6212171052631579,
+      "y": 0.6212171052631579,
+      "z": 0.6212171052631579
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -6375,9 +6375,6 @@
     "btn_no": {
       "__id__": 128
     },
-    "Content": {
-      "__id__": 97
-    },
     "_id": "f3HiIf2phBebj7MDVAvZxd"
   },
   {
@@ -6484,7 +6481,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 171.11,
       "height": 40
     },
     "_anchorPoint": {
@@ -6494,7 +6491,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -230,
+      "x": -250,
       "y": 0,
       "z": 0
     },
@@ -6531,8 +6528,8 @@
     "_srcBlendFactor": 1,
     "_dstBlendFactor": 771,
     "_useOriginalSize": false,
-    "_string": "生存时间",
-    "_N$string": "生存时间",
+    "_string": "生存时间:",
+    "_N$string": "生存时间:",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -6658,7 +6655,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 22.25,
+      "width": 19.47,
       "height": 40
     },
     "_anchorPoint": {
@@ -6668,7 +6665,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -130,
+      "x": -150,
       "y": 0,
       "z": 0
     },
@@ -6707,7 +6704,7 @@
     "_useOriginalSize": false,
     "_string": "1",
     "_N$string": "1",
-    "_fontSize": 40,
+    "_fontSize": 35,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
