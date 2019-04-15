@@ -24,6 +24,7 @@ cc.Class({
         return
       }
       if(btn.node.name == 'Btn_Yes') {
+        player.plotResult(player.getCurrentEvent().result)
         player.setCurrentEvent({about: player.getCurrentEvent().yes})
       }else {
         player.setCurrentEvent({about: player.getCurrentEvent().no})
@@ -32,6 +33,6 @@ cc.Class({
       const content = player.getCurrentEvent().about
       this.node.parent.getComponent('MainScene').labelSchedule2(content)
     },
-
+    
     // update (dt) {},
 });

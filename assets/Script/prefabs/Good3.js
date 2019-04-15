@@ -8,6 +8,7 @@ cc.Class({
       btn_label: cc.Label,
       label1: cc.Label,
       label2: cc.Label,
+      label3: cc.Label,
     },
 
     onLoad() {
@@ -79,6 +80,9 @@ cc.Class({
       this.goodName.string = good.name
       this.label1.string = '#描述：' + good.about
       this.label2.string = '#效果：攻击+' + good.attack + ' 防御+' + good.defence + ' 生命+' + good.life
+      if(good.type == '特殊') {
+        this.label3.string = '#持续时间：' + good.time
+      }
     },
 
     // 判断按钮是否为可用状态

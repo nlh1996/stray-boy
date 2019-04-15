@@ -18,7 +18,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
       this.node.pages = this.pageView.getPages()
-      this.Btn_back.node.on('click',this.back,this)
+      this.Btn_back.node.on('click', this.back, this)
       // this.btnState()
     },
 

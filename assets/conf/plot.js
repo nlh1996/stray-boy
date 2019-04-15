@@ -1,4 +1,4 @@
-export default [
+export default[
     {
         "id": 1,
         "about": "前方发现个山洞",
@@ -6,15 +6,15 @@ export default [
         "no": "",
         "yes": "打开宝箱获得5个果子",
         "result": {
-            "0": "102",
-            "1": "5"
+            "0": 102,
+            "1": 5
         },
         "type": "随机",
         "condition1": 0,
         "condition2": {},
         "condition3": 3,
         "condition4": 0,
-        "primary": 0
+        "primary": false
     },
     {
         "id": 2,
@@ -23,15 +23,15 @@ export default [
         "no": "",
         "yes": "失去500块钱",
         "result": {
-            "0": "13",
-            "1": "-500"
+            "0": 13,
+            "1": -500
         },
         "type": "随机",
         "condition1": 0,
         "condition2": {},
         "condition3": 4,
         "condition4": 0,
-        "primary": 0
+        "primary": false
     },
     {
         "id": 3,
@@ -45,7 +45,7 @@ export default [
         "condition2": {},
         "condition3": 5,
         "condition4": 0,
-        "primary": 0
+        "primary": false
     },
     {
         "id": 4,
@@ -54,15 +54,15 @@ export default [
         "no": "",
         "yes": "体质减1",
         "result": {
-            "0": "体质",
-            "1": "-1"
+            "0": 12,
+            "1": -1
         },
         "type": "随机",
         "condition1": 0,
         "condition2": {},
         "condition3": 0,
         "condition4": 0,
-        "primary": 1
+        "primary": true
     },
     {
         "id": 5,
@@ -71,15 +71,15 @@ export default [
         "no": "",
         "yes": "体质加1",
         "result": {
-            "0": "体质",
-            "1": "1"
+            "0": 12,
+            "1": 1
         },
         "type": "随机",
         "condition1": 0,
         "condition2": {},
         "condition3": 0,
         "condition4": 0,
-        "primary": 1
+        "primary": true
     },
     {
         "id": 6,
@@ -91,11 +91,11 @@ export default [
         "type": "战斗",
         "condition1": 1,
         "condition2": {
-            "0": "体质",
-            "1": "20"
+            "0": 12,
+            "1": 20
         },
         "condition3": 0,
         "condition4": 30,
-        "primary": 1
+        "primary": true
     }
 ]

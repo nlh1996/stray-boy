@@ -189,6 +189,22 @@ class PlayerManager {
     this.setCurrentEvent(event)
   }
 
+  // 特殊事件奖惩
+  plotResult(result) {
+    if(result[0] == 10) {
+      this.properties.knowledge += result[1]
+    }
+    if(result[0] == 11) {
+      this.properties.charm += result[1]
+    }
+    if(result[0] == 12) {
+      this.properties.sport += result[1]
+    }
+    if(result[0] > 100) {
+      Backpack.getInstance().setProperty(result)
+    }
+  }
+
   // 执行逃跑
   runAway() {
     GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME)

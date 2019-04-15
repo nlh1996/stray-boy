@@ -70,26 +70,16 @@ class Backpack {
   }
 
   // 材料变化
-  setProperty(code) {
-    for(let i=0; i<code.length; i++) {
-      switch(code[i]) {
-        // 木材
-        case 503:
-          this.materials[3].num += 3
-          break
-        // 药草
-        case 603:
-          this.materials[2].num += 3
-          break
-        //肉
-        case 703:
-          this.materials[0].num += 3
-          break
-        //果子
-        case 803:
-          this.materials[1].num += 3
-          break
-      }
+  setProperty(result) {
+    for(let i=0; i<this.materials.length; i++) {
+      if(result[0] == this.materials[i].id) {
+        this.materials[i].num += result[1]
+      } 
+    }
+    for(let i=0; i<this.propList.length; i++) {
+      if(result[0] == this.propList[i].id) {
+        this.propList[i].num += result[1]
+      } 
     }
   }
 

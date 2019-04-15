@@ -47,6 +47,9 @@ cc.Class({
         default: null,
         type: cc.Label
       },
+      sport: cc.Label,
+      charm: cc.Label,
+      knowledge: cc.Label,
     },                                                                                                                                     
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
@@ -71,6 +74,7 @@ cc.Class({
       et.on(EVENT.CHOOSE, this.choose, this)
       et.on(EVENT.FINISH, () => {
         this.nodeActive(this.node1)
+        this.updateLabel()
       })
     },
 
@@ -128,6 +132,10 @@ cc.Class({
       // 获得玩家当前事件描述
       const event = player.getCurrentEvent()
       if(event) {
+        if(btn.node.state == STATE.SLEEP) {
+          GameSceneMng.getInstance().setGameScene(GAME_SCENE.STORY)
+          return
+        }
         if(btn.node.state == STATE.SEARCH) {
           this.labelSchedule1(event.about)
         }else {
@@ -212,6 +220,9 @@ cc.Class({
       }
       this.duraction.string = player.duraction
       this.place.string = player.properties.currentPlace.name
+      this.knowledge.string = player.properties.knowledge
+      this.sport.string = player.properties.sport
+      this.charm.string = player.properties.charm
     },
 
     // // 计时器

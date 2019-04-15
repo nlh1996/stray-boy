@@ -1,4 +1,4 @@
-// 该脚本负责制造场景的逻辑
+// 该脚本负责背包场景的逻辑
 import {GAME_SCENE} from './Enum'
 import GameSceneMng from './GameSceneMng'
 import {Backpack} from './GoodsManager'
