@@ -30,6 +30,8 @@ cc.Class({
       this.node2 = this.node.getChildByName('Node2')
       this.node3 = this.node.getChildByName('Node3')
       this.node4 = this.node.getChildByName('Node4')
+      this.shop = this.node1.getChildByName('Btn_Shop')
+      this.shop.active = false
       //注册监听事件
       et.on(EVENT.NO_HUNGER, this.hungry, this)
       //每次加载组件都重新注册)
@@ -41,6 +43,7 @@ cc.Class({
         this.nodeActive(this.node3)
       })
       et.on(EVENT.HURT, this.updateLabel, this)
+      et.on(EVENT.FINDSHOP, this.showShop, this)
       et.on(EVENT.CHOOSE, this.choose, this)
       et.on(EVENT.FINISH, () => {
         this.nodeActive(this.node1)
@@ -68,6 +71,10 @@ cc.Class({
       this.Btn_Eat.on('click', this.opneBackpack, this)
     },
 
+    showShop() {
+      this.shop.active = true
+    },
+
     beforeCombat() {
       this.nodeActive(this.node2)
       et.emit(EVENT.ENTER_COMBAT)
@@ -89,6 +96,7 @@ cc.Class({
       et.off(EVENT.UPGRADE)
       et.off(EVENT.HURT)
       et.off(EVENT.CHOOSE)
+      et.off(EVENT.FINDSHOP)
     },
 
     hungry() {
@@ -177,7 +185,7 @@ cc.Class({
 
     // 更新人物属性面板
     updateLabel() {
-      this.life.string = player.properties.life
+      this.life.string = player.properties.currentLife + '/' + player.properties.maxLife
       this.health.string = player.properties.health
       this.attackSpeed.string = player.properties.attackSpeed
       this.moveSpeed.string = player.properties.moveSpeed

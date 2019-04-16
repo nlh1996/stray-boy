@@ -6,16 +6,17 @@ var TALENT = cc.Enum({
 })
 
 var EVENT = cc.Enum({
-  HUNGER: '饿了',
   BEFORE_COMBAT: '触发战斗',
   ENTER_COMBAT: '进入战斗',
   HURT: '受到伤害',
   WIN: '战斗获得胜利',
   FULL: '吃饱了',
+  LIFEFULL: '生命已满',
   GAMEOVER: '游戏结束',
   UPGRADE: '升级',
   FINISH: '加点结束',
-  CHOOSE: '游戏选择'
+  CHOOSE: '游戏选择',
+  FINDSHOP: '发现商店'
 })
 
 var GAME_SCENE = cc.Enum({

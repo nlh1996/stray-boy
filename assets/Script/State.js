@@ -2,7 +2,7 @@ import {STATUS,EVENT} from 'Enum'
 import {Backpack} from './GoodsManager'
 import sleep from '../Conf/sleep'
 import plot from '../Conf/plot'
-import goods from '../Conf/goods'
+
 const et = require('Listener')
 // 有限状态机
 
@@ -95,7 +95,7 @@ class Forward extends BaseState {
   // 一定几率触发特殊事件
   getPlotEvent(obj) {
     let pro = Math.floor(Math.random()*100)
-    if(pro<obj.properties.currentPlace.pro*obj.properties.charm) {
+    if(pro<=obj.properties.currentPlace.pro*obj.properties.charm) {
       for(let i=0; i<this.plot.length; i++) {
         let res = 0
         if(this.plot[i].condition1 == 0) {
@@ -143,6 +143,9 @@ class Forward extends BaseState {
         }
         if(res == 4) {
           obj.setCurrentEvent(this.plot[i])
+          if(this.plot[i].primary == true) {
+            this.plot.splice(i,1)
+          }
           et.emit(EVENT.CHOOSE)
           return true
         }

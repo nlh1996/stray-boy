@@ -19,10 +19,14 @@ cc.Class({
     // 进食
     eat() {
       let result = player.eat(this.node.good)
-      if(result != EVENT.FULL) {
+      if(result ==  '') {
         var content = this.node.good.about
-      }else {
+      }
+      if(result == EVENT.FULL) {
         var content = '吃饱了'
+      }
+      if(result == EVENT.LIFEFULL) {
+        var content = '生命已满'
       }
       cc.director.getScene().getChildByName('Canvas').getComponent('GoodScene').labelSchedule(content)
     },

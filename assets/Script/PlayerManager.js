@@ -14,8 +14,8 @@ class PlayerManager {
     this.properties = {
       exp: 10,
       level: 1,
-      life: 200,
-      maxlife: 200,
+      maxLife: 200,
+      currentLife: 200,
       attack: 20,
       defence: 10,
       knowledge: 10,
@@ -45,14 +45,15 @@ class PlayerManager {
     this.mstattackSpeed = 2
     this._state = {}
     this.currentEvent = {}
-    this.attackDescribe = '挥舞拳头，重重一击'
+    this.attackDescribe = '你挥舞拳头，重重一击'
     this.weapon = {id: -1}
     this.armor = {id: -1}
   }
 
   init(id) {
     let index = id-1
-    this.properties.life = talent[index].life
+    this.properties.maxLife = talent[index].life
+    this.properties.currentLife = talent[index].life
     this.properties.maxlife = talent[index].life
     this.properties.attack = talent[index].attack
     this.properties.defence = talent[index].defence
@@ -148,9 +149,9 @@ class PlayerManager {
     }else {
       var damage2 = 1
     }
-    this.properties.life -= damage2
+    this.properties.currentLife -= damage2
     // 人物死亡
-    if(this.properties.life <= 0) {
+    if(this.properties.currentLife <= 0) {
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
     }
 
@@ -203,6 +204,10 @@ class PlayerManager {
         break
       case 12: 
         this.properties.sport += result[1]
+        this.properties.maxLife -= 20
+        this.properties.currentLife -= 20
+        this.properties.attack -= 2
+        this.properties.defence -= 1
         break
     }
     if(result[0] > 100) {
@@ -238,20 +243,28 @@ class PlayerManager {
 
   // 角色进食
   eat(food) {
+    console.log(food.effect[0])
     let result = ''
     if(food.effect[0] == '饥饿' && this.properties.currentHunger < this.properties.hunger) {
       this.properties.currentHunger += parseInt(food.effect[1])
       if(this.properties.currentHunger > this.properties.hunger) {
         this.properties.currentHunger = this.properties.hunger
       }
-      result = EVENT.HUNGER
       Backpack.getInstance().consume(food.id)
     } 
+    if(food.effect[0] == '生命' && this.properties.currentLife < this.properties.maxLife) {
+      this.properties.currentLife += parseInt(food.effect[1])
+      if(this.properties.currentLife >= this.properties.maxLife) {
+        this.properties.currentLife = this.properties.maxLife
+      }
+      Backpack.getInstance().consume(food.id)
+    }
+
     if(food.effect[0] == '饥饿' && this.properties.currentHunger >= this.properties.hunger) {
       result = EVENT.FULL
     }
-    if(food.effect[0] == '生命') {
-      this.properties.life += parseInt(food.effect[1])
+    if(food.effect[0] == '生命' && this.properties.currentLife >= this.properties.maxLife) {
+      result = EVENT.LIFEFULL
     }
     return result
   }
@@ -269,6 +282,9 @@ class PlayerManager {
     this.duraction += this.properties.moveSpeed
     this.properties.moveDuration += this.properties.moveSpeed
     this.where(this.properties.moveDuration)
+    if(this.properties.currentPlace.shop == true) {
+      et.emit(EVENT.FINDSHOP)
+    }
   }
 
   // 加点
@@ -284,8 +300,8 @@ class PlayerManager {
         this.properties.sport++
         this.properties.attack += 2
         this.properties.defence += 1
-        this.properties.life += 20
-        this.properties.maxlife += 20
+        this.properties.maxLife += 20
+        this.properties.currentLife += 20
       break
     }
   }

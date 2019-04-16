@@ -88,7 +88,7 @@ cc.Class({
       this.knowledge.string = player.properties.knowledge
       this.sport.string = player.properties.sport
       this.charm.string = player.properties.charm
-      this.life.string = player.properties.life
+      this.life.string = player.properties.currentLife + '/' + player.properties.maxLife
       this.attack.string = player.properties.attack
       this.defence.string = player.properties.defence
     }

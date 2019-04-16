@@ -1,4 +1,4 @@
-export default [
+export default[
     {
         "id": 1,
         "name": "孙庄",
@@ -6,6 +6,7 @@ export default [
         "good": "草药",
         "num": 1,
         "pro": 3,
+        "shop": false,
         "": ""
     },
     {
@@ -15,6 +16,7 @@ export default [
         "good": "果子",
         "num": 1,
         "pro": 3,
+        "shop": false,
         "": ""
     },
     {
@@ -24,6 +26,7 @@ export default [
         "good": "皮",
         "num": 1,
         "pro": 3,
+        "shop": true,
         "": ""
     },
     {
@@ -33,6 +36,7 @@ export default [
         "good": "木材",
         "num": 1,
         "pro": 3,
+        "shop": false,
         "": ""
     },
     {
@@ -42,6 +46,7 @@ export default [
         "good": "兽肉",
         "num": 1,
         "pro": 3,
+        "shop": false,
         "": ""
     },
     {
@@ -51,6 +56,7 @@ export default [
         "good": "果子",
         "num": 1,
         "pro": 3,
+        "shop": true,
         "": ""
     },
     {
@@ -60,6 +66,7 @@ export default [
         "good": "药草",
         "num": 1,
         "pro": 3,
+        "shop": false,
         "": ""
     },
     {
@@ -69,6 +76,7 @@ export default [
         "good": "木材",
         "num": 1,
         "pro": 3,
+        "shop": false,
         "": ""
     },
     {
@@ -78,6 +86,7 @@ export default [
         "good": "皮",
         "num": 1,
         "pro": 3,
+        "shop": true,
         "": ""
     },
     {
@@ -87,6 +96,7 @@ export default [
         "good": "铁",
         "num": 1,
         "pro": 3,
+        "shop": false,
         "": ""
     },
     {
@@ -96,6 +106,7 @@ export default [
         "good": "硫磺",
         "num": 1,
         "pro": 2,
+        "shop": false,
         "": ""
     },
     {
@@ -105,6 +116,7 @@ export default [
         "good": "兽骨",
         "num": 1,
         "pro": 2,
+        "shop": true,
         "": ""
     },
     {
@@ -114,6 +126,7 @@ export default [
         "good": "鳞片",
         "num": 1,
         "pro": 2,
+        "shop": false,
         "": ""
     },
     {
@@ -123,6 +136,7 @@ export default [
         "good": "兽筋",
         "num": 1,
         "pro": 2,
+        "shop": false,
         "": ""
     },
     {
@@ -132,6 +146,7 @@ export default [
         "good": "变异兽骨",
         "num": 1,
         "pro": 2,
+        "shop": true,
         "": ""
     },
     {
@@ -141,6 +156,7 @@ export default [
         "good": "变异鳞片",
         "num": 1,
         "pro": 2,
+        "shop": false,
         "": ""
     },
     {
@@ -150,6 +166,7 @@ export default [
         "good": "猪王獠牙",
         "num": 1,
         "pro": 2,
+        "shop": false,
         "": ""
     },
     {
@@ -159,6 +176,7 @@ export default [
         "good": "猪王皮",
         "num": 1,
         "pro": 2,
+        "shop": true,
         "": ""
     },
     {
@@ -168,6 +186,7 @@ export default [
         "good": "铀矿石",
         "num": 1,
         "pro": 2,
+        "shop": false,
         "": ""
     },
     {
@@ -177,6 +196,7 @@ export default [
         "good": "变异兽骨",
         "num": 1,
         "pro": 1,
+        "shop": false,
         "": "                                                                                                                                          "
     },
     {
@@ -186,6 +206,7 @@ export default [
         "good": "变异鳞片",
         "num": 1,
         "pro": 1,
+        "shop": true,
         "": ""
     },
     {
@@ -195,6 +216,7 @@ export default [
         "good": "猪王獠牙",
         "num": 1,
         "pro": 1,
+        "shop": false,
         "": ""
     },
     {
@@ -204,6 +226,7 @@ export default [
         "good": "猪王皮",
         "num": 1,
         "pro": 1,
+        "shop": false,
         "": ""
     },
     {
@@ -213,6 +236,7 @@ export default [
         "good": "铀矿石",
         "num": 1,
         "pro": 1,
+        "shop": true,
         "": ""
     },
     {
@@ -222,6 +246,7 @@ export default [
         "good": "变异兽骨",
         "num": 1,
         "pro": 1,
+        "shop": false,
         "": ""
     },
     {
@@ -231,6 +256,7 @@ export default [
         "good": "变异鳞片",
         "num": 1,
         "pro": 1,
+        "shop": false,
         "": ""
     },
     {
@@ -240,6 +266,7 @@ export default [
         "good": "猪王獠牙",
         "num": 1,
         "pro": 1,
+        "shop": true,
         "": ""
     },
     {
@@ -249,6 +276,7 @@ export default [
         "good": "猪王皮",
         "num": 1,
         "pro": 1,
+        "shop": false,
         "": ""
     }
 ]
