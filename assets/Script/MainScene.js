@@ -7,46 +7,16 @@ import GameSceneMng from './GameSceneMng'
 cc.Class({
     extends: cc.Component,
     properties: {
-      content: {
-        default: null,
-        type: cc.Label
-      },
-      life: {
-        default: null,
-        type: cc.Label
-      },
-      health: {
-        default: null,
-        type: cc.Label
-      },
-      attackSpeed: {
-        default: null,
-        type: cc.Label
-      },
-      moveSpeed: {
-        default: null,
-        type: cc.Label
-      },
-      hunger: {
-        default: null,
-        type: cc.Label
-      },
-      energy: {
-        default: null,
-        type: cc.Label
-      },
-      time: {
-        default: null,
-        type: cc.Label
-      },
-      duraction: {
-        default: null,
-        type: cc.Label
-      },
-      place: {
-        default: null,
-        type: cc.Label
-      },
+      content: cc.Label,
+      life: cc.Label,
+      health: cc.Label,
+      attackSpeed: cc.Label,
+      moveSpeed: cc.Label,
+      hunger: cc.Label,
+      energy: cc.Label,
+      time: cc.Label,
+      duraction: cc.Label,
+      place: cc.Label,
       sport: cc.Label,
       charm: cc.Label,
       knowledge: cc.Label,

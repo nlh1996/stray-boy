@@ -118,6 +118,7 @@ class PlayerManager {
     }
     this.setCurrentEvent(event)
   }
+  
   // 设置角色状态
   setState(num) {
     this._state = stateMng.getState(num)
@@ -176,6 +177,7 @@ class PlayerManager {
       this.day += 1
     }
   }
+  
   // 战斗获胜结算
   win(mst) {
     this.properties.exp += mst.exp
@@ -191,14 +193,16 @@ class PlayerManager {
 
   // 特殊事件奖惩
   plotResult(result) {
-    if(result[0] == 10) {
-      this.properties.knowledge += result[1]
-    }
-    if(result[0] == 11) {
-      this.properties.charm += result[1]
-    }
-    if(result[0] == 12) {
-      this.properties.sport += result[1]
+    switch(result[0]) {
+      case 10: 
+        this.properties.knowledge += result[1]
+        break
+      case 11: 
+        this.properties.charm += result[1]
+        break
+      case 12: 
+        this.properties.sport += result[1]
+        break
     }
     if(result[0] > 100) {
       Backpack.getInstance().setProperty(result)
