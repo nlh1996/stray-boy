@@ -83,6 +83,7 @@ class Backpack {
 
   // 材料变化
   setProperty(result) {
+    console.log(result[0],this.propList)
     for(let i=0; i<this.materials.length; i++) {
       if(result[0] == this.materials[i].id) {
         this.materials[i].num += result[1]

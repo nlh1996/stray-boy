@@ -69,10 +69,10 @@ class Forward extends BaseState {
   constructor() {
     super()
     this.event = [
-      {about:'收集到【木材】*3', code: [503]},
-      {about:'收集到【药草】*3', code: [603]},
-      {about:'收集到【生肉】*3', code: [703]},
-      {about:'收集到【果子】*3', code: [803]},
+      {about:'收集到【木材】*1', result: {'0': 104,'1': 1}},
+      {about:'收集到【药草】*1', result: {'0': 103,'1': 1}},
+      {about:'收集到【瘦肉】*1', result: {'0': 101,'1': 1}},
+      {about:'收集到【果子】*1', result: {'0': 102,'1': 1}},
     ]
     this.plot = plot
   }
@@ -161,7 +161,7 @@ class Forward extends BaseState {
     if(10 + obj.properties.charm >= pro) {
       let i = Math.floor(Math.random()*this.event.length)
       obj.setCurrentEvent(this.event[i])
-      Backpack.getInstance().setProperty(obj.currentEvent.code)
+      Backpack.getInstance().setProperty(obj.getCurrentEvent().result)
     } else {
       obj.setCurrentEvent(null)
       et.emit(EVENT.BEFORE_COMBAT)
