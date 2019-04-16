@@ -68,7 +68,7 @@ cc.Class({
     combat() {
       this.damage = player.combat(this.monster)
       let content = player.attackDescribe + '【' + this.monster.name + '生命-' + this.damage[0] + '】' 
-      + this.monster.attackType +'【你的生命-' + this.damage[1] + '】'
+      + '\n' +this.monster.attackType +'【你的生命-' + this.damage[1] + '】'
       if(this.monster.life>0) {
         this.node.parentComponent.labelSchedule2(content)
       }

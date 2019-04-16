@@ -49,9 +49,9 @@ cc.Class({
         }
       }
       this.btn_label.string = good.name
-      this.label1.string = '#需【' + good.needs[0].name + '】' + arr[0] +'/' + good.needs[0].num
+      this.label1.string = '需【' + good.needs[0].name + '】' + arr[0] +'/' + good.needs[0].num
       + '【' + good.needs[1].name +'】' + arr[1] + '/' + good.needs[1].num
-      this.label2.string = '#获得【' + good.name +'】' + '(拥有'+ good.num +')'
+      this.label2.string = '获得【' + good.name +'】' + '(拥有'+ good.num +')'
     },
 
     update() {

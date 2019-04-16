@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6212171052631579,
-      "y": 0.6212171052631579,
-      "z": 0.6212171052631579
+      "x": 0.5949013157894737,
+      "y": 0.5949013157894737,
+      "z": 0.5949013157894737
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -4706,7 +4706,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$horizontalAlign": 1,
+    "_N$horizontalAlign": 0,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
     "_N$overflow": 3,

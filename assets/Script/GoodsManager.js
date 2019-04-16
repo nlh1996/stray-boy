@@ -58,10 +58,8 @@ class Backpack {
   // 道具持续时间倒计时
   reduceTime(hour) {
     for(let i=0; i<this.weaponList.length; i++) {
-      console.log(this.weaponList[i].time)
       if(this.weaponList[i].type == '特殊' && this.weaponList[i].time>0) {
         this.weaponList[i].time = (this.weaponList[i].time*10 - hour*10)/10
-        console.log(this.weaponList[i].time)
         if(this.weaponList[i].time<0) {
           this.weaponList[i].time = 0
         }

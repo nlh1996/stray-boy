@@ -35,8 +35,8 @@ cc.Class({
     updateData() {
       let good = this.node.good
       this.btn_label.string = good.name
-      this.label1.string = '#拥有：' + good.num
-      this.label2.string = '#效果：' + good.about
+      this.label1.string = '拥有：' + good.num
+      this.label2.string = '效果：' + good.about
     },
 
     // 判断按钮是否为可用状态

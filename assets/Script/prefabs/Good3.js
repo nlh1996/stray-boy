@@ -78,10 +78,10 @@ cc.Class({
     updateData() {
       let good = this.node.good
       this.goodName.string = good.name
-      this.label1.string = '#描述：' + good.about
-      this.label2.string = '#效果：攻击+' + good.attack + ' 防御+' + good.defence + ' 生命+' + good.life
+      this.label1.string = '描述：' + good.about
+      this.label2.string = '效果：攻击+' + good.attack + ' 防御+' + good.defence + ' 生命+' + good.life
       if(good.type == '特殊') {
-        this.label3.string = '#持续时间：' + good.time
+        this.label3.string = '持续时间：' + good.time
       }
     },
 
