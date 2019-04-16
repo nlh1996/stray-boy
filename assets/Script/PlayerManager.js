@@ -118,7 +118,7 @@ class PlayerManager {
     }
     this.setCurrentEvent(event)
   }
-  
+
   // 设置角色状态
   setState(num) {
     this._state = stateMng.getState(num)
@@ -172,6 +172,7 @@ class PlayerManager {
   //计算时间 
   computingTime(hour) {
     this.hour = (hour*10 + this.hour*10)/10
+    Backpack.getInstance().reduceTime(hour)
     if(this.hour >= 24) {
       this.hour = (this.hour*10-24*10)/10
       this.day += 1

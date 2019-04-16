@@ -95,7 +95,6 @@ class Forward extends BaseState {
   // 一定几率触发特殊事件
   getPlotEvent(obj) {
     let pro = Math.floor(Math.random()*100)
-    console.log(pro)
     if(pro<obj.properties.currentPlace.pro*obj.properties.charm) {
       for(let i=0; i<this.plot.length; i++) {
         let res = 0
