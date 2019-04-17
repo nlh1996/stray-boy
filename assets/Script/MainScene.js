@@ -20,6 +20,7 @@ cc.Class({
       sport: cc.Label,
       charm: cc.Label,
       knowledge: cc.Label,
+      money: cc.Label,
     },                                                                                                                                     
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
@@ -201,6 +202,7 @@ cc.Class({
       this.knowledge.string = player.properties.knowledge
       this.sport.string = player.properties.sport
       this.charm.string = player.properties.charm
+      this.money.string = player.properties.money
     },
 
     // // 计时器

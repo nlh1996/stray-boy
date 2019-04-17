@@ -30,7 +30,8 @@ class PlayerManager {
       currentEnergy: 100,
       currentPlace: {name:'孙庄'},
       moveDuration: 0,
-      talent: null
+      talent: null,
+      money: 0
     },
 
     // 地图

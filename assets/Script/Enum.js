@@ -1,11 +1,11 @@
 // 定义所有枚举的脚本
-var TALENT = cc.Enum({
+const TALENT = cc.Enum({
   健身达人: 1,
   情场高手: 2,
   理工男: 3
 })
 
-var EVENT = cc.Enum({
+const EVENT = cc.Enum({
   BEFORE_COMBAT: '触发战斗',
   ENTER_COMBAT: '进入战斗',
   HURT: '受到伤害',
@@ -19,7 +19,7 @@ var EVENT = cc.Enum({
   FINDSHOP: '发现商店'
 })
 
-var GAME_SCENE = cc.Enum({
+const GAME_SCENE = cc.Enum({
   START: 'start',
   GAME: 'game',
   MAKE: 'make',
@@ -28,14 +28,14 @@ var GAME_SCENE = cc.Enum({
   STORY: 'story'
 })
 
-var STATUS = cc.Enum({
+const STATUS = cc.Enum({
   STATUS_OK: 0,
   NO_ENERGY: 1,
   NO_HUNGER: 2
 })
 
 // 有限状态机状态
-var STATE = cc.Enum({
+const STATE = cc.Enum({
   SEARCH: 0,
   FORWARD: 1,
   SLEEP: 2,
