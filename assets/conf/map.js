@@ -7,6 +7,9 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": false,
+        "enemy": {
+            "0": 1
+        },
         "": ""
     },
     {
@@ -17,6 +20,9 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": false,
+        "enemy": {
+            "0": 1
+        },
         "": ""
     },
     {
@@ -27,6 +33,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": true,
+        "enemy": {
+            "0": 1,
+            "1": 2
+        },
         "": ""
     },
     {
@@ -37,6 +47,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": false,
+        "enemy": {
+            "0": 1,
+            "1": 2
+        },
         "": ""
     },
     {
@@ -47,6 +61,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": false,
+        "enemy": {
+            "0": 2,
+            "1": 3
+        },
         "": ""
     },
     {
@@ -57,6 +75,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": true,
+        "enemy": {
+            "0": 2,
+            "1": 3
+        },
         "": ""
     },
     {
@@ -67,6 +89,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": false,
+        "enemy": {
+            "0": 3,
+            "1": 4
+        },
         "": ""
     },
     {
@@ -77,6 +103,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": false,
+        "enemy": {
+            "0": 3,
+            "1": 4
+        },
         "": ""
     },
     {
@@ -87,6 +117,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": true,
+        "enemy": {
+            "0": 4,
+            "1": 5
+        },
         "": ""
     },
     {
@@ -97,6 +131,10 @@ export default[
         "num": 1,
         "pro": 3,
         "shop": false,
+        "enemy": {
+            "0": 4,
+            "1": 5
+        },
         "": ""
     },
     {
@@ -107,6 +145,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": false,
+        "enemy": {
+            "0": 5,
+            "1": 6
+        },
         "": ""
     },
     {
@@ -117,6 +159,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": true,
+        "enemy": {
+            "0": 5,
+            "1": 6
+        },
         "": ""
     },
     {
@@ -127,6 +173,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": false,
+        "enemy": {
+            "0": 6,
+            "1": 7
+        },
         "": ""
     },
     {
@@ -137,6 +187,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": false,
+        "enemy": {
+            "0": 6,
+            "1": 7
+        },
         "": ""
     },
     {
@@ -147,6 +201,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": true,
+        "enemy": {
+            "0": 7,
+            "1": 8
+        },
         "": ""
     },
     {
@@ -157,6 +215,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": false,
+        "enemy": {
+            "0": 7,
+            "1": 8
+        },
         "": ""
     },
     {
@@ -167,6 +229,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": false,
+        "enemy": {
+            "0": 8,
+            "1": 9
+        },
         "": ""
     },
     {
@@ -177,6 +243,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": true,
+        "enemy": {
+            "0": 8,
+            "1": 9
+        },
         "": ""
     },
     {
@@ -187,6 +257,10 @@ export default[
         "num": 1,
         "pro": 2,
         "shop": false,
+        "enemy": {
+            "0": 9,
+            "1": 10
+        },
         "": ""
     },
     {
@@ -197,6 +271,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": false,
+        "enemy": {
+            "0": 9,
+            "1": 10
+        },
         "": "                                                                                                                                          "
     },
     {
@@ -207,6 +285,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": true,
+        "enemy": {
+            "0": 10,
+            "1": 11
+        },
         "": ""
     },
     {
@@ -217,6 +299,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": false,
+        "enemy": {
+            "0": 10,
+            "1": 11
+        },
         "": ""
     },
     {
@@ -227,6 +313,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": false,
+        "enemy": {
+            "0": 11,
+            "1": 12
+        },
         "": ""
     },
     {
@@ -237,6 +327,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": true,
+        "enemy": {
+            "0": 11,
+            "1": 12
+        },
         "": ""
     },
     {
@@ -247,6 +341,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": false,
+        "enemy": {
+            "0": 12,
+            "1": 13
+        },
         "": ""
     },
     {
@@ -257,6 +355,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": false,
+        "enemy": {
+            "0": 12,
+            "1": 13
+        },
         "": ""
     },
     {
@@ -267,6 +369,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": true,
+        "enemy": {
+            "0": 13,
+            "1": 14
+        },
         "": ""
     },
     {
@@ -277,6 +383,10 @@ export default[
         "num": 1,
         "pro": 1,
         "shop": false,
+        "enemy": {
+            "0": 13,
+            "1": 14
+        },
         "": ""
     }
 ]

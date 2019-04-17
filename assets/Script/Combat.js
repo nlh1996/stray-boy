@@ -49,7 +49,14 @@ cc.Class({
 
     // 进入战斗
     enterCombat() {
-      let id = parseInt((player.properties.moveDuration+10)/10)
+      var id = 1
+      const len = Object.getOwnPropertyNames(player.properties.currentPlace.enemy).length
+      const pro = Math.floor(Math.random()*100) 
+      if(pro <= 100/len) {
+        id = player.properties.currentPlace.enemy[0]
+      }else {
+        id = player.properties.currentPlace.enemy[1]
+      }
       let monster = new Monster(id)
       this.monster =  monster
       this.updateMonster()
