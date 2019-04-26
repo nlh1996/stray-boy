@@ -153,6 +153,7 @@ class PlayerManager {
     this.properties.currentLife -= damage2
     // 人物死亡
     if(this.properties.currentLife <= 0) {
+      this.properties.currentLife = 0
       GameSceneMng.getInstance().setGameScene(GAME_SCENE.GAME_OVER)
     }
 

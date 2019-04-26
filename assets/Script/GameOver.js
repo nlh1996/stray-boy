@@ -11,16 +11,14 @@ cc.Class({
       //获取 ArmatureDisplay
       this._armatureDisPlay = this.getComponent(dragonBones.ArmatureDisplay)
       this.btn1.node.on('click',this.callback,this)
-        //获取 Armatrue
-        // this._armature = this._armatureDisPlay.armature()
-        // this._armature.animation.fadeIn('attack1', -1, -1, 0, 'hit');
         
     },
 
     callback () {
-      this._armatureDisPlay.playAnimation('attack1', 1);
+      //获取 Armatrue
+      this._armature = this._armatureDisPlay.armature()
+      this._armature.animation.fadeIn('attack1', -1, 1, 0, 'hit')
     },
-
 
     // update (dt) {},
 });
